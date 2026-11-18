@@ -387,6 +387,28 @@ input[type="search"] { width: 100%; font: inherit; font-size: 17px; color: var(-
 .bottom button.navbtn { border: 0; background: transparent; font: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 56px; padding: 4px 0; color: var(--muted); font-size: 11px; font-weight: 650; cursor: pointer; }
 .bottom button.navbtn[aria-current="page"], .bottom button.navbtn[aria-expanded="true"] { color: var(--accent); }
 .bottom button.navbtn[aria-current="page"] .ico, .bottom button.navbtn[aria-expanded="true"] .ico { background: var(--accent-soft); }
+input[type="date"] { display: block; min-width: 0; max-width: 100%; -webkit-appearance: none; appearance: none; text-align: left; }
+input[type="date"]::-webkit-date-and-time-value { text-align: left; }
+.row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.lrow { padding: 16px 0; border-top: 1px solid var(--line); }
+.lrow:first-child { border-top: 0; padding-top: 4px; }
+.lrow-head { display: grid; grid-template-columns: 1fr 40px; gap: 8px; align-items: center; }
+.lrow label { font-size: 12px; margin-bottom: 3px; }
+.lrow input[type="number"], .lrow input[type="text"], .lrow select { font-size: 17px; min-height: 46px; padding: 10px; }
+.lrow input[type="text"] { font-weight: 650; }
+.lrow .field { margin: 0; }
+.lrow .pct { position: relative; }
+.lrow .pct input { padding-right: 28px; }
+.lrow .pct .suffix { bottom: 12px; right: 10px; }
+.lres { margin-top: 12px; padding: 12px; border-radius: 14px; background: var(--accent-soft); }
+.lres .v { font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--accent); }
+.lres .v small { font-size: 13px; font-weight: 600; color: var(--muted); }
+.lres .lab { font-size: 12px; color: var(--muted); margin-bottom: 1px; }
+.calc-note { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; margin: 0 0 14px; font-size: 14px; color: var(--muted); }
+.calc-note b { color: var(--ink); }
+.listtext { margin-top: 12px; font-size: 14px; min-height: 120px; font-variant-numeric: tabular-nums; }
+.tabs { grid-template-columns: repeat(4, 1fr) !important; }
+.tabs .tab { font-size: 14px; padding-left: 2px; padding-right: 2px; }
 [hidden] { display: none !important; }
 @media (prefers-reduced-motion: reduce) { .bar { transition: none; } }
 </style>
@@ -441,22 +463,7 @@ input[type="search"] { width: 100%; font: inherit; font-size: 17px; color: var(-
   <!-- ===== CALCULATOR ===== -->
   <div id="page-calculator">
     <h1 class="page-title">Shrinkage calculator</h1>
-    <p class="sub">Work out what size to make a piece, or measure how much your clay shrinks.</p>
-
-    <div class="tabs" role="tablist" aria-label="Calculator mode">
-      <button class="tab" role="tab" id="t-make" aria-selected="true" data-tab="make">Make</button>
-      <button class="tab" role="tab" id="t-predict" aria-selected="false" data-tab="predict">Predict</button>
-      <button class="tab" role="tab" id="t-test" aria-selected="false" data-tab="test">Test tile</button>
-    </div>
-
-    <div class="card">
-      <h2>Units</h2>
-      <select id="unit" aria-label="Units">
-        <option value="mm">Millimetres (mm)</option>
-        <option value="cm">Centimetres (cm)</option>
-        <option value="in">Inches (in)</option>
-      </select>
-    </div>
+    <p class="sub">Work out what size to make your pieces, or how big they will be after firing.</p>
 
     <section class="card" id="shrinkCard">
       <h2>Your clay&rsquo;s shrinkage</h2>
@@ -472,6 +479,7 @@ input[type="search"] { width: 100%; font: inherit; font-size: 17px; color: var(-
         <button class="btn-ghost" id="clayCancel">Cancel</button>
       </div>
       <p class="msg err" id="clayErr" hidden>Give the clay a name to save it.</p>
+      <p class="hint" id="clayHint" style="margin:-4px 0 12px" hidden></p>
 
       <div class="seg" role="group" aria-label="Shrinkage entry">
         <button id="m-total" aria-pressed="true">Total</button>
@@ -499,70 +507,25 @@ input[type="search"] { width: 100%; font: inherit; font-size: 17px; color: var(-
         </div>
         <p class="total-note" id="stageTotal"></p>
       </div>
-      <p class="hint">Find this on the clay&rsquo;s data sheet, or use the Test tile tab to measure it. Save each clay you use so you can switch between them.</p>
+      <p class="hint">Find this on the clay&rsquo;s data sheet. Save each clay you use so you can switch between them. A piece can also have its own shrinkage.</p>
     </section>
 
-    <section id="p-make" role="tabpanel" aria-labelledby="t-make">
-      <div class="card">
-        <h2>Finished size you want</h2>
-        <div class="row">
-          <div class="field">
-            <label for="makeH">Height</label>
-            <input id="makeH" type="number" inputmode="decimal" step="any" min="0" placeholder="e.g. 100">
-            <span class="suffix u"></span>
-          </div>
-          <div class="field">
-            <label for="makeW">Width</label>
-            <input id="makeW" type="number" inputmode="decimal" step="any" min="0" placeholder="optional">
-            <span class="suffix u"></span>
-          </div>
-        </div>
+    <div class="card">
+      <div class="card-head"><h2>Pieces</h2><span class="sub2" id="listCount"></span></div>
+      <div class="seg" role="group" aria-label="What are you entering?">
+        <button id="dir-make" aria-pressed="true">Make</button>
+        <button id="dir-predict" aria-pressed="false">Predict</button>
       </div>
-      <div class="card result" id="makeOut" aria-live="polite"></div>
-    </section>
-
-    <section id="p-predict" role="tabpanel" aria-labelledby="t-predict" hidden>
-      <div class="card">
-        <h2>Size you made (wet)</h2>
-        <div class="row">
-          <div class="field">
-            <label for="predH">Height</label>
-            <input id="predH" type="number" inputmode="decimal" step="any" min="0" placeholder="e.g. 120">
-            <span class="suffix u"></span>
-          </div>
-          <div class="field">
-            <label for="predW">Width</label>
-            <input id="predW" type="number" inputmode="decimal" step="any" min="0" placeholder="optional">
-            <span class="suffix u"></span>
-          </div>
-        </div>
+      <p class="hint" id="dirHint" style="margin:-2px 0 6px"></p>
+      <div id="listRows"></div>
+      <div class="btn-row" style="margin-top:12px">
+        <button class="btn-ghost" id="listAdd">Add piece</button>
+        <button class="btn-ghost" id="listCopy">Copy list</button>
       </div>
-      <div class="card result" id="predOut" aria-live="polite"></div>
-    </section>
-
-    <section id="p-test" role="tabpanel" aria-labelledby="t-test" hidden>
-      <div class="card">
-        <h2>Test tile measurements</h2>
-        <div class="field">
-          <label for="tWet">Wet length (a line you scored in the clay)</label>
-          <input id="tWet" type="number" inputmode="decimal" step="any" min="0" placeholder="e.g. 100">
-          <span class="suffix u"></span>
-        </div>
-        <div class="field">
-          <label for="tDry">Dry length (optional)</label>
-          <input id="tDry" type="number" inputmode="decimal" step="any" min="0">
-          <span class="suffix u"></span>
-        </div>
-        <div class="field">
-          <label for="tFired">Fired length</label>
-          <input id="tFired" type="number" inputmode="decimal" step="any" min="0" placeholder="e.g. 88">
-          <span class="suffix u"></span>
-        </div>
-        <p class="hint">Roll a slab, score a 100 mm line (or 10 cm, or 4 in), then measure the same line after drying and after firing.</p>
-      </div>
-      <div class="card result" id="testOut" aria-live="polite"></div>
-      <button class="apply" id="useRate" hidden>Use this shrinkage in Make and Predict</button>
-    </section>
+      <textarea id="listText" class="listtext" readonly hidden aria-label="Piece list text"></textarea>
+      <p class="msg ok" id="listMsg" hidden></p>
+    </div>
+    <p class="calc-note" id="calcNote"><b>How it&rsquo;s worked out:</b> wet size = finished size &divide; (1 &minus; shrinkage %). Shrinkage rates are a starting point, so test before committing to a large production run.</p>
   </div>
 
   <!-- ===== IDEAS ===== -->
@@ -636,15 +599,13 @@ input[type="search"] { width: 100%; font: inherit; font-size: 17px; color: var(-
           <label for="pName">Name</label>
           <input type="text" id="pName" placeholder="e.g. Speckled mug set">
         </div>
-        <div class="row">
-          <div class="field">
-            <label for="pDate">Date</label>
-            <input type="date" id="pDate">
-          </div>
-          <div class="field">
-            <label for="pCone">Fired to</label>
-            <select id="pCone"></select>
-          </div>
+        <div class="field">
+          <label for="pDate">Date</label>
+          <input type="date" id="pDate">
+        </div>
+        <div class="field">
+          <label for="pCone">Fired to</label>
+          <select id="pCone"></select>
         </div>
         <div class="field">
           <label for="pClay">Clay body</label>
@@ -831,23 +792,24 @@ input[type="search"] { width: 100%; font: inherit; font-size: 17px; color: var(-
   }
 
   /* ================= CALCULATOR ================= */
-  var state = { tab: 'make', mode: 'total', unit: 'mm' };
+  var state = { mode: 'total', unit: 'in', dir: 'make' };
   var clays = sget('clayday:clays', []);
+  var UNIT_IDS = ['in', 'cm', 'mm'];
 
   function saveSettings() {
-    sset('clayday:settings', { mode: state.mode, unit: state.unit, total: $('sTotal').value, dry: $('sDry').value, fire: $('sFire').value, clay: $('claySel').value });
+    sset('clayday:settings', { mode: state.mode, unit: state.unit, dir: state.dir, total: $('sTotal').value, dry: $('sDry').value, fire: $('sFire').value, clay: $('claySel').value });
   }
   function loadSettings() {
     var s = sget('clayday:settings', null) || sget('clayShrinkV1', null);
     if (!s) return null;
     if (s.mode) state.mode = s.mode;
-    if (s.unit) state.unit = s.unit;
+    if (UNIT_IDS.indexOf(s.unit) > -1) state.unit = s.unit;
+    if (s.dir === 'make' || s.dir === 'predict') state.dir = s.dir;
     if (s.total) $('sTotal').value = s.total;
     if (s.dry) $('sDry').value = s.dry;
     if (s.fire) $('sFire').value = s.fire;
     return s;
   }
-  function fmt(n) { var d = state.unit === 'in' ? 3 : (state.unit === 'cm' ? 2 : 1); return trimZ(n.toFixed(d)); }
 
   function shrink() {
     if (state.mode === 'total') {
@@ -860,97 +822,70 @@ input[type="search"] { width: 100%; font: inherit; font-size: 17px; color: var(-
     var ka = 1 - a / 100, kb = 1 - b / 100;
     return { dryKeep: ka, fireStageKeep: kb, fireKeep: ka * kb, total: (1 - ka * kb) * 100 };
   }
-  var ERR_SHRINK = '<p class="err">Enter a shrinkage between 0 and 60%.</p>';
-
-  function getDims(hid, wid) {
-    var a = [], h = num(hid), w = num(wid);
-    if (h !== null && h > 0) a.push({ label: 'Height', v: h });
-    if (w !== null && w > 0) a.push({ label: 'Width', v: w });
-    return a;
-  }
-  function sizeResult(dims, stages, headIdx, headLabel, stats) {
-    var u = state.unit;
-    var h = '<div class="label">' + headLabel + '</div><div class="bigs">';
-    dims.forEach(function (d) {
-      h += '<div>' + (dims.length > 1 ? '<div class="label">' + d.label + '</div>' : '') +
-           '<div class="big">' + fmt(d.v * stages[headIdx].f) + ' <small>' + u + '</small></div></div>';
-    });
-    h += '</div><div class="bars" aria-hidden="true">';
-    var max = Math.max.apply(null, stages.map(function (s) { return s.f; }));
-    stages.forEach(function (s) {
-      h += '<div class="legend"><span>' + s.name + '</span><span>' +
-           dims.map(function (d) { return fmt(d.v * s.f); }).join(' &times; ') + ' ' + u + '</span></div>' +
-           '<div class="bar ' + s.cls + '" style="width:' + (s.f / max * 100) + '%"></div>';
-    });
-    h += '</div><div class="stats">' + stats.map(function (x) {
-      return '<div class="stat"><div class="label">' + x[0] + '</div><div class="v">' + x[1] + '</div></div>';
-    }).join('') + '</div>';
-    return h;
-  }
-
-  function renderMake() {
-    var out = $('makeOut'), s = shrink(), dims = getDims('makeH', 'makeW');
-    if (!s) { out.innerHTML = ERR_SHRINK; return; }
-    if (!dims.length) { out.innerHTML = '<p class="empty">Enter the height or width you want after firing to see what size to make it.</p>'; return; }
-    var st = [{ name: 'Wet', cls: 'wet', f: 1 / s.fireKeep }];
-    if (s.dryKeep) st.push({ name: 'Bone dry', cls: 'dry', f: 1 / s.fireStageKeep });
-    st.push({ name: 'Fired', cls: 'fired', f: 1 });
-    out.innerHTML = sizeResult(dims, st, 0, 'Make it this size when wet',
-      [['Scale factor', '&times; ' + (1 / s.fireKeep).toFixed(3)], ['Total shrinkage', pct(s.total) + '%']]);
-  }
-  function renderPredict() {
-    var out = $('predOut'), s = shrink(), dims = getDims('predH', 'predW');
-    if (!s) { out.innerHTML = ERR_SHRINK; return; }
-    if (!dims.length) { out.innerHTML = '<p class="empty">Enter the wet height or width to see how big it will be after firing.</p>'; return; }
-    var st = [{ name: 'Wet', cls: 'wet', f: 1 }];
-    if (s.dryKeep) st.push({ name: 'Bone dry', cls: 'dry', f: s.dryKeep });
-    st.push({ name: 'Fired', cls: 'fired', f: s.fireKeep });
-    out.innerHTML = sizeResult(dims, st, st.length - 1, 'Size after firing',
-      [['Size kept', pct(s.fireKeep * 100) + '%'], ['Total shrinkage', pct(s.total) + '%']]);
-  }
-
-  var lastMeasured = null;
-  function renderTest() {
-    var out = $('testOut'), btn = $('useRate');
-    var w = num('tWet'), d = num('tDry'), f = num('tFired');
-    lastMeasured = null; btn.hidden = true;
-    if (w === null || f === null || w <= 0 || f <= 0) { out.innerHTML = '<p class="empty">Enter the wet and fired lengths of your test line.</p>'; return; }
-    if (f > w) { out.innerHTML = '<p class="err">The fired length is bigger than the wet length. Check the two measurements.</p>'; return; }
-    if (d !== null && (d > w || d < f)) { out.innerHTML = '<p class="err">The dry length should sit between the fired and wet lengths.</p>'; return; }
-    var total = (w - f) / w * 100;
-    var h = '<div class="label">Total shrinkage</div><div class="big">' + pct(total) + '<small>%</small></div><div class="bars" aria-hidden="true">';
-    var items = [{ n: 'Wet', v: w, c: 'wet' }];
-    if (d !== null) items.push({ n: 'Bone dry', v: d, c: 'dry' });
-    items.push({ n: 'Fired', v: f, c: 'fired' });
-    items.forEach(function (i) {
-      h += '<div class="legend"><span>' + i.n + '</span><span>' + fmt(i.v) + ' ' + state.unit + '</span></div><div class="bar ' + i.c + '" style="width:' + (i.v / w * 100) + '%"></div>';
-    });
-    h += '</div>';
-    if (d !== null) {
-      var a = (w - d) / w * 100, b = (d - f) / d * 100;
-      h += '<div class="stats"><div class="stat"><div class="label">Wet to dry</div><div class="v">' + pct(a) + '%</div></div>' +
-           '<div class="stat"><div class="label">Dry to fired</div><div class="v">' + pct(b) + '%</div></div></div>';
-      lastMeasured = { mode: 'stage', a: a, b: b };
-    } else {
-      lastMeasured = { mode: 'total', total: total };
-    }
-    out.innerHTML = h;
-    btn.hidden = false;
-  }
   function renderStageTotal() {
     var s = shrink();
     $('stageTotal').textContent = s ? 'Total shrinkage: ' + pct(s.total) + '%' : 'Enter both percentages (0 to 60).';
   }
-  function renderCalc() { renderStageTotal(); renderMake(); renderPredict(); renderTest(); }
 
-  function setTab(t) {
-    state.tab = t;
-    ['make', 'predict', 'test'].forEach(function (k) {
-      $('p-' + k).hidden = (k !== t);
-      $('t-' + k).setAttribute('aria-selected', k === t ? 'true' : 'false');
-    });
-    $('shrinkCard').hidden = (t === 'test');
+  /* ---- pieces ---- */
+  var DIRS = {
+    make: { keys: ['h', 'w', 'd'], title: 'Finished size you want (after firing)', out: 'Make it this size when wet', suffix: 'wet',
+            note: 'Enter the finished size you want after firing. Clay Day shows what size to make each piece when it is wet.' },
+    predict: { keys: ['wh', 'ww', 'wd'], title: 'Size you made (wet)', out: 'Size after firing', suffix: 'after firing',
+            note: 'Enter the wet size you made. Clay Day shows how big each piece will be after firing.' }
+  };
+  var DIM_NAMES = ['Height', 'Width', 'Depth'];
+  var listRows = sget('clayday:list', null);
+  if (!Array.isArray(listRows)) listRows = [{ n: 'Example: Bowl', u: 'in', h: '3', w: '4', d: '3', wh: '', ww: '', wd: '', s: '' }];
+  listRows.forEach(function (r) { if (r && r.n === 'Example: Bowl' && String(r.s) === '12') r.s = ''; });
+  function saveList() { sset('clayday:list', listRows); }
+  function fmtU(n, u) { return trimZ(n.toFixed(u === 'in' ? 3 : (u === 'cm' ? 2 : 1))); }
+  function posNum(v) { var n = parseFloat(v); return (isFinite(n) && n > 0) ? n : null; }
+  function rowShrink(r) {
+    var own = parseFloat(r.s);
+    if (String(r.s || '').trim() !== '' && isFinite(own)) return (own >= 0 && own < 60) ? { v: own, own: true } : null;
+    var s = shrink(); return s ? { v: s.total, own: false } : null;
   }
+  function rowResult(r) {
+    var sh = rowShrink(r), D = DIRS[state.dir], mk = state.dir === 'make';
+    if (!sh) return '<p class="err" style="margin:0">Enter a shrinkage between 0 and 60%, or clear the piece\u2019s shrinkage to use your clay setting.</p>';
+    var vals = D.keys.map(function (k) { return posNum(r[k]); });
+    if (!vals.some(function (v) { return v !== null; })) return '<div class="lab" style="margin:0">Enter at least one size to see the result.</div>';
+    var keep = 1 - sh.v / 100, f = mk ? 1 / keep : keep;
+    var h = '<div class="lab">' + D.out + '</div><div class="row3">' + vals.map(function (v, i) {
+      return '<div><div class="lab">' + DIM_NAMES[i] + '</div><div class="v">' + (v !== null ? fmtU(v * f, r.u) + ' <small>' + r.u + '</small>' : '\u2013') + '</div></div>';
+    }).join('') + '</div>';
+    var s = sh.own ? null : shrink();
+    if (s && s.dryKeep) {
+      var df = mk ? 1 / s.fireStageKeep : s.dryKeep;
+      h += '<div class="lab" style="margin:8px 0 0">Bone dry: ' + vals.map(function (v) { return v !== null ? fmtU(v * df, r.u) : '\u2013'; }).join(' \u00d7 ') + ' ' + r.u + '</div>';
+    }
+    h += '<div class="lab" style="margin:8px 0 0">' + pct(sh.v) + '% shrinkage' + (sh.own ? '' : ' (from your clay setting)') + ' \u00b7 ' +
+         (mk ? 'scale \u00d7 ' + f.toFixed(3) : 'keeps ' + pct(keep * 100) + '% of its wet size') + '</div>';
+    return h;
+  }
+  function rowHtml(r, i) {
+    var n = i + 1, D = DIRS[state.dir];
+    function num3(k, label) {
+      return '<div class="field"><label for="lr' + i + k + '">' + label + '</label><input id="lr' + i + k + '" type="number" inputmode="decimal" step="any" min="0" data-lf="' + k + '" data-i="' + i + '" value="' + esc(r[k] == null ? '' : r[k]) + '"></div>';
+    }
+    return '<div class="lrow">' +
+      '<div class="lrow-head"><input type="text" data-lf="n" data-i="' + i + '" value="' + esc(r.n || '') + '" placeholder="Piece ' + n + ' name, e.g. Mug" aria-label="Name of piece ' + n + '">' +
+      '<button class="icon-btn" data-ldel="' + i + '" aria-label="Remove piece ' + n + '">&times;</button></div>' +
+      '<div class="row" style="margin:10px 0 10px">' +
+      '<div class="field"><label for="lr' + i + 'u">Measured in</label><select id="lr' + i + 'u" data-lf="u" data-i="' + i + '">' +
+      [['in', 'Inches'], ['cm', 'Centimetres'], ['mm', 'Millimetres']].map(function (u) { return '<option value="' + u[0] + '"' + (r.u === u[0] ? ' selected' : '') + '>' + u[1] + '</option>'; }).join('') + '</select></div>' +
+      '<div class="field"><label for="lr' + i + 's">Shrinkage %</label><div class="pct"><input id="lr' + i + 's" type="number" inputmode="decimal" step="0.1" min="0" max="40" data-lf="s" data-i="' + i + '" value="' + esc(r.s == null ? '' : r.s) + '" placeholder="Clay setting"><span class="suffix">%</span></div></div></div>' +
+      '<div class="label" style="margin:0 0 6px;font-size:13px">' + D.title + '</div>' +
+      '<div class="row3">' + num3(D.keys[0], 'Height') + num3(D.keys[1], 'Width') + num3(D.keys[2], 'Depth') + '</div>' +
+      '<div class="lres" id="lres' + i + '" aria-live="polite">' + rowResult(r) + '</div></div>';
+  }
+  function renderList() {
+    $('listCount').textContent = listRows.length + (listRows.length === 1 ? ' piece' : ' pieces');
+    $('listRows').innerHTML = listRows.length ? listRows.map(rowHtml).join('') : '<p class="empty">No pieces yet. Tap Add piece to start.</p>';
+  }
+  function renderCalc() { renderStageTotal(); renderList(); updateClayHint(); }
+
   function setMode(m) {
     state.mode = m;
     $('totalMode').hidden = (m !== 'total');
@@ -958,32 +893,137 @@ input[type="search"] { width: 100%; font: inherit; font-size: 17px; color: var(-
     $('m-total').setAttribute('aria-pressed', m === 'total' ? 'true' : 'false');
     $('m-stage').setAttribute('aria-pressed', m === 'stage' ? 'true' : 'false');
   }
-  function setUnit(u) {
-    state.unit = u; $('unit').value = u;
-    var els = document.querySelectorAll('.u');
-    for (var i = 0; i < els.length; i++) els[i].textContent = u;
+  function setDir(d) {
+    state.dir = d;
+    $('dir-make').setAttribute('aria-pressed', d === 'make' ? 'true' : 'false');
+    $('dir-predict').setAttribute('aria-pressed', d === 'predict' ? 'true' : 'false');
+    $('dirHint').textContent = DIRS[d].note;
+  }
+
+  function onListEdit(e) {
+    var t = e.target; if (!t.hasAttribute || !t.hasAttribute('data-lf')) return;
+    var i = +t.getAttribute('data-i'), r = listRows[i]; if (!r) return;
+    var f = t.getAttribute('data-lf');
+    r[f] = t.value;
+    if (f === 'u' && UNIT_IDS.indexOf(t.value) > -1) { state.unit = t.value; saveSettings(); }
+    saveList();
+    var el = $('lres' + i); if (el) el.innerHTML = rowResult(r);
+    $('listText').hidden = true; $('listMsg').hidden = true;
+  }
+  $('listRows').addEventListener('input', onListEdit);
+  $('listRows').addEventListener('change', onListEdit);
+  $('listRows').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-ldel]'); if (!b) return;
+    listRows.splice(+b.getAttribute('data-ldel'), 1); saveList(); renderList();
+  });
+  $('listAdd').addEventListener('click', function () {
+    listRows.push({ n: '', u: state.unit, h: '', w: '', d: '', wh: '', ww: '', wd: '', s: '' });
+    saveList(); renderList();
+    var ins = $('listRows').querySelectorAll('input[data-lf="n"]');
+    if (ins.length) ins[ins.length - 1].focus();
+  });
+  function listAsText() {
+    var D = DIRS[state.dir], mk = state.dir === 'make';
+    return listRows.map(function (r, i) {
+      var sh = rowShrink(r); if (!sh) return null;
+      var keep = 1 - sh.v / 100, f = mk ? 1 / keep : keep, parts = [];
+      D.keys.forEach(function (k, j) { var v = posNum(r[k]); if (v !== null) parts.push(['H', 'W', 'D'][j] + ' ' + fmtU(v * f, r.u)); });
+      if (!parts.length) return null;
+      return (r.n || 'Piece ' + (i + 1)) + ': ' + parts.join(' x ') + ' ' + r.u + ' ' + D.suffix + ' (' + pct(sh.v) + '% shrinkage)';
+    }).filter(Boolean).join('\n');
+  }
+  $('listCopy').addEventListener('click', function () {
+    var txt = listAsText(), box = $('listText'), msg = $('listMsg');
+    if (!txt) { box.hidden = true; msg.className = 'msg err'; msg.textContent = 'Add a size to a piece first.'; msg.hidden = false; return; }
+    function shown() { box.value = txt; box.hidden = false; box.focus(); box.select(); msg.className = 'msg'; msg.textContent = 'Select and copy the list above.'; msg.hidden = false; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(function () { box.hidden = true; msg.className = 'msg ok'; msg.textContent = 'Copied. Paste it into Notes or a message.'; msg.hidden = false; }, shown);
+    } else shown();
+  });
+  $('dir-make').addEventListener('click', function () { setDir('make'); renderList(); saveSettings(); $('listText').hidden = true; $('listMsg').hidden = true; });
+  $('dir-predict').addEventListener('click', function () { setDir('predict'); renderList(); saveSettings(); $('listText').hidden = true; $('listMsg').hidden = true; });
+
+  /* ---- clay body presets (published average total shrinkage, wet to fired) ---- */
+  var PRESET_GROUPS = [
+    { label: 'Low fire (cone 06\u201304)', items: [
+      { id: 'redart', name: 'Terracotta, Redart', cone: '04', pct: 8 },
+      { id: 'std104', name: 'Standard 104 Red with Grog', cone: '06', pct: 6 },
+      { id: 'std417', name: 'Standard 417 Red Earthenware', cone: '04', pct: 11 }
+    ] },
+    { label: 'Mid fire (cone 5\u20136)', items: [
+      { id: 'bmix5', name: 'Laguna B-Mix 5 (WC401)', cone: '5', pct: 12 },
+      { id: 'bmix5s', name: 'Laguna B-Mix 5 Speckled (WC408)', cone: '5', pct: 12.5 },
+      { id: 'lagbuff', name: 'Laguna Speckled Buff (WC403)', cone: '5', pct: 12 },
+      { id: 'frost6', name: 'Laguna Frost 6 Porcelain (WC437)', cone: '6', pct: 11 },
+      { id: 'lagterra', name: 'Laguna Terracotta (cone 6)', cone: '6', pct: 11 },
+      { id: 'std112', name: 'Standard 112 Speckled Brown', cone: '6', pct: 11 },
+      { id: 'std266', name: 'Standard 266 Dark Brown', cone: '5', pct: 12.5 },
+      { id: 'std710', name: 'Standard 710 Dark Brown with Grog', cone: '5', pct: 11.5 },
+      { id: 'std760', name: 'Standard 760 Speckled', cone: '6', pct: 13.5 },
+      { id: 'std306', name: 'Standard 306 Stoneware', cone: '6', pct: 12.5 },
+      { id: 'std378', name: 'Standard 378 Speckled', cone: '6', pct: 11.5 },
+      { id: 'std551', name: 'Standard 551 V.P. Porcelain', cone: '6', pct: 13 },
+      { id: 'std365', name: 'Standard 365 Grolleg Porcelain', cone: '6', pct: 13.5 },
+      { id: 'amaco38', name: 'AMACO No. 38 White Stoneware', cone: '5', pct: 13 }
+    ] },
+    { label: 'High fire (cone 10)', items: [
+      { id: 'bmix10', name: 'Laguna B-Mix 10 (WC379)', cone: '10', pct: 13 }
+    ] }
+  ];
+  function presetById(v) {
+    var id = String(v || '').indexOf('p:') === 0 ? String(v).slice(2) : null, found = null;
+    if (id === null) return null;
+    PRESET_GROUPS.forEach(function (g) { g.items.forEach(function (p) { if (p.id === id) found = p; }); });
+    return found;
+  }
+  function allPresetNames() {
+    var a = [];
+    PRESET_GROUPS.forEach(function (g) { g.items.forEach(function (p) { a.push(p.name); }); });
+    return a;
+  }
+  function validClaySel(v) {
+    if (v === undefined || v === null || v === '') return '';
+    if (presetById(v)) return v;
+    return clays[+v] ? String(v) : '';
+  }
+  function updateClayHint() {
+    var el = $('clayHint'), p = presetById($('claySel').value);
+    if (!p) { el.hidden = true; return; }
+    var s = shrink(), t = 'Published average for ' + p.name + ' at cone ' + p.cone + ': ' + pct(p.pct) + '%. Change the percentage below if your own tests say otherwise.';
+    if (s && Math.abs(s.total - p.pct) > 0.005) t += ' You\u2019re using ' + pct(s.total) + '%.';
+    el.textContent = t; el.hidden = false;
   }
 
   // saved clay bodies
   function renderClaySel(sel) {
     var h = '<option value="">Custom</option>';
-    clays.forEach(function (c, i) { h += '<option value="' + i + '">' + esc(c.name) + '</option>'; });
+    if (clays.length) {
+      h += '<optgroup label="My saved clays">' + clays.map(function (c, i) { return '<option value="' + i + '">' + esc(c.name) + '</option>'; }).join('') + '</optgroup>';
+    }
+    PRESET_GROUPS.forEach(function (g) {
+      h += '<optgroup label="' + esc(g.label) + '">' + g.items.map(function (p) {
+        return '<option value="p:' + p.id + '">' + esc(p.name) + ' \u00b7 ' + pct(p.pct) + '%</option>';
+      }).join('') + '</optgroup>';
+    });
     $('claySel').innerHTML = h;
-    $('claySel').value = (sel === undefined || sel === null) ? '' : String(sel);
-    $('clayDelBtn').hidden = $('claySel').value === '';
+    $('claySel').value = validClaySel(sel);
+    $('clayDelBtn').hidden = $('claySel').value === '' || !!presetById($('claySel').value);
+    updateClayHint();
   }
   $('claySel').addEventListener('change', function () {
-    var v = this.value;
-    $('clayDelBtn').hidden = v === '';
-    if (v !== '') {
+    var v = this.value, p = presetById(v);
+    $('clayDelBtn').hidden = v === '' || !!p;
+    if (p) {
+      setMode('total'); $('sTotal').value = pct(p.pct);
+    } else if (v !== '') {
       var c = clays[+v];
       setMode(c.mode); $('sTotal').value = c.total; $('sDry').value = c.dry; $('sFire').value = c.fire;
     }
     renderCalc(); saveSettings();
   });
   $('claySaveBtn').addEventListener('click', function () {
-    var v = $('claySel').value;
-    $('clayName').value = v !== '' ? clays[+v].name : '';
+    var v = $('claySel').value, pp = presetById(v);
+    $('clayName').value = pp ? pp.name : (v !== '' ? clays[+v].name : '');
     $('claySaveForm').hidden = false; $('clayErr').hidden = true;
     $('clayName').focus();
   });
@@ -1002,32 +1042,16 @@ input[type="search"] { width: 100%; font: inherit; font-size: 17px; color: var(-
   });
   $('clayDelBtn').addEventListener('click', function () {
     var v = $('claySel').value;
-    if (v === '') return;
+    if (v === '' || presetById(v)) return;
     clays.splice(+v, 1);
     sset('clayday:clays', clays);
     renderClaySel('');
     saveSettings();
   });
-
-  document.querySelectorAll('.tab').forEach(function (b) {
-    b.addEventListener('click', function () { setTab(b.getAttribute('data-tab')); });
-  });
   $('m-total').addEventListener('click', function () { setMode('total'); renderCalc(); saveSettings(); });
   $('m-stage').addEventListener('click', function () { setMode('stage'); renderCalc(); saveSettings(); });
-  $('unit').addEventListener('change', function () { setUnit(this.value); renderCalc(); saveSettings(); });
-  ['sTotal', 'sDry', 'sFire', 'makeH', 'makeW', 'predH', 'predW', 'tWet', 'tDry', 'tFired'].forEach(function (id) {
+  ['sTotal', 'sDry', 'sFire'].forEach(function (id) {
     $(id).addEventListener('input', function () { renderCalc(); saveSettings(); });
-  });
-  $('useRate').addEventListener('click', function () {
-    if (!lastMeasured) return;
-    if (lastMeasured.mode === 'stage') {
-      $('sDry').value = pct(lastMeasured.a); $('sFire').value = pct(lastMeasured.b); setMode('stage');
-    } else {
-      $('sTotal').value = pct(lastMeasured.total); setMode('total');
-    }
-    renderClaySel('');
-    setTab('make'); renderCalc(); saveSettings();
-    window.scrollTo(0, 0);
   });
 
   /* ================= IDEAS ================= */
@@ -1748,7 +1772,7 @@ input[type="search"] { width: 100%; font: inherit; font-size: 17px; color: var(-
     COMBOS.forEach(function (c) { names[c.top] = 1; names[c.base] = 1; });
     Store.items.forEach(function (p) { (p.glazes || []).forEach(function (g) { if (g.name) names[g.name] = 1; }); });
     $('glazeList').innerHTML = Object.keys(names).sort().map(function (n) { return '<option value="' + esc(n) + '"></option>'; }).join('');
-    $('clayList').innerHTML = clays.map(function (c) { return '<option value="' + esc(c.name) + '"></option>'; }).join('');
+    $('clayList').innerHTML = clays.map(function (c) { return c.name; }).concat(allPresetNames()).map(function (n) { return '<option value="' + esc(n) + '"></option>'; }).join('');
   }
   function openEditor(proj) {
     if (proj) {
@@ -1960,8 +1984,8 @@ input[type="search"] { width: 100%; font: inherit; font-size: 17px; color: var(-
 
   /* ================= START ================= */
   var s = loadSettings();
-  renderClaySel(s && s.clay !== undefined && s.clay !== '' && clays[+s.clay] ? s.clay : '');
-  setMode(state.mode); setUnit(state.unit); setTab('make');
+  renderClaySel(s ? validClaySel(s.clay) : '');
+  setMode(state.mode); setDir(state.dir);
   renderCalc();
   renderIdeas();
   renderConeTable(); renderConv();
