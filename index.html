@@ -93,7 +93,7 @@ main { max-width: 560px; margin: 0 auto; padding: 16px 16px 120px; }
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
-.brand svg { width: 38px; height: 38px; flex: none; filter: drop-shadow(0 4px 10px rgba(91, 108, 255, .25)); }
+.brand svg { width: 38px; height: 38px; flex: none; filter: drop-shadow(0 4px 10px rgba(60, 40, 20, .18)); }
 .brand .name { font-size: 21px; font-weight: 760; letter-spacing: -0.02em; }
 .page-title { font-size: 30px; line-height: 1.12; margin: 18px 0 4px; letter-spacing: -0.025em; font-weight: 760; }
 .sub { color: var(--muted); margin: 0 0 18px; font-size: 15px; }
@@ -317,6 +317,76 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
 .bottom a[aria-current="page"] { color: var(--accent); }
 .bottom a[aria-current="page"] .ico { background: var(--accent-soft); }
 
+/* ---- glaze catalog, layers, combinations ---- */
+.gsw { flex: none; display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: radial-gradient(circle at 30% 22%, rgba(255, 255, 255, .38), rgba(255, 255, 255, 0) 58%), var(--c); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .08); }
+.gsw svg { width: 58%; height: 58%; }
+.layer2 { display: grid; grid-template-columns: 28px 1fr 40px; gap: 8px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); }
+.layer2:first-child { border-top: 0; padding-top: 0; }
+.lglaze { display: flex; align-items: center; gap: 10px; min-width: 0; border: 0; background: transparent; padding: 0; font: inherit; color: var(--ink); text-align: left; cursor: pointer; }
+.lglaze b { display: block; font-weight: 650; font-size: 16px; line-height: 1.2; }
+.lglaze small, .ometa { display: block; color: var(--muted); font-size: 13px; }
+.lctl { grid-column: 2 / 4; display: grid; grid-template-columns: auto 1fr; gap: 8px; align-items: center; }
+.lctl .seg { margin: 0; }
+.lctl .seg button { padding: 6px 12px; min-height: 38px; }
+.lctl select { min-height: 44px; font-size: 16px; }
+.layers-empty { color: var(--muted); margin: 0; font-size: 15px; }
+.mini-sw { display: flex; }
+.mini-sw .gsw { width: 34px; height: 34px; border-radius: 10px; margin-left: -10px; box-shadow: 0 0 0 2px var(--surface); }
+.mini-sw .gsw:first-child { margin-left: 0; }
+.mc-row { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; width: 100%; padding: 12px 0; border: 0; border-top: 1px solid var(--line); background: transparent; font: inherit; color: var(--ink); text-align: left; cursor: pointer; }
+.mc-row:first-child { border-top: 0; padding-top: 0; }
+.mc-row b { display: block; font-weight: 700; }
+.chev { color: var(--muted); font-size: 22px; }
+.combo-sw, .combo-t { border: 0; background: transparent; padding: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+.combo-t { font-size: 17px; font-weight: 700; line-height: 1.25; }
+.cd-top { display: flex; margin: 8px 0 18px; }
+.cd-top .gsw { width: 92px; height: 92px; border-radius: 22px; margin-left: -20px; box-shadow: 0 0 0 4px var(--bg), 0 8px 20px rgba(20, 24, 60, .12); }
+.cd-top .gsw:first-child { margin-left: 0; }
+.cd-title { font-size: 34px; line-height: 1.1; letter-spacing: -0.025em; margin: 0 0 18px; font-weight: 780; }
+.cd h2 { font-size: 18px; margin: 0 0 6px; }
+.orow { display: grid; grid-template-columns: 20px 52px 1fr auto; gap: 12px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); }
+.orow:first-child { border-top: 0; }
+.orow .gsw { width: 52px; height: 52px; border-radius: 14px; }
+.orow .n { color: var(--muted); font-weight: 650; }
+.orow b { display: block; font-size: 17px; line-height: 1.2; }
+.orow .amt { color: var(--muted); font-size: 15px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.find { display: flex; flex-wrap: wrap; gap: 8px; }
+.find a { flex: 1 1 140px; }
+.used-empty { font-style: italic; color: var(--muted); margin: 0; }
+.picker { position: fixed; inset: 0; z-index: 40; overflow-y: auto; -webkit-overflow-scrolling: touch; background-color: var(--bg); background-image: var(--bg-grad); background-repeat: no-repeat; }
+.picker-in { max-width: 560px; margin: 0 auto; padding: calc(env(safe-area-inset-top, 0px) + 12px) 16px calc(env(safe-area-inset-bottom, 0px) + 28px); }
+.picker-head { display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; margin-bottom: 12px; }
+.picker-head h2 { margin: 0; text-align: center; font-size: 18px; }
+.round-btn { width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--accent-soft); color: var(--accent); font-size: 26px; line-height: 1; cursor: pointer; }
+input[type="search"] { width: 100%; font: inherit; font-size: 17px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 14px; min-height: 50px; padding: 11px 14px; box-shadow: var(--shadow); }
+.pgroup h3 { display: flex; gap: 8px; align-items: baseline; font-size: 17px; margin: 18px 0 4px; }
+.pgroup h3 span { color: var(--muted); font-weight: 600; font-size: 15px; }
+.prow { display: grid; grid-template-columns: 48px 1fr auto 40px; gap: 12px; align-items: center; width: 100%; padding: 10px 0; border: 0; border-top: 1px solid var(--line); background: transparent; font: inherit; color: var(--ink); text-align: left; cursor: pointer; }
+.prow:first-of-type { border-top: 0; }
+.prow .gsw { width: 48px; height: 48px; }
+.prow b { display: block; font-weight: 700; font-size: 16px; line-height: 1.2; }
+.prow small { color: var(--muted); font-size: 13px; }
+.prow .cone { color: var(--muted); font-size: 14px; white-space: nowrap; }
+.prow .plus { width: 36px; height: 36px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-size: 22px; font-weight: 600; }
+.pick-more { text-align: center; margin: 12px 0 0; }
+.stages { display: flex; gap: 8px; overflow-x: auto; padding: 2px 0 4px; scrollbar-width: none; }
+.stages::-webkit-scrollbar { display: none; }
+.stage-chip { flex: none; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-size: 14px; font-weight: 600; padding: 0 12px; min-height: 40px; border-radius: 999px; cursor: pointer; }
+.stage-chip .dot, .stage-badge .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--sc); }
+.stage-chip[aria-pressed="true"] { background: var(--sc); border-color: transparent; color: #fff; }
+.stage-chip[aria-pressed="true"] .dot { background: #fff; }
+.stage-badge { position: absolute; left: 8px; top: 8px; display: inline-flex; align-items: center; gap: 5px; background: rgba(255, 255, 255, .92); color: #1a1f36; font-size: 12px; font-weight: 650; padding: 3px 9px 3px 7px; border-radius: 999px; }
+.stage-hint { font-size: 13px; color: var(--muted); margin: 6px 0 0; }
+.more-backdrop { position: fixed; inset: 0; z-index: 9; background: rgba(10, 12, 24, .25); }
+.more-menu { position: fixed; right: 10px; bottom: calc(env(safe-area-inset-bottom, 0px) + 70px); z-index: 11; width: min(280px, calc(100% - 20px)); background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 8px; box-shadow: 0 16px 40px rgba(20, 24, 60, .2); }
+.more-menu h2 { font-size: 13px; color: var(--muted); font-weight: 650; margin: 6px 10px 4px; }
+.more-menu a { display: flex; align-items: center; gap: 12px; padding: 10px; min-height: 48px; border-radius: 12px; color: var(--ink); text-decoration: none; font-weight: 600; }
+.more-menu a:hover, .more-menu a[aria-current="page"] { background: var(--accent-soft); color: var(--accent); }
+.more-menu a svg { width: 22px; height: 22px; flex: none; }
+.more-menu a small { display: block; color: var(--muted); font-weight: 500; font-size: 13px; }
+.bottom button.navbtn { border: 0; background: transparent; font: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 56px; padding: 4px 0; color: var(--muted); font-size: 11px; font-weight: 650; cursor: pointer; }
+.bottom button.navbtn[aria-current="page"], .bottom button.navbtn[aria-expanded="true"] { color: var(--accent); }
+.bottom button.navbtn[aria-current="page"] .ico, .bottom button.navbtn[aria-expanded="true"] .ico { background: var(--accent-soft); }
 [hidden] { display: none !important; }
 @media (prefers-reduced-motion: reduce) { .bar { transition: none; } }
 </style>
@@ -329,12 +399,8 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
     <linearGradient id="lg-glaze" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5ee0c0"/><stop offset="1" stop-color="#34b6e8"/></linearGradient>
     <clipPath id="lg-vase"><path d="M25 54 C17 46 17 37 26.5 32 L26.5 29 H37.5 V32 C47 37 47 46 39 54 Z"/></clipPath>
     <symbol id="logo" viewBox="0 0 64 64">
-      <rect width="64" height="64" rx="17" fill="url(#lg-bg)"/>
-      <circle cx="32" cy="25" r="13.5" fill="url(#lg-sun)"/>
-      <path d="M25 54 C17 46 17 37 26.5 32 L26.5 29 H37.5 V32 C47 37 47 46 39 54 Z" fill="#ffffff"/>
-      <path clip-path="url(#lg-vase)" d="M14 29 H50 V39 Q47 44 44 39 Q41 46 37.5 40 Q34.5 44 31.5 39.5 Q28.5 46 25 40 Q21.5 44 19 39 Q16.5 42 14 39 Z" fill="url(#lg-glaze)"/>
-      <rect x="24.5" y="26.5" width="15" height="4.5" rx="2.25" fill="#ffffff"/>
-      <rect x="20" y="54" width="24" height="3" rx="1.5" fill="#ffffff" opacity=".7"/>
+      <clipPath id="lg-clip"><rect width="64" height="64" rx="15"/></clipPath>
+      <image clip-path="url(#lg-clip)" width="64" height="64" preserveAspectRatio="xMidYMid slice" href="data:image/jpeg;base64,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"/>
     </symbol>
   </defs>
 </svg>
@@ -584,6 +650,11 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
           <label for="pClay">Clay body</label>
           <input type="text" id="pClay" list="clayList" placeholder="e.g. B-Mix">
         </div>
+        <div class="field">
+          <label id="stageLabel">Stage</label>
+          <div class="stages" id="pStages" role="group" aria-labelledby="stageLabel"></div>
+          <p class="stage-hint" id="stageHint"></p>
+        </div>
       </div>
 
       <div class="card">
@@ -610,32 +681,71 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
 
   <!-- ===== COMBOS ===== -->
   <div id="page-combos" hidden>
-    <h1 class="page-title">Glaze combos</h1>
-    <p class="sub">AMACO layering combinations to try, with how to apply each one. Tap the link on any combo to see AMACO&rsquo;s photo of the fired result.</p>
-
-    <div class="card">
-      <div class="field">
-        <label for="comboQ">Find combos with a glaze you own</label>
-        <input type="text" id="comboQ" placeholder="e.g. Seaweed or PC-59">
+    <div id="comboListView">
+      <div class="title-row">
+        <div>
+          <h1 class="page-title">Glaze combos</h1>
+          <p class="sub">Save your own layering recipes and try AMACO&rsquo;s favorites.</p>
+        </div>
+        <button class="btn" id="comboNew">New</button>
       </div>
-      <div class="chips" id="comboChips" role="group" aria-label="Filter combos"></div>
-      <label class="check"><input type="checkbox" id="comboStable"> Hide combos that can run</label>
+
+      <div class="section-head"><h2>Your combinations</h2></div>
+      <div class="card" id="myCombos"></div>
+
+      <div class="section-head" style="margin-top:8px"><h2>AMACO combos to try</h2></div>
+      <div class="card">
+        <div class="field">
+          <label for="comboQ">Find combos with a glaze you own</label>
+          <input type="text" id="comboQ" placeholder="Seaweed or PC-59">
+        </div>
+        <div class="chips" id="comboChips" role="group" aria-label="Filter combos"></div>
+        <label class="check"><input type="checkbox" id="comboStable"> Hide combos that can run</label>
+      </div>
+      <div class="card" id="comboList"></div>
+
+      <div class="card">
+        <h2>Layering tips</h2>
+        <ul class="tips">
+          <li>Put the stiffer glaze on the bottom and the runnier one on top.</li>
+          <li>Keep the top glaze off the lower third of the piece so it has room to flow.</li>
+          <li>Two to three coats of each glaze is the usual starting point. When dipping, a 2 to 4 second dip is typical.</li>
+          <li>Try a new combo on a test tile or small cup set on a drip tray before glazing a whole batch.</li>
+          <li>Clay color changes the result. Translucent glazes look lighter on white clay and darker on brown or black clay.</li>
+          <li>Cooling matters. Some glazes, like Ancient Copper, change color with a slow cool.</li>
+        </ul>
+      </div>
+      <p class="hint">Previews show approximate colors only. AMACO fired these examples on white stoneware, so results on your clay will differ. Browse many more in <a href="https://amaco.com/resources/layering" target="_blank" rel="noopener">AMACO&rsquo;s layering database</a>.</p>
     </div>
 
-    <div class="card" id="comboList"></div>
+    <div id="comboDetailView" class="cd" hidden></div>
 
-    <div class="card">
-      <h2>Layering tips</h2>
-      <ul class="tips">
-        <li>Put the stiffer glaze on the bottom and the runnier one on top.</li>
-        <li>Keep the top glaze off the lower third of the piece so it has room to flow.</li>
-        <li>Two to three coats of each glaze is the usual starting point.</li>
-        <li>Try a new combo on a test tile or small cup set on a drip tray before glazing a whole batch.</li>
-        <li>Clay color changes the result. Translucent glazes look lighter on white clay and darker on brown or black clay.</li>
-        <li>Cooling matters. Some glazes, like Ancient Copper, change color with a slow cool.</li>
-      </ul>
+    <div id="comboEditView" hidden>
+      <button class="back" id="cBack">&lsaquo; Combos</button>
+      <h1 class="page-title" id="cEditTitle" style="margin-top:4px">New combination</h1>
+      <p class="sub">Choose glazes in the order you apply them, then set how each one goes on.</p>
+      <div class="card">
+        <div class="field">
+          <label for="cName">Name</label>
+          <input type="text" id="cName" placeholder="Chartreuse over chocolate">
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h2>Application order</h2><span class="sub2">Layer 1 goes on first</span></div>
+        <div id="cLayers"></div>
+        <button class="btn-ghost wide" id="cAddLayer" style="margin-top:12px">Add glaze</button>
+      </div>
+      <div class="card">
+        <h2>Notes</h2>
+        <textarea id="cNotes" aria-label="Notes" placeholder="Cone, firing schedule, how it turned out"></textarea>
+      </div>
+      <div class="actions">
+        <button class="btn wide" id="cSave">Save combination</button>
+        <button class="btn-ghost wide" id="cCancel">Cancel</button>
+        <button class="btn-ghost danger wide" id="cDel" hidden>Delete combination</button>
+      </div>
+      <p class="msg err" id="cMsg" hidden></p>
     </div>
-    <p class="hint">Previews show approximate colors only. AMACO fired these examples on white stoneware, so results on your clay will differ. Browse many more in <a href="https://amaco.com/resources/layering" target="_blank" rel="noopener">AMACO&rsquo;s layering database</a>.</p>
   </div>
 
   <!-- ===== CONES ===== -->
@@ -662,7 +772,38 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
   </div>
 </main>
 
+<div class="picker" id="picker" hidden role="dialog" aria-modal="true" aria-labelledby="pickTitle">
+  <div class="picker-in">
+    <div class="picker-head">
+      <button class="round-btn" id="pickClose" aria-label="Close">&lsaquo;</button>
+      <h2 id="pickTitle">Browse glazes</h2>
+      <span></span>
+    </div>
+    <input type="search" id="pickQ" placeholder="Search name, brand or code" aria-label="Search glazes">
+    <div class="chips" id="pickBrands" role="group" aria-label="Filter by brand" style="margin-top:12px"></div>
+    <div id="pickList"></div>
+    <div class="card" style="margin-top:18px">
+      <h2>Not listed?</h2>
+      <p class="hint" style="margin:-6px 0 12px">Add any glaze and it stays in your catalog.</p>
+      <div class="field"><label for="ngName">Glaze name</label><input type="text" id="ngName" placeholder="Floating Blue"></div>
+      <div class="row">
+        <div class="field"><label for="ngBrand">Brand</label><input type="text" id="ngBrand" placeholder="Laguna"></div>
+        <div class="field"><label for="ngCode">Code</label><input type="text" id="ngCode" placeholder="WC-890"></div>
+      </div>
+      <div class="field"><label for="ngCone">Cone</label><input type="text" id="ngCone" placeholder="6"></div>
+      <button class="btn wide" id="ngAdd">Add glaze</button>
+      <p class="msg err" id="ngErr" hidden>Enter a glaze name to add it.</p>
+    </div>
+  </div>
+</div>
+
 <div class="lightbox" id="lightbox" hidden><img id="lightImg" alt="Project photo"></div>
+
+<div class="more-backdrop" id="moreBackdrop" hidden></div>
+<div class="more-menu" id="moreMenu" hidden role="menu" aria-label="More pages">
+  <h2>More</h2>
+  <a href="#cones" id="more-cones" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l5 16H7z"/><path d="M5 21h14"/></svg><span>Cone chart<small>Firing temperatures and converter</small></span></a>
+</div>
 
 <nav class="bottom" aria-label="Pages">
   <a href="#home" id="nav-home"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></svg></span>Home</a>
@@ -670,7 +811,7 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
   <a href="#ideas" id="nav-ideas"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v3C6 8 5 12 7 16c1 2.5 1.5 4 1.5 5h7c0-1 .5-2.5 1.5-5 2-4 1-8-3-10V3"/></svg></span>Ideas</a>
   <a href="#projects" id="nav-projects"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6.5" width="18" height="13.5" rx="3"/><circle cx="12" cy="13.2" r="3.5"/><path d="M8.5 6.5 10 4h4l1.5 2.5"/></svg></span>Projects</a>
   <a href="#combos" id="nav-combos"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg></span>Combos</a>
-  <a href="#cones" id="nav-cones"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l5 16H7z"/><path d="M5 21h14"/></svg></span>Cones</a>
+  <button class="navbtn" id="nav-more" aria-haspopup="true" aria-expanded="false" aria-controls="moreMenu"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span>More</button>
 </nav>
 
 <script>
@@ -1114,7 +1255,7 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
       if (cFilter !== 'all' && cFilter !== 'fav' && c.tags.indexOf(cFilter) < 0) return;
       if (noRun && c.run) return;
       if (q && (c.t + ' ' + c.top + ' ' + c.base).toLowerCase().indexOf(q) < 0) return;
-      h += '<div class="combo">' + comboSvg(c, i) + '<div><div class="combo-top"><h3>' + c.t + '</h3>' +
+      h += '<div class="combo"><button class="combo-sw" data-combo="a:' + i + '" aria-label="Open ' + c.t + '">' + comboSvg(c, i) + '</button><div><div class="combo-top"><h3><button class="combo-t" data-combo="a:' + i + '">' + c.t + '</button></h3>' +
         '<button class="star" data-fav="' + i + '" aria-pressed="' + isFav + '" aria-label="Save ' + c.t + '">' + (isFav ? '\u2605' : '\u2606') + '</button></div>' +
         '<p class="pair"><b>' + c.top + '</b> ' + (c.rel || 'over') + ' <b>' + c.base + '</b></p>' +
         '<div class="badges"><span class="badge">' + c.cone + '</span>' +
@@ -1139,6 +1280,311 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
   });
   $('comboQ').addEventListener('input', renderCombos);
   $('comboStable').addEventListener('change', renderCombos);
+
+  /* ================= GLAZE CATALOG ================= */
+  var RAW = [
+    'AMACO|Potter\u2019s Choice|6|PC-2 Saturation Gold #c98b2a;PC-4 Palladium #6b6660;PC-12 Blue Midnight #1f2c55;PC-15 Satin Oribe #5e7d63;PC-16 Purple Crystal #3c2f6b;PC-17 Honey Flux #d9b878;PC-20 Blue Rutile #33557f;PC-21 Arctic Blue #9cc0dc;PC-23 Indigo Float #2b3f73;PC-24 Sapphire Float #2d5d8f;PC-25 Textured Turquoise #6ab7bd;PC-27 Tourmaline #2f6f78;PC-29 Deep Olive Speckle #5d5a2e;PC-30 Temmoku #3a2418;PC-31 Oatmeal #d9ccb0;PC-32 Albany Slip Brown #4a2c1c;PC-33 Iron Lustre #6d4a35;PC-34 Light Sepia #b89a73;PC-36 Ironstone #8a5a33;PC-38 Iron Yellow #c9a03f;PC-40 True Celadon #9fc2a8;PC-42 Seaweed #2f8178;PC-43 Toasted Sage #8f9670;PC-46 Lustrous Jade #4f8a6e;PC-47 Emerald Falls #2f8a5c;PC-48 Art Deco Green #3f7d52;PC-52 Deep Sienna Speckle #8a3f22;PC-53 Ancient Jasper #6a2e24;PC-55 Chun Plum #6c3c62;PC-56 Ancient Copper #8a5b3a;PC-57 Smokey Merlot #4a1d2d;PC-59 Deep Firebrick #6b2a2c;PC-63 Cosmic Tea Dust #4a4a2e;PC-66 Cosmic Oil Spot #2b2234;PC-68 Golden Honey #c8882a;PCF-3 Midnight Run #24345e;PCF-18 Honeydew #c7b462;PCF-19 Cirrus Flow #d6dde3;PCF-54 Flux Blossom #d9a6a8;PCF-60 Sun Beam #e3b93f;PCF-74 River Birch #ece4d2;PCF-75 Moss Mist #9aa77a',
+    'AMACO|Celadon|6|C-1 Obsidian #1c1d21;C-5 Charcoal #2e2f2d;C-10 Snow #eef1f2;C-19 Glacier #8fb3a8;C-20 Cobalt #1b2357;C-22 Fog #5b7a66;C-23 Ice #a8bba9;C-25 Downpour #3f4a66;C-27 Storm #56626b;C-29 Deep Sea #3d5258;C-40 Aqua #7fae8a;C-50 Cherry Blossom #c87a6a;C-57 Mulberry #5c2d50',
+    'AMACO|Shino|6|SH-46 Matcha Matte Shino #727c45',
+    'AMACO|Crawl|6|CR-61 Speckled Yellow Crawl #e9c84c',
+    'AMACO|Satin Matte|6|SM-53 Cayenne #a4452c',
+    'AMACO|Dipping & Layering|6|DL-12 Enamel White #efeee8;DL-27 Storm Cloud #5b646e',
+    'AMACO|Art Brushable|06|AR-1 Art Brushable Clear #f2f0ea',
+    'AMACO|Velvet Underglaze|05|V-314 Chocolate Brown #4a3226;V-343 Chartreuse #c6d24a',
+    'Mayco|Stoneware|6|SW-001 Stoneware Clear #f2f2ee;SW-003 Stoneware Crackle #ecebe4;SW-004 Stoneware Zinc-Free Clear #f2f2ee;SW-101 Stoned Denim #5a7398;SW-105 Frost Blue #a9c4d6;SW-106 Alabaster #ece7dc;SW-108 Green Tea #8a9a5b;SW-113 Speckled Plum #6a4a5c;SW-116 Robin\u2019s Egg #9fd0cf;SW-118 Sea Salt #e6e2d6;SW-123 Sapphire #2c4f8a;SW-127 Olivine #6f7a3a;SW-130 Copper Jade #4f8f7a;SW-131 Birch #e3dccb;SW-137 Storm Gray #6c7278;SW-138 Lemon Meringue #ecdc8a;SW-143 Abalone #8fa3a8;SW-145 Tea Dust #4d4a2c;SW-150 Celadon Bloom #a7c7b0;SW-154 Shipwreck #4c5f63;SW-155 Winter Wood #8a7a6a;SW-156 Galaxy #2a2a4a;SW-162 Pink Matte #e3b3b0;SW-166 Norse Blue #2f4c7a;SW-168 Coral Sands #d99a7e;SW-176 Sandstone #c9b08a;SW-178 Fool\u2019s Gold #5a3f24;SW-180 Desert Dusk #b07a5e;SW-181 Night Moth #3a3440;SW-185 Rainforest #2f6b4a;SW-186 Azurite #1f3f7a;SW-187 Himalayan Salt #e0b8a8;SW-188 Landslide #5a3a26;SW-189 Cenote #8cc4dc;SW-203 Root Beer #5a2e1c;SW-211 Glacier Blue #9cc6dc;SW-212 Peacock #2f7a86;SW-251 Pink Opal #e8c4cc;SW-255 Gray Opal #b5b9bd;SW-501 White Gloss #f5f5f2;SW-505 Purple Gloss #5a3a8a;SW-506 Bright Blue Gloss #2a5fc8;SW-508 Black Gloss #141416;SW-512 Coral Gloss #e87a6a;SW-513 Brown Gloss #5a3a26',
+    'Mayco|Stoneware Wash|06\u201310|SW-302 Rutile Wash #a8773e',
+    'Mayco|Stroke & Coat|06|SC-1 Pink-A-Boo #f2a3c0;SC-27 Sour Apple #8fcf3a',
+    'Mayco|Foundations|06|FN-304 Black Velvet #1a1a1a',
+    'Coyote|Gloss|6|001 Almost Teal #1f5e6e;002 Black #141414;007 Clear #f0f0ec;023 White #f4f4f0',
+    'Coyote|Archie\u2019s|6|034 Archie\u2019s Base #e0d8c4;031 Red Gold #9a4a26;026 Gun Metal Green #3a4a40;028 Blue Purple #3f3f8a',
+    'Coyote|Satin|6|011 Eggshell #e8e0cc;048 Oatmeal #d6c8a8;074 Alabaster Satin #ece6d8;082 Lapis Satin #26407a;071 Really Red #b0201e',
+    'Coyote|Shino|6|042 Shino #8a5a3a;043 Blue Shino #2f4a7a;067 Light Blue Shino #a9c2d6;068 Light Green Shino #b6c9a6;087 Cedar Shino #9a4e36;088 Goldenrod Shino #c99a3a;090 Mocha Shino #b8957a;093 Pistachio Shino #b8d0a0;096 Steel Gray Shino #4a4c50;097 Sunrise Shino #e0a07a',
+    'Coyote|Texas Two-Step|6|144 Mulberry #3e1f3e;152 Texas Rose #c86a6a',
+    'Coyote|Constellations|6|170 Autumn Spice #9a5a2a;171 Mars Red Iron #8a2e1e',
+    'Coyote|Fantasy|6|212 Enchanted Sunset #c8704a;213 Fairy Rose #d9a0b0;214 Sorcerer\u2019s Stone #4a5a6a;215 Unicorn Horn #e8e4f0;216 Amethyst #6a4a8a'
+  ];
+  var CATALOG = [];
+  RAW.forEach(function (row) {
+    var p = row.split('|');
+    p[3].split(';').forEach(function (it) {
+      var m = it.match(/^(\S+) (.+) (#[0-9a-f]{6})$/);
+      if (!m) return;
+      var code = p[0] === 'Coyote' ? 'MBG' + m[1] : m[1];
+      CATALOG.push({ id: (p[0] + '-' + code).toLowerCase(), brand: p[0], line: p[1], cone: p[2], code: code, name: m[2], hex: m[3] });
+    });
+  });
+  var customGlazes = sget('clayday:customglazes', []);
+  function allGlazes() { return CATALOG.concat(customGlazes); }
+  function glazeById(id) { var g = null; allGlazes().forEach(function (x) { if (x.id === id) g = x; }); return g; }
+  function glazeByCode(code) { var g = null; CATALOG.forEach(function (x) { if (x.code.toLowerCase() === String(code).toLowerCase()) g = x; }); return g; }
+  function hashColor(s) {
+    var h = 0; s = String(s || '');
+    for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 360;
+    return 'hsl(' + h + ' 32% 58%)';
+  }
+  function isLight(hex) {
+    if (!/^#[0-9a-f]{6}$/i.test(hex)) return false;
+    var r = parseInt(hex.substr(1, 2), 16), g = parseInt(hex.substr(3, 2), 16), b = parseInt(hex.substr(5, 2), 16);
+    return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.62;
+  }
+  function swatch(hex, label) {
+    var c = hex || '#c9c4b8', st = isLight(c) ? 'rgba(0,0,0,.28)' : 'rgba(255,255,255,.6)';
+    return '<span class="gsw" style="--c:' + c + '"' + (label ? ' role="img" aria-label="' + esc(label) + '"' : ' aria-hidden="true"') + '>' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="' + st + '" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3.5h5M10.5 3.5v2.3C7.5 7.6 6.6 11 8 14.8c.9 2.4 1.3 3.7 1.3 5.2h5.4c0-1.5.4-2.8 1.3-5.2 1.4-3.8.5-7.2-2.5-9V3.5"/></svg></span>';
+  }
+  function layerGlaze(l) { return (l.gid && glazeById(l.gid)) || null; }
+  function layerHex(l) { var g = layerGlaze(l); return (g && g.hex) || l.hex || hashColor(l.name); }
+  function layerMeta(l) { var g = layerGlaze(l); return [(g && g.brand) || l.brand, (g && g.code) || l.code].filter(Boolean).join(' \u00b7 '); }
+  function layerAmount(l) {
+    if (l.method === 'dip') { var s = +l.secs || 3; return s + (s > 1 ? ' sec' : ' sec') + ' dip'; }
+    var c = +l.coats || 2; return c + (c > 1 ? ' coats' : ' coat');
+  }
+  function layerKey(l) { var g = layerGlaze(l); return String((g && g.code) || l.code || l.name || '').toLowerCase(); }
+  function makeLayer(g) { return { gid: g.id, name: g.name, brand: g.brand, code: g.code, hex: g.hex, method: 'paint', coats: 2, secs: 3 }; }
+
+  /* ---- glaze picker ---- */
+  var pickCb = null, pickBrand = 'all';
+  function openPicker(cb) {
+    pickCb = cb; $('pickQ').value = ''; pickBrand = 'all';
+    $('ngName').value = ''; $('ngBrand').value = ''; $('ngCode').value = ''; $('ngCone').value = ''; $('ngErr').hidden = true;
+    renderPicker();
+    $('picker').hidden = false; document.body.style.overflow = 'hidden';
+    $('picker').scrollTop = 0;
+    setTimeout(function () { $('pickQ').focus(); }, 50);
+  }
+  function closePicker() { $('picker').hidden = true; document.body.style.overflow = ''; pickCb = null; }
+  function renderPicker() {
+    var brands = ['AMACO', 'Mayco', 'Coyote'];
+    var chips = [['all', 'All']].concat(brands.map(function (b) { return [b, b]; }));
+    if (customGlazes.length) chips.push(['mine', 'My glazes']);
+    $('pickBrands').innerHTML = chips.map(function (c) {
+      return '<button class="chip" data-pb="' + c[0] + '" aria-pressed="' + (pickBrand === c[0]) + '">' + c[1] + '</button>';
+    }).join('');
+    var q = $('pickQ').value.trim().toLowerCase(), words = q ? q.split(/\s+/) : [];
+    var groups = {}, order = [];
+    allGlazes().forEach(function (g) {
+      var grp = g.custom ? 'My glazes' : g.brand;
+      if (pickBrand === 'mine' && !g.custom) return;
+      if (pickBrand !== 'all' && pickBrand !== 'mine' && (g.custom || g.brand !== pickBrand)) return;
+      var hay = (g.name + ' ' + g.brand + ' ' + (g.line || '') + ' ' + (g.code || '')).toLowerCase();
+      for (var i = 0; i < words.length; i++) if (hay.indexOf(words[i]) < 0) return;
+      if (!groups[grp]) { groups[grp] = []; order.push(grp); }
+      groups[grp].push(g);
+    });
+    var h = '';
+    order.forEach(function (grp) {
+      var list = groups[grp].slice().sort(function (a, b) { return a.name.localeCompare(b.name); });
+      h += '<div class="pgroup"><h3>' + esc(grp) + ' <span>' + list.length + '</span></h3>';
+      list.forEach(function (g) {
+        h += '<button class="prow" data-pick="' + esc(g.id) + '">' + swatch(g.hex || hashColor(g.name)) +
+          '<span><b>' + esc(g.name) + '</b><small>' + esc([g.line || g.brand, g.code].filter(Boolean).join(' \u00b7 ')) + '</small></span>' +
+          '<span class="cone">' + (g.cone ? 'Cone ' + esc(g.cone) : '') + '</span><span class="plus" aria-hidden="true">+</span></button>';
+      });
+      h += '</div>';
+    });
+    if (!h) h = '<p class="empty" style="margin-top:16px">No glazes match. Add it below and it stays in your catalog.</p>';
+    $('pickList').innerHTML = h;
+  }
+  $('pickClose').addEventListener('click', closePicker);
+  $('pickQ').addEventListener('input', renderPicker);
+  $('pickBrands').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-pb]'); if (!b) return;
+    pickBrand = b.getAttribute('data-pb'); renderPicker();
+  });
+  $('pickList').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-pick]'); if (!b) return;
+    var g = glazeById(b.getAttribute('data-pick')), cb = pickCb;
+    closePicker(); if (g && cb) cb(g);
+  });
+  $('ngAdd').addEventListener('click', function () {
+    var name = $('ngName').value.trim();
+    if (!name) { $('ngErr').hidden = false; $('ngName').focus(); return; }
+    var brand = $('ngBrand').value.trim(), code = $('ngCode').value.trim();
+    var g = { id: 'custom-' + Date.now().toString(36), custom: true, brand: brand || 'My glazes', line: brand || 'My glazes', cone: $('ngCone').value.trim(), code: code, name: name, hex: hashColor(name) };
+    customGlazes.push(g); sset('clayday:customglazes', customGlazes);
+    var cb = pickCb; closePicker(); if (cb) cb(g);
+  });
+  $('ngName').addEventListener('input', function () { $('ngErr').hidden = true; });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('picker').hidden) closePicker(); });
+
+  /* ---- shared layer editor (projects and combinations) ---- */
+  var COATS = [1, 2, 3, 4, 5], SECS = [1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 15, 20, 30];
+  function layerEditorHtml(layers) {
+    if (!layers.length) return '<p class="layers-empty">No glazes yet. Tap Add glaze to choose from the catalog.</p>';
+    return layers.map(function (l, i) {
+      var n = i + 1, dip = l.method === 'dip';
+      var opts = dip
+        ? SECS.map(function (s) { return '<option value="' + s + '"' + ((+l.secs || 3) === s ? ' selected' : '') + '>' + s + (s > 1 ? ' seconds' : ' second') + '</option>'; }).join('')
+        : COATS.map(function (k) { return '<option value="' + k + '"' + ((+l.coats || 2) === k ? ' selected' : '') + '>' + k + (k > 1 ? ' coats' : ' coat') + '</option>'; }).join('');
+      var meta = layerMeta(l);
+      return '<div class="layer2"><span class="lnum">' + n + '</span>' +
+        '<button class="lglaze" data-lpick="' + i + '" aria-label="Change glaze for layer ' + n + '">' + swatch(layerHex(l)) +
+        '<span style="min-width:0"><b>' + esc(l.name || 'Choose a glaze') + '</b>' + (meta ? '<small>' + esc(meta) + '</small>' : '') + '</span></button>' +
+        '<button class="icon-btn" data-lrm="' + i + '" aria-label="Remove layer ' + n + '">&times;</button>' +
+        '<div class="lctl"><div class="seg" role="group" aria-label="How layer ' + n + ' is applied">' +
+        '<button data-lmeth="' + i + ':paint" aria-pressed="' + !dip + '">Painted</button>' +
+        '<button data-lmeth="' + i + ':dip" aria-pressed="' + dip + '">Dipped</button></div>' +
+        '<select data-lamt="' + i + '" aria-label="' + (dip ? 'Dip time' : 'Coats') + ' for layer ' + n + '">' + opts + '</select></div></div>';
+    }).join('');
+  }
+  function bindLayerEditor(el, getLayers, rerender) {
+    el.addEventListener('click', function (e) {
+      var layers = getLayers(); if (!layers) return;
+      var b = e.target.closest('[data-lrm],[data-lmeth],[data-lpick]'); if (!b) return;
+      if (b.hasAttribute('data-lrm')) { layers.splice(+b.getAttribute('data-lrm'), 1); rerender(); return; }
+      if (b.hasAttribute('data-lmeth')) {
+        var p = b.getAttribute('data-lmeth').split(':'), l = layers[+p[0]];
+        l.method = p[1]; if (p[1] === 'dip' && !l.secs) l.secs = 3; if (p[1] === 'paint' && !l.coats) l.coats = 2;
+        rerender(); return;
+      }
+      var i = +b.getAttribute('data-lpick');
+      openPicker(function (g) {
+        var old = layers[i] || {}, nl = makeLayer(g);
+        nl.method = old.method || 'paint'; nl.coats = old.coats || 2; nl.secs = old.secs || 3;
+        layers[i] = nl; rerender();
+      });
+    });
+    el.addEventListener('change', function (e) {
+      var t = e.target, layers = getLayers(); if (!layers || !t.hasAttribute('data-lamt')) return;
+      var l = layers[+t.getAttribute('data-lamt')];
+      if (l.method === 'dip') l.secs = +t.value; else l.coats = +t.value;
+    });
+  }
+  function cleanLayers(layers) {
+    return layers.filter(function (l) { return (l.name || '').trim(); }).map(function (l) {
+      var o = { name: l.name.trim(), method: l.method === 'dip' ? 'dip' : 'paint', coats: +l.coats || 2, secs: +l.secs || 3 };
+      ['gid', 'brand', 'code', 'hex'].forEach(function (k) { if (l[k]) o[k] = l[k]; });
+      return o;
+    });
+  }
+
+  /* ---- your combinations ---- */
+  var myCombos = sget('clayday:mycombos', []);
+  var comboEditing = null, cDelArmed = false;
+  function saveMyCombos() { sset('clayday:mycombos', myCombos); }
+  function showComboView(v) {
+    $('comboListView').hidden = v !== 'list';
+    $('comboDetailView').hidden = v !== 'detail';
+    $('comboEditView').hidden = v !== 'edit';
+    window.scrollTo(0, 0);
+  }
+  function renderMyCombos() {
+    var el = $('myCombos');
+    if (!myCombos.length) {
+      el.innerHTML = '<p class="empty" style="margin-bottom:12px">Save your own layering recipes here, with coats or dip times for each glaze.</p><button class="btn-ghost wide" id="comboNew2">Create a combination</button>';
+      return;
+    }
+    el.innerHTML = myCombos.slice().sort(function (a, b) { return (b.updated || 0) - (a.updated || 0); }).map(function (c) {
+      return '<button class="mc-row" data-combo="m:' + esc(c.id) + '"><span class="mini-sw">' + c.layers.slice(0, 4).map(function (l) { return swatch(layerHex(l)); }).join('') + '</span>' +
+        '<span><b>' + esc(c.name || 'Untitled combination') + '</b><span class="sub2">' + c.layers.map(function (l) { return esc(l.name); }).join(' then ') + '</span></span><span class="chev" aria-hidden="true">&rsaquo;</span></button>';
+    }).join('');
+  }
+  function usedIn(layers) {
+    var keys = layers.map(layerKey).filter(Boolean);
+    if (!keys.length) return [];
+    return Store.items.filter(function (p) {
+      var pk = (p.glazes || []).map(layerKey), j = 0;
+      for (var i = 0; i < pk.length && j < keys.length; i++) if (pk[i] === keys[j]) j++;
+      return j === keys.length;
+    });
+  }
+  function exampleLinks(layers) {
+    var names = layers.slice().reverse().map(function (l) { var g = layerGlaze(l); return (((g && g.brand) || l.brand || '') + ' ' + l.name).trim(); });
+    var q = names.join(' over ') + ' glaze';
+    return '<div class="find"><a class="btn-ghost" href="https://www.google.com/search?tbm=isch&q=' + encodeURIComponent(q) + '" target="_blank" rel="noopener">' +
+      '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>Find examples</a>' +
+      '<a class="btn-ghost" href="https://www.pinterest.com/search/pins/?q=' + encodeURIComponent(q) + '" target="_blank" rel="noopener">Search Pinterest</a></div>';
+  }
+  function openComboDetail(ref) {
+    var kind = ref.slice(0, 1), id = ref.slice(2), c = null, layers, title, notes, extra = '';
+    if (kind === 'm') {
+      myCombos.forEach(function (x) { if (x.id === id) c = x; });
+      if (!c) return;
+      layers = c.layers; title = c.name || 'Untitled combination'; notes = c.notes;
+    } else {
+      var a = COMBOS[+id]; if (!a) return;
+      layers = [a.base, a.top].map(function (s) {
+        var code = s.split(' ')[0], g = glazeByCode(code);
+        return g ? makeLayer(g) : { name: s.replace(/^\S+\s/, ''), code: code, brand: 'AMACO' };
+      });
+      layers.forEach(function (l) { l.method = 'none'; });
+      title = a.t; notes = a.how;
+      extra = '<div class="badges" style="margin:-8px 0 16px"><span class="badge">' + a.cone + '</span>' + (a.run ? '<span class="badge run">Can run</span>' : '') + (a.stable ? '<span class="badge ok">Stable, good first try</span>' : '') + '</div>';
+    }
+    var h = '<button class="back" id="cdBack">&lsaquo; Combos</button>' +
+      '<div class="cd-top">' + layers.map(function (l) { return swatch(layerHex(l), l.name); }).join('') + '</div>' +
+      '<h1 class="cd-title">' + esc(title) + '</h1>' + extra +
+      '<div class="card"><h2>Application order</h2>' + layers.map(function (l, i) {
+        var meta = layerMeta(l);
+        return '<div class="orow"><span class="n">' + (i + 1) + '</span>' + swatch(layerHex(l)) +
+          '<span><b>' + esc(l.name) + '</b>' + (meta ? '<span class="ometa">' + esc(meta) + '</span>' : '') + '</span>' +
+          '<span class="amt">' + (l.method === 'none' ? '' : layerAmount(l)) + '</span></div>';
+      }).join('') + '</div>';
+    if (notes) h += '<div class="card"><h2>' + (kind === 'm' ? 'Notes' : 'How to apply') + '</h2><p style="margin:0;white-space:pre-wrap">' + esc(notes) + '</p></div>';
+    h += '<div class="card"><h2>Photo examples</h2><p class="hint" style="margin:-2px 0 12px">See how other potters\u2019 pieces turned out with this combination.</p>' + exampleLinks(layers) +
+      (kind === 'a' ? '<p style="margin:12px 0 0"><a class="link" href="' + SRC[COMBOS[+id].src] + '" target="_blank" rel="noopener">See AMACO\u2019s photo</a></p>' : '') + '</div>';
+    var used = usedIn(layers);
+    h += '<div class="section-head"><h2>Used in your projects</h2></div>' +
+      (used.length ? '<div class="pgrid">' + used.map(projCard).join('') + '</div>'
+        : '<div class="card"><p class="used-empty">When you record this combination on a project, it\u2019ll show up here.</p></div>');
+    if (kind === 'm') h += '<div class="actions"><button class="btn-ghost wide" data-cedit="' + esc(c.id) + '">Edit combination</button></div>';
+    $('comboDetailView').innerHTML = h;
+    showComboView('detail');
+  }
+  function openComboEditor(c) {
+    comboEditing = c ? { id: c.id, isNew: false, data: JSON.parse(JSON.stringify(c)) }
+      : { id: 'c' + Date.now().toString(36), isNew: true, data: { name: '', notes: '', layers: [] } };
+    cDelArmed = false;
+    $('cEditTitle').textContent = comboEditing.isNew ? 'New combination' : 'Edit combination';
+    $('cName').value = comboEditing.data.name || ''; $('cNotes').value = comboEditing.data.notes || '';
+    $('cDel').hidden = comboEditing.isNew; $('cDel').textContent = 'Delete combination'; $('cMsg').hidden = true;
+    renderComboLayers();
+    if (location.hash !== '#combos') { skipComboReset = true; location.hash = '#combos'; }
+    showComboView('edit');
+  }
+  function renderComboLayers() { $('cLayers').innerHTML = layerEditorHtml(comboEditing ? comboEditing.data.layers : []); }
+  bindLayerEditor($('cLayers'), function () { return comboEditing && comboEditing.data.layers; }, renderComboLayers);
+  $('cAddLayer').addEventListener('click', function () {
+    if (!comboEditing) return;
+    openPicker(function (g) { comboEditing.data.layers.push(makeLayer(g)); renderComboLayers(); });
+  });
+  $('cName').addEventListener('input', function () { if (comboEditing) comboEditing.data.name = this.value; });
+  $('cNotes').addEventListener('input', function () { if (comboEditing) comboEditing.data.notes = this.value; });
+  $('cSave').addEventListener('click', function () {
+    if (!comboEditing) return;
+    var d = comboEditing.data, layers = cleanLayers(d.layers);
+    if (!layers.length) { $('cMsg').textContent = 'Add at least one glaze to save this combination.'; $('cMsg').hidden = false; return; }
+    var rec = { id: comboEditing.id, name: (d.name || '').trim() || layers.map(function (l) { return l.name; }).reverse().join(' over '), notes: d.notes || '', layers: layers, updated: Date.now() };
+    var k = -1; myCombos.forEach(function (x, i) { if (x.id === rec.id) k = i; });
+    if (k > -1) myCombos[k] = rec; else myCombos.push(rec);
+    saveMyCombos(); comboEditing = null; renderMyCombos();
+    openComboDetail('m:' + rec.id);
+  });
+  $('cCancel').addEventListener('click', function () {
+    var c = comboEditing; comboEditing = null;
+    if (c && !c.isNew) openComboDetail('m:' + c.id); else showComboView('list');
+  });
+  $('cBack').addEventListener('click', function () { $('cCancel').click(); });
+  $('cDel').addEventListener('click', function () {
+    if (!comboEditing || comboEditing.isNew) return;
+    if (!cDelArmed) {
+      cDelArmed = true; this.textContent = 'Tap again to delete';
+      var b = this; setTimeout(function () { cDelArmed = false; b.textContent = 'Delete combination'; }, 4000);
+      return;
+    }
+    var id = comboEditing.id;
+    myCombos = myCombos.filter(function (x) { return x.id !== id; });
+    saveMyCombos(); comboEditing = null; renderMyCombos(); showComboView('list');
+  });
+  $('comboNew').addEventListener('click', function () { openComboEditor(null); });
+  var skipComboReset = false;
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('#comboNew2')) { openComboEditor(null); return; }
+    var c = e.target.closest('[data-combo]'); if (c) { openComboDetail(c.getAttribute('data-combo')); return; }
+    if (e.target.closest('#cdBack')) { showComboView('list'); return; }
+    var ed = e.target.closest('[data-cedit]');
+    if (ed) { var id = ed.getAttribute('data-cedit'); myCombos.forEach(function (x) { if (x.id === id) openComboEditor(x); }); }
+  });
 
     /* ================= PROJECTS ================= */
   var Store = { mode: 'loading', items: [], loaded: false, note: '' };
@@ -1271,10 +1717,11 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
     var cover = photos.length ? '<img src="' + esc(photoSrc(photos[0])) + '" alt="" loading="lazy">' : '<div class="ph">' + VASE + '</div>';
     var gl = (p.glazes || []).filter(function (g) { return g.name; });
     var chips = gl.slice(0, 2).map(function (g) {
-      return '<span class="gchip">' + esc(g.name) + ' &middot; ' + (+g.coats || 1) + (+g.coats > 1 ? ' coats' : ' coat') + '</span>';
+      return '<span class="gchip">' + esc(g.name) + ' &middot; ' + layerAmount(g) + '</span>';
     }).join('') + (gl.length > 2 ? '<span class="gchip more">+' + (gl.length - 2) + ' more</span>' : '');
     return '<button class="pcard" data-open="' + esc(p.id) + '"><div class="cover">' + cover +
-      (photos.length > 1 ? '<span class="pcount">' + photos.length + ' photos</span>' : '') + '</div>' +
+      (photos.length > 1 ? '<span class="pcount">' + photos.length + ' photos</span>' : '') +
+      (stageInfo(p.stage) ? '<span class="stage-badge"><span class="dot" style="--sc:' + stageInfo(p.stage)[2] + '"></span>' + stageInfo(p.stage)[1] + '</span>' : '') + '</div>' +
       '<div class="pbody"><div class="nm">' + esc(p.name || 'Untitled piece') + '</div>' +
       '<div class="sub2">' + fmtDate(p.date) + (p.cone ? ' &middot; Cone ' + esc(p.cone) : '') + '</div>' +
       (chips ? '<div class="gchips">' + chips + '</div>' : '') + '</div></button>';
@@ -1307,16 +1754,16 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
     if (proj) {
       var d = JSON.parse(JSON.stringify(proj)); delete d.id;
       d.photos = d.photos || [];
-      d.glazes = (d.glazes && d.glazes.length) ? d.glazes : [{ name: '', coats: 2 }];
+      d.glazes = d.glazes || [];
       editing = { id: proj.id, isNew: false, data: d, orig: d.photos.slice(), added: [] };
     } else {
       editing = { id: 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7), isNew: true,
-        data: { name: '', date: todayISO(), clay: '', cone: '', notes: '', photos: [], glazes: [{ name: '', coats: 2 }] }, orig: [], added: [] };
+        data: { name: '', stage: 'planned', date: todayISO(), clay: '', cone: '', notes: '', photos: [], glazes: [] }, orig: [], added: [] };
     }
     delArmed = false;
     var d2 = editing.data;
     $('editTitle').textContent = editing.isNew ? 'New project' : 'Edit project';
-    $('pName').value = d2.name || ''; $('pDate').value = d2.date || ''; $('pClay').value = d2.clay || ''; $('pNotes').value = d2.notes || '';
+    $('pName').value = d2.name || ''; $('pDate').value = d2.date || ''; $('pClay').value = d2.clay || ''; $('pNotes').value = d2.notes || ''; renderStages();
     $('pCone').innerHTML = '<option value="">Not set</option>' + CONES.map(function (c) { return '<option value="' + c[0] + '">Cone ' + c[0] + '</option>'; }).join('');
     $('pCone').value = d2.cone || '';
     $('projDel').hidden = editing.isNew; $('projDel').textContent = 'Delete project';
@@ -1336,18 +1783,12 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
     h += '<label class="add-photo" for="photoInput"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="6.5" width="18" height="13.5" rx="3"/><path d="M12 10v6M9 13h6"/></svg>Add photos</label>';
     $('thumbs').innerHTML = h;
   }
-  function renderLayers() {
-    $('layers').innerHTML = editing.data.glazes.map(function (g, i) {
-      var n = i + 1;
-      return '<div class="layer"><span class="lnum">' + n + '</span>' +
-        '<input type="text" list="glazeList" data-gi="' + i + '" data-gf="name" value="' + esc(g.name || '') + '" placeholder="Glaze, e.g. PC-20 Blue Rutile" aria-label="Glaze for layer ' + n + '">' +
-        '<button class="icon-btn" data-rmlayer="' + i + '" aria-label="Remove layer ' + n + '">&times;</button>' +
-        '<select data-gi="' + i + '" data-gf="coats" aria-label="Coats for layer ' + n + '">' +
-        [1, 2, 3, 4, 5].map(function (k) { return '<option value="' + k + '"' + ((+g.coats || 2) === k ? ' selected' : '') + '>' + k + (k > 1 ? ' coats' : ' coat') + '</option>'; }).join('') +
-        '</select></div>';
-    }).join('');
-  }
-
+  function renderLayers() { $('layers').innerHTML = layerEditorHtml(editing ? editing.data.glazes : []); }
+  bindLayerEditor($('layers'), function () { return editing && editing.data.glazes; }, renderLayers);
+  $('addLayer').addEventListener('click', function () {
+    if (!editing) return;
+    openPicker(function (g) { editing.data.glazes.push(makeLayer(g)); renderLayers(); });
+  });
   $('projNew').addEventListener('click', function () { openEditor(null); });
   $('heroNew').addEventListener('click', function () { openEditor(null); });
   document.addEventListener('click', function (e) {
@@ -1362,29 +1803,6 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
     });
   });
   $('pCone').addEventListener('change', function () { if (editing) editing.data.cone = this.value; });
-  $('layers').addEventListener('input', function (e) {
-    var t = e.target; if (!editing || !t.hasAttribute('data-gi')) return;
-    var g = editing.data.glazes[+t.getAttribute('data-gi')], f = t.getAttribute('data-gf');
-    g[f] = f === 'coats' ? +t.value : t.value;
-  });
-  $('layers').addEventListener('change', function (e) {
-    var t = e.target; if (!editing || t.getAttribute('data-gf') !== 'coats') return;
-    editing.data.glazes[+t.getAttribute('data-gi')].coats = +t.value;
-  });
-  $('layers').addEventListener('click', function (e) {
-    var b = e.target.closest('[data-rmlayer]'); if (!b || !editing) return;
-    editing.data.glazes.splice(+b.getAttribute('data-rmlayer'), 1);
-    if (!editing.data.glazes.length) editing.data.glazes.push({ name: '', coats: 2 });
-    renderLayers();
-  });
-  $('addLayer').addEventListener('click', function () {
-    if (!editing) return;
-    editing.data.glazes.push({ name: '', coats: 2 });
-    renderLayers();
-    var ins = $('layers').querySelectorAll('input[type="text"]');
-    if (ins.length) ins[ins.length - 1].focus();
-  });
-
   $('photoInput').addEventListener('change', function () {
     var files = Array.prototype.slice.call(this.files || []);
     this.value = '';
@@ -1434,7 +1852,7 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
     if (uploading) { editError('Wait for your photos to finish adding, then save.'); return; }
     var ed = editing, d = ed.data;
     d.name = (d.name || '').trim() || 'Untitled piece';
-    d.glazes = d.glazes.filter(function (g) { return (g.name || '').trim(); }).map(function (g) { return { name: g.name.trim(), coats: +g.coats || 2 }; });
+    d.glazes = cleanLayers(d.glazes);
     d.updated = Date.now(); if (!d.created) d.created = d.updated;
     this.disabled = true; this.textContent = 'Saving\u2026'; $('editMsg').hidden = true;
     var btn = this;
@@ -1443,7 +1861,6 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
       closeEditor();
     }).catch(function (err) {
       btn.disabled = false; btn.textContent = 'Save project';
-      if (!d.glazes.length) d.glazes.push({ name: '', coats: 2 });
       editError(err && err.code === 'quota_exceeded' ? 'Storage is full. Delete an old project, then save again.' : 'Couldn\u2019t save this project. Check your connection and try again.');
     });
   });
@@ -1483,6 +1900,45 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
       '<a class="link" href="' + SRC[c.src] + '" target="_blank" rel="noopener">See AMACO\u2019s photo</a></div></div>';
   }
 
+  /* ---- project stages ---- */
+  var STAGES = [
+    ['planned', 'Planned', '#8a93b0', 'An idea or sketch, not made yet'],
+    ['formed', 'Formed', '#8a5a3c', 'Thrown or built, still wet'],
+    ['leather', 'Leather hard', '#b0784f', 'Ready to trim and attach'],
+    ['bonedry', 'Bone dry', '#c9a76f', 'Fully dry, ready for bisque'],
+    ['bisqued', 'Bisqued', '#e0874f', 'Bisque fired, ready to glaze'],
+    ['glazed', 'Glazed', '#5560f0', 'Glazed, waiting for the glaze firing'],
+    ['finished', 'Finished', '#0f9f6e', 'Glaze fired and done']
+  ];
+  function stageInfo(id) { var s = null; STAGES.forEach(function (x) { if (x[0] === id) s = x; }); return s; }
+  function renderStages() {
+    if (!editing) return;
+    var cur = editing.data.stage || '';
+    $('pStages').innerHTML = STAGES.map(function (s) {
+      return '<button class="stage-chip" style="--sc:' + s[2] + '" data-stage="' + s[0] + '" aria-pressed="' + (cur === s[0]) + '"><span class="dot"></span>' + s[1] + '</button>';
+    }).join('');
+    var info = stageInfo(cur);
+    $('stageHint').textContent = info ? info[3] : 'Tap the stage this piece is at.';
+  }
+  $('pStages').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-stage]'); if (!b || !editing) return;
+    var id = b.getAttribute('data-stage');
+    editing.data.stage = editing.data.stage === id ? '' : id;
+    renderStages();
+  });
+
+  /* ---- more menu ---- */
+  function setMore(open) {
+    $('moreMenu').hidden = !open; $('moreBackdrop').hidden = !open;
+    $('nav-more').setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) { var a = $('moreMenu').querySelector('a'); if (a) a.focus(); }
+  }
+  $('nav-more').addEventListener('click', function () { setMore($('moreMenu').hidden); });
+  $('moreBackdrop').addEventListener('click', function () { setMore(false); });
+  $('moreMenu').addEventListener('click', function (e) { if (e.target.closest('a')) setMore(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('moreMenu').hidden) { setMore(false); $('nav-more').focus(); } });
+  var MORE_PAGES = ['cones'];
+
   /* ================= ROUTING ================= */
   var PAGES = ['home', 'calculator', 'ideas', 'projects', 'combos', 'cones'];
   function route() {
@@ -1490,10 +1946,14 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
     var page = PAGES.indexOf(h) > -1 ? h : 'home';
     PAGES.forEach(function (p) {
       $('page-' + p).hidden = (p !== page);
-      if (p === page) $('nav-' + p).setAttribute('aria-current', 'page'); else $('nav-' + p).removeAttribute('aria-current');
+      var nv = $('nav-' + p) || $('more-' + p);
+      if (nv) { if (p === page) nv.setAttribute('aria-current', 'page'); else nv.removeAttribute('aria-current'); }
     });
+    if (MORE_PAGES.indexOf(page) > -1) $('nav-more').setAttribute('aria-current', 'page'); else $('nav-more').removeAttribute('aria-current');
+    setMore(false);
     $('topBrand').hidden = page === 'home';
     if (page === 'home') renderHome();
+    if (page === 'combos') { if (skipComboReset) skipComboReset = false; else showComboView('list'); renderMyCombos(); }
     window.scrollTo(0, 0);
   }
   window.addEventListener('hashchange', route);
@@ -1505,7 +1965,7 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
   renderCalc();
   renderIdeas();
   renderConeTable(); renderConv();
-  renderCombos();
+  renderCombos(); renderMyCombos();
   renderProjects();
   route();
   initStore();
