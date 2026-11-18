@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Clay Day</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Clay Day">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#5b6cff">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+:root {
+  --bg: #f5f7ff;
+  --bg-grad: radial-gradient(900px 460px at -10% -8%, rgba(110, 122, 255, .18), transparent 62%),
+             radial-gradient(720px 420px at 110% -4%, rgba(255, 138, 108, .16), transparent 60%),
+             radial-gradient(800px 500px at 50% 110%, rgba(52, 211, 166, .10), transparent 60%);
+  --surface: #ffffff;
+  --field: #f6f7fd;
+  --ink: #1a1f36;
+  --muted: #636b86;
+  --line: #e7e9f5;
+  --accent: #5560f0;
+  --accent-ink: #ffffff;
+  --accent-soft: #eef0ff;
+  --grad: linear-gradient(135deg, #5b6cff 0%, #8b5cf6 100%);
+  --grad-warm: linear-gradient(135deg, #ffd166 0%, #ff8a66 100%);
+  --coral: #f2644f;
+  --mint: #12a983;
+  --violet: #8b5cf6;
+  --ok: #0f9f6e;
+  --ok-soft: #e3f7ef;
+  --warn: #cf5f0d;
+  --warn-soft: #fff1e3;
+  --sun: #ffb547;
+  --wet: #8a5a3c;
+  --dry: #e0c9a6;
+  --fired: #5560f0;
+  --nav: rgba(255, 255, 255, .86);
+  --shadow: 0 1px 2px rgba(26, 31, 54, .04), 0 10px 28px rgba(60, 72, 160, .07);
+  --btn-shadow: 0 6px 18px rgba(91, 108, 255, .28);
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1020;
+    --bg-grad: radial-gradient(900px 460px at -10% -8%, rgba(110, 122, 255, .20), transparent 62%),
+               radial-gradient(720px 420px at 110% -4%, rgba(255, 138, 108, .10), transparent 60%),
+               radial-gradient(800px 500px at 50% 110%, rgba(52, 211, 166, .07), transparent 60%);
+    --surface: #161b2f; --field: #10152a; --ink: #eceefb; --muted: #a2a9c6; --line: #272d47;
+    --accent: #8f98ff; --accent-ink: #0d1020; --accent-soft: #232a4d;
+    --grad: linear-gradient(135deg, #6f7cff 0%, #a07bff 100%);
+    --coral: #ff8c78; --mint: #4fd1a1; --violet: #b48cff;
+    --ok: #4fd1a1; --ok-soft: #12302a; --warn: #f5a524; --warn-soft: #33260f;
+    --sun: #ffc56b; --wet: #b07a57; --dry: #9c8466; --fired: #8f98ff;
+    --nav: rgba(22, 27, 47, .88); --shadow: none; --btn-shadow: none;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1020;
+  --bg-grad: radial-gradient(900px 460px at -10% -8%, rgba(110, 122, 255, .20), transparent 62%),
+             radial-gradient(720px 420px at 110% -4%, rgba(255, 138, 108, .10), transparent 60%),
+             radial-gradient(800px 500px at 50% 110%, rgba(52, 211, 166, .07), transparent 60%);
+  --surface: #161b2f; --field: #10152a; --ink: #eceefb; --muted: #a2a9c6; --line: #272d47;
+  --accent: #8f98ff; --accent-ink: #0d1020; --accent-soft: #232a4d;
+  --grad: linear-gradient(135deg, #6f7cff 0%, #a07bff 100%);
+  --coral: #ff8c78; --mint: #4fd1a1; --violet: #b48cff;
+  --ok: #4fd1a1; --ok-soft: #12302a; --warn: #f5a524; --warn-soft: #33260f;
+  --sun: #ffc56b; --wet: #b07a57; --dry: #9c8466; --fired: #8f98ff;
+  --nav: rgba(22, 27, 47, .88); --shadow: none; --btn-shadow: none;
+}
+html { scroll-padding-top: env(safe-area-inset-top, 0px); min-height: 100%; background: var(--bg); }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  min-height: 100vh;
+  background-color: var(--bg);
+  background-image: var(--bg-grad);
+  background-repeat: no-repeat;
+  color: var(--ink);
+  font-family: -apple-system, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-text-size-adjust: 100%;
+}
+main { max-width: 560px; margin: 0 auto; padding: 16px 16px 120px; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand svg { width: 38px; height: 38px; flex: none; filter: drop-shadow(0 4px 10px rgba(91, 108, 255, .25)); }
+.brand .name { font-size: 21px; font-weight: 760; letter-spacing: -0.02em; }
+.page-title { font-size: 30px; line-height: 1.12; margin: 18px 0 4px; letter-spacing: -0.025em; font-weight: 760; }
+.sub { color: var(--muted); margin: 0 0 18px; font-size: 15px; }
+.title-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
+.title-row .btn { margin-bottom: 18px; }
+
+.tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: var(--accent-soft); padding: 4px; border-radius: 14px; margin-bottom: 14px; }
+.tab { border: 0; background: transparent; color: var(--muted); font: inherit; font-weight: 650; font-size: 15px; padding: 10px 6px; border-radius: 11px; min-height: 44px; cursor: pointer; }
+.tab[aria-selected="true"] { background: var(--surface); color: var(--accent); box-shadow: var(--shadow); }
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visible, label:focus-within { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 16px; margin-bottom: 14px; box-shadow: var(--shadow); }
+.card h2 { font-size: 17px; margin: 0 0 12px; letter-spacing: -0.01em; }
+.card h3 { font-size: 15px; margin: 16px 0 8px; }
+.card-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; }
+.card-head h2 { margin: 0; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+label { display: block; font-size: 14px; color: var(--muted); margin-bottom: 5px; }
+.field { position: relative; margin-bottom: 12px; }
+.field:last-child { margin-bottom: 0; }
+input[type="number"], input[type="text"], input[type="date"], select, textarea {
+  width: 100%; font: inherit; color: var(--ink);
+  background: var(--field); border: 1px solid var(--line); border-radius: 12px; min-height: 48px;
+}
+input[type="number"] { font-size: 20px; font-variant-numeric: tabular-nums; padding: 11px 44px 11px 12px; }
+input[type="text"], input[type="date"] { font-size: 17px; padding: 11px 12px; }
+textarea { font-size: 16px; padding: 11px 12px; min-height: 96px; resize: vertical; }
+select { font-size: 17px; padding: 11px 12px; appearance: auto; }
+.suffix { position: absolute; right: 12px; bottom: 13px; color: var(--muted); font-size: 15px; pointer-events: none; }
+
+.btn, .btn-ghost, .btn-add, .btn-light {
+  border: 0; font: inherit; font-weight: 650; cursor: pointer; border-radius: 12px; white-space: nowrap;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none;
+}
+.btn { background: var(--grad); color: #fff; font-size: 15px; padding: 0 18px; min-height: 46px; box-shadow: var(--btn-shadow); }
+.btn:disabled { opacity: .6; cursor: default; }
+.btn-ghost { background: var(--accent-soft); color: var(--accent); font-size: 15px; padding: 0 14px; min-height: 44px; }
+.btn-ghost.danger { background: var(--warn-soft); color: var(--warn); }
+.btn-light { background: rgba(255, 255, 255, .95); color: #4b55e0; font-size: 15px; padding: 0 18px; min-height: 46px; }
+.btn-add { background: var(--accent-soft); color: var(--accent); font-size: 14px; padding: 0 12px; min-height: 36px; }
+.btn.wide, .btn-ghost.wide { width: 100%; }
+.icon-btn { width: 40px; height: 40px; border: 0; border-radius: 10px; background: transparent; color: var(--muted); font-size: 22px; line-height: 1; cursor: pointer; }
+.btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.apply { display: block; width: 100%; min-height: 50px; border: 0; border-radius: 14px; background: var(--grad); color: #fff; font: inherit; font-weight: 650; font-size: 16px; cursor: pointer; margin-bottom: 14px; box-shadow: var(--btn-shadow); }
+.link { color: var(--accent); font-weight: 650; text-decoration: none; font-size: 15px; }
+
+.pick-row { display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center; margin-bottom: 12px; }
+.inline-form { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.inline-form input { grid-column: 1 / -1; }
+.msg { font-size: 14px; margin: 8px 0 0; }
+.msg.ok { color: var(--ok); }
+.msg.err, .err { color: var(--warn); }
+.err { margin: 8px 0 0; font-size: 14px; }
+
+.seg { display: inline-grid; grid-auto-flow: column; gap: 4px; background: var(--accent-soft); padding: 3px; border-radius: 12px; margin-bottom: 12px; }
+.seg button { border: 0; background: transparent; color: var(--muted); font: inherit; font-size: 14px; font-weight: 650; padding: 8px 14px; border-radius: 9px; min-height: 40px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--accent); box-shadow: var(--shadow); }
+.total-note { color: var(--muted); font-size: 14px; margin: 10px 0 0; }
+
+.result { padding: 18px 16px; background: linear-gradient(180deg, var(--surface) 0%, var(--surface) 55%, var(--accent-soft) 160%); }
+.bigs { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
+.big { font-size: 42px; font-weight: 760; line-height: 1.05; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; color: var(--accent); }
+.big small { font-size: 19px; font-weight: 600; color: var(--muted); letter-spacing: 0; }
+.label { color: var(--muted); font-size: 14px; margin-bottom: 2px; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+.stat .v { font-size: 21px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.name-big { font-size: 28px; font-weight: 760; line-height: 1.15; letter-spacing: -0.01em; color: var(--accent); }
+
+.bars { margin-top: 16px; }
+.bar { height: 14px; border-radius: 7px; margin-bottom: 8px; transition: width .25s ease; min-width: 4px; }
+.bar.wet { background: linear-gradient(90deg, #6f4630, var(--wet)); }
+.bar.dry { background: linear-gradient(90deg, #cdb28b, var(--dry)); }
+.bar.fired { background: var(--grad); }
+.legend { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; color: var(--muted); margin-bottom: 4px; font-variant-numeric: tabular-nums; }
+.empty { color: var(--muted); margin: 0; }
+.hint { color: var(--muted); font-size: 14px; margin: 10px 0 0; }
+
+.check { display: flex; gap: 10px; align-items: center; color: var(--ink); font-size: 15px; min-height: 44px; margin: 4px 0 0; }
+.check input { width: 22px; height: 22px; accent-color: var(--accent); }
+
+.group h3 { margin: 16px 0 2px; }
+.group:first-child h3 { margin-top: 0; }
+.item { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); }
+.item .nm, .plan-row .nm { font-weight: 600; }
+.sub2 { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.inplan { color: var(--accent); font-weight: 600; }
+.item .right { display: flex; align-items: center; gap: 10px; }
+.tag { font-weight: 650; font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; padding: 3px 9px; border-radius: 999px; }
+.tag.fit { color: var(--ok); background: var(--ok-soft); }
+.tag.no { color: var(--warn); background: var(--warn-soft); font-weight: 600; }
+
+.plan-row { display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); }
+.plan-row:first-child { border-top: 0; }
+.stepper { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.stepper button { width: 38px; height: 38px; border: 0; background: var(--surface); color: var(--accent); font-size: 20px; font-weight: 600; cursor: pointer; }
+.stepper span { min-width: 30px; text-align: center; font-weight: 650; font-variant-numeric: tabular-nums; }
+.banner { margin-top: 14px; padding: 11px 12px; border-radius: 12px; font-weight: 600; font-size: 15px; }
+.banner.ok { background: var(--ok-soft); color: var(--ok); }
+.banner.warn { background: var(--warn-soft); color: var(--warn); }
+
+.chead, .crow { display: grid; grid-template-columns: 18px 46px 1fr 1fr 1.7fr; gap: 8px; align-items: center; font-variant-numeric: tabular-nums; }
+.chead { font-size: 13px; color: var(--muted); padding: 0 6px 6px; }
+.crow { padding: 9px 6px; border-top: 1px solid var(--line); font-size: 15px; }
+.crow .cn { font-weight: 700; }
+.crow .use { font-size: 13px; color: var(--muted); }
+.crow.hit { background: var(--accent-soft); border-radius: 10px; border-top-color: transparent; }
+.sw { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .15); }
+.band { padding: 16px 6px 6px; }
+.band h3 { margin: 0; font-size: 16px; }
+.band p { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+
+.chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin: 4px 0 6px; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: none; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-size: 14px; font-weight: 600; padding: 0 14px; min-height: 38px; border-radius: 999px; cursor: pointer; }
+.chip .dot { width: 10px; height: 10px; border-radius: 50%; }
+.chip[aria-pressed="true"] { background: var(--grad); border-color: transparent; color: #fff; }
+.combo { display: grid; grid-template-columns: 76px 1fr; gap: 14px; padding: 16px 0; border-top: 1px solid var(--line); }
+.combo:first-child { border-top: 0; padding-top: 0; }
+.combo:last-child { padding-bottom: 0; }
+.combo svg { width: 76px; height: 92px; }
+.combo h3 { margin: 0; font-size: 17px; line-height: 1.25; }
+.combo-top { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
+.combo .pair { font-size: 14px; margin: 3px 0 8px; }
+.combo .pair b { font-weight: 650; }
+.combo .how { font-size: 14px; color: var(--muted); margin: 0 0 8px; }
+.combo a, .hint a { color: var(--accent); font-weight: 650; text-decoration: none; }
+.combo a { font-size: 14px; }
+.badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.badge { font-size: 12px; font-weight: 650; padding: 3px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.badge.run { background: var(--warn-soft); color: var(--warn); }
+.badge.ok { background: var(--ok-soft); color: var(--ok); }
+.star { flex: none; border: 0; background: transparent; font-size: 24px; line-height: 1; color: var(--muted); width: 40px; height: 40px; margin: -9px -9px 0 0; cursor: pointer; }
+.star[aria-pressed="true"] { color: var(--sun); }
+.tips { margin: 0; padding-left: 20px; }
+.tips li { margin-bottom: 6px; }
+
+/* ---- home ---- */
+.hero {
+  position: relative; overflow: hidden; border-radius: 26px; padding: 22px 20px 20px; margin: 14px 0 16px;
+  background: var(--grad); color: #fff; box-shadow: 0 16px 40px rgba(91, 108, 255, .28);
+}
+.hero::before, .hero::after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
+.hero::before { width: 240px; height: 240px; right: -80px; top: -90px; background: radial-gradient(circle, rgba(255, 209, 102, .55), rgba(255, 138, 102, 0) 70%); }
+.hero::after { width: 200px; height: 200px; left: -70px; bottom: -110px; background: radial-gradient(circle, rgba(255, 255, 255, .22), rgba(255, 255, 255, 0) 70%); }
+.hero > * { position: relative; }
+.hero-logo { width: 64px; height: 64px; display: block; filter: drop-shadow(0 6px 14px rgba(20, 20, 80, .3)); }
+.hero h1 { font-size: 36px; line-height: 1.05; letter-spacing: -0.03em; margin: 14px 0 6px; font-weight: 780; }
+.hero p { margin: 0 0 16px; font-size: 16px; opacity: .92; max-width: 30ch; }
+.hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+.hero-stats div { background: rgba(255, 255, 255, .16); border-radius: 14px; padding: 10px 10px 8px; }
+.hero-stats b { display: block; font-size: 22px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.hero-stats span { font-size: 12px; opacity: .9; }
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+.tile { display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 14px; text-decoration: none; color: var(--ink); box-shadow: var(--shadow); }
+.tile .ic { width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; margin-bottom: 10px; }
+.tile .ic svg { width: 24px; height: 24px; }
+.tile b { display: block; font-size: 16px; margin-bottom: 2px; }
+.tile span { font-size: 13px; color: var(--muted); }
+.ic.indigo { background: rgba(91, 108, 255, .14); color: #5560f0; }
+.ic.mint { background: rgba(18, 169, 131, .14); color: var(--mint); }
+.ic.violet { background: rgba(139, 92, 246, .14); color: var(--violet); }
+.ic.coral { background: rgba(242, 100, 79, .14); color: var(--coral); }
+.section-head { display: flex; justify-content: space-between; align-items: baseline; margin: 6px 2px 10px; }
+.section-head h2 { font-size: 19px; margin: 0; letter-spacing: -0.01em; }
+.today { display: grid; grid-template-columns: 76px 1fr; gap: 14px; align-items: center; }
+.today svg { width: 76px; height: 92px; }
+.today .k { font-size: 13px; color: var(--muted); font-weight: 600; }
+.today h3 { margin: 2px 0 4px; font-size: 18px; }
+.today p { margin: 0 0 8px; font-size: 14px; }
+
+/* ---- projects ---- */
+.pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; margin-bottom: 14px; }
+.pcard { display: block; width: 100%; text-align: left; padding: 0; font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; cursor: pointer; box-shadow: var(--shadow); }
+.cover { position: relative; aspect-ratio: 4 / 3; background: linear-gradient(135deg, var(--accent-soft), rgba(255, 181, 71, .25)); }
+.cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cover .ph { position: absolute; inset: 0; display: grid; place-items: center; color: var(--accent); opacity: .7; }
+.cover .ph svg { width: 40px; height: 40px; }
+.pcount { position: absolute; right: 8px; bottom: 8px; background: rgba(15, 18, 36, .6); color: #fff; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; }
+.pbody { padding: 10px 12px 12px; }
+.pbody .nm { font-weight: 700; font-size: 15px; line-height: 1.25; }
+.gchips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.gchip { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.gchip.more { background: var(--field); color: var(--muted); }
+.store-note { font-size: 13px; color: var(--muted); margin: 0 2px 14px; }
+.empty-card { text-align: center; padding: 28px 18px; }
+.empty-card svg { width: 48px; height: 48px; color: var(--accent); margin-bottom: 8px; }
+.empty-card p { color: var(--muted); margin: 0 0 14px; }
+
+.back { display: inline-flex; align-items: center; gap: 4px; border: 0; background: transparent; color: var(--accent); font: inherit; font-weight: 650; font-size: 15px; padding: 8px 0; min-height: 44px; cursor: pointer; margin-top: 6px; }
+.thumbs { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; }
+.thumb { position: relative; flex: none; width: 104px; height: 104px; border-radius: 16px; overflow: hidden; background: var(--field); }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: zoom-in; }
+.thumb-x { position: absolute; top: 6px; right: 6px; width: 28px; height: 28px; border: 0; border-radius: 50%; background: rgba(15, 18, 36, .62); color: #fff; font-size: 18px; line-height: 1; cursor: pointer; }
+.add-photo { flex: none; width: 104px; height: 104px; border-radius: 16px; border: 2px dashed color-mix(in srgb, var(--accent) 45%, transparent); background: var(--accent-soft); color: var(--accent); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 13px; font-weight: 650; margin: 0; cursor: pointer; text-align: center; }
+.add-photo svg { width: 26px; height: 26px; }
+.layer { display: grid; grid-template-columns: 30px 1fr 40px; gap: 6px 8px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+.layer:first-child { border-top: 0; padding-top: 0; }
+.layer select { grid-column: 2; min-height: 44px; font-size: 16px; }
+.layer input[type="text"] { min-height: 44px; font-size: 16px; }
+.lnum { width: 28px; height: 28px; border-radius: 50%; background: var(--grad); color: #fff; font-size: 14px; font-weight: 700; display: grid; place-items: center; }
+.actions { display: grid; gap: 10px; margin: 4px 0 14px; }
+
+.lightbox { position: fixed; inset: 0; z-index: 30; background: rgba(8, 10, 22, .92); display: flex; align-items: center; justify-content: center; padding: calc(env(safe-area-inset-top, 0px) + 16px) 12px calc(env(safe-area-inset-bottom, 0px) + 16px); cursor: zoom-out; }
+.lightbox img { max-width: 100%; max-height: 100%; border-radius: 12px; }
+
+/* ---- nav ---- */
+.bottom {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  background: var(--nav); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  border-top: 1px solid var(--line);
+  padding: 4px 2px env(safe-area-inset-bottom, 0px);
+}
+.bottom a {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  min-height: 56px; padding: 4px 0; color: var(--muted); text-decoration: none;
+  font-size: 11px; font-weight: 650;
+}
+.bottom .ico { width: 44px; height: 30px; border-radius: 999px; display: grid; place-items: center; }
+.bottom .ico svg { width: 23px; height: 23px; }
+.bottom a[aria-current="page"] { color: var(--accent); }
+.bottom a[aria-current="page"] .ico { background: var(--accent-soft); }
+
+[hidden] { display: none !important; }
+@media (prefers-reduced-motion: reduce) { .bar { transition: none; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="lg-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b6cff"/><stop offset="1" stop-color="#9b5cf6"/></linearGradient>
+    <linearGradient id="lg-sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd166"/><stop offset="1" stop-color="#ff8a66"/></linearGradient>
+    <linearGradient id="lg-glaze" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5ee0c0"/><stop offset="1" stop-color="#34b6e8"/></linearGradient>
+    <clipPath id="lg-vase"><path d="M25 54 C17 46 17 37 26.5 32 L26.5 29 H37.5 V32 C47 37 47 46 39 54 Z"/></clipPath>
+    <symbol id="logo" viewBox="0 0 64 64">
+      <rect width="64" height="64" rx="17" fill="url(#lg-bg)"/>
+      <circle cx="32" cy="25" r="13.5" fill="url(#lg-sun)"/>
+      <path d="M25 54 C17 46 17 37 26.5 32 L26.5 29 H37.5 V32 C47 37 47 46 39 54 Z" fill="#ffffff"/>
+      <path clip-path="url(#lg-vase)" d="M14 29 H50 V39 Q47 44 44 39 Q41 46 37.5 40 Q34.5 44 31.5 39.5 Q28.5 46 25 40 Q21.5 44 19 39 Q16.5 42 14 39 Z" fill="url(#lg-glaze)"/>
+      <rect x="24.5" y="26.5" width="15" height="4.5" rx="2.25" fill="#ffffff"/>
+      <rect x="20" y="54" width="24" height="3" rx="1.5" fill="#ffffff" opacity=".7"/>
+    </symbol>
+  </defs>
+</svg>
+<main>
+  <a class="brand" href="#home" id="topBrand" aria-label="Clay Day home">
+    <svg aria-hidden="true"><use href="#logo"/></svg>
+    <span class="name">Clay Day</span>
+  </a>
+
+  <!-- ===== HOME ===== -->
+  <div id="page-home">
+    <section class="hero">
+      <svg class="hero-logo" aria-hidden="true"><use href="#logo"/></svg>
+      <h1>Clay Day</h1>
+      <p>Plan it, throw it, glaze it, fire it. Your studio tools in one place.</p>
+      <div class="hero-stats">
+        <div><b id="hsProjects">&ndash;</b><span>Projects</span></div>
+        <div><b id="hsClays">0</b><span>Saved clays</span></div>
+        <div><b id="hsCombos">0</b><span>Saved combos</span></div>
+      </div>
+      <button class="btn-light" id="heroNew">Start a project</button>
+    </section>
+
+    <div class="tiles">
+      <a class="tile" href="#calculator"><div class="ic indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><rect x="8" y="6" width="8" height="3.5" rx="1"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01"/></svg></div><b>Shrinkage</b><span>Size pieces for firing</span></a>
+      <a class="tile" href="#ideas"><div class="ic mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v3C6 8 5 12 7 16c1 2.5 1.5 4 1.5 5h7c0-1 .5-2.5 1.5-5 2-4 1-8-3-10V3"/></svg></div><b>Ideas</b><span>What your clay can make</span></a>
+      <a class="tile" href="#combos"><div class="ic violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg></div><b>Glaze combos</b><span>AMACO layers to try</span></a>
+      <a class="tile" href="#cones"><div class="ic coral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l5 16H7z"/><path d="M5 21h14"/></svg></div><b>Cone chart</b><span>Firing temperatures</span></a>
+    </div>
+
+    <div class="section-head"><h2>Recent projects</h2><a class="link" href="#projects">See all</a></div>
+    <div id="homeRecent"></div>
+
+    <div class="section-head" style="margin-top:4px"><h2>Combo to try today</h2><a class="link" href="#combos">All combos</a></div>
+    <div class="card" id="homeCombo"></div>
+  </div>
+
+  <!-- ===== CALCULATOR ===== -->
+  <div id="page-calculator">
+    <h1 class="page-title">Shrinkage calculator</h1>
+    <p class="sub">Work out what size to make a piece, or measure how much your clay shrinks.</p>
+
+    <div class="tabs" role="tablist" aria-label="Calculator mode">
+      <button class="tab" role="tab" id="t-make" aria-selected="true" data-tab="make">Make</button>
+      <button class="tab" role="tab" id="t-predict" aria-selected="false" data-tab="predict">Predict</button>
+      <button class="tab" role="tab" id="t-test" aria-selected="false" data-tab="test">Test tile</button>
+    </div>
+
+    <div class="card">
+      <h2>Units</h2>
+      <select id="unit" aria-label="Units">
+        <option value="mm">Millimetres (mm)</option>
+        <option value="cm">Centimetres (cm)</option>
+        <option value="in">Inches (in)</option>
+      </select>
+    </div>
+
+    <section class="card" id="shrinkCard">
+      <h2>Your clay&rsquo;s shrinkage</h2>
+      <label for="claySel">Clay body</label>
+      <div class="pick-row">
+        <select id="claySel"></select>
+        <button class="btn-ghost" id="claySaveBtn">Save</button>
+        <button class="btn-ghost danger" id="clayDelBtn" hidden>Delete</button>
+      </div>
+      <div class="inline-form" id="claySaveForm" hidden>
+        <input type="text" id="clayName" placeholder="Clay name, e.g. Speckled cone 6" aria-label="Clay name">
+        <button class="btn" id="clayConfirm">Save clay</button>
+        <button class="btn-ghost" id="clayCancel">Cancel</button>
+      </div>
+      <p class="msg err" id="clayErr" hidden>Give the clay a name to save it.</p>
+
+      <div class="seg" role="group" aria-label="Shrinkage entry">
+        <button id="m-total" aria-pressed="true">Total</button>
+        <button id="m-stage" aria-pressed="false">By stage</button>
+      </div>
+      <div id="totalMode">
+        <div class="field">
+          <label for="sTotal">Total shrinkage (wet to fired)</label>
+          <input id="sTotal" type="number" inputmode="decimal" step="0.1" min="0" max="40" value="12">
+          <span class="suffix">%</span>
+        </div>
+      </div>
+      <div id="stageMode" hidden>
+        <div class="row">
+          <div class="field">
+            <label for="sDry">Wet to dry</label>
+            <input id="sDry" type="number" inputmode="decimal" step="0.1" min="0" max="30" value="5">
+            <span class="suffix">%</span>
+          </div>
+          <div class="field">
+            <label for="sFire">Dry to fired</label>
+            <input id="sFire" type="number" inputmode="decimal" step="0.1" min="0" max="30" value="7">
+            <span class="suffix">%</span>
+          </div>
+        </div>
+        <p class="total-note" id="stageTotal"></p>
+      </div>
+      <p class="hint">Find this on the clay&rsquo;s data sheet, or use the Test tile tab to measure it. Save each clay you use so you can switch between them.</p>
+    </section>
+
+    <section id="p-make" role="tabpanel" aria-labelledby="t-make">
+      <div class="card">
+        <h2>Finished size you want</h2>
+        <div class="row">
+          <div class="field">
+            <label for="makeH">Height</label>
+            <input id="makeH" type="number" inputmode="decimal" step="any" min="0" placeholder="e.g. 100">
+            <span class="suffix u"></span>
+          </div>
+          <div class="field">
+            <label for="makeW">Width</label>
+            <input id="makeW" type="number" inputmode="decimal" step="any" min="0" placeholder="optional">
+            <span class="suffix u"></span>
+          </div>
+        </div>
+      </div>
+      <div class="card result" id="makeOut" aria-live="polite"></div>
+    </section>
+
+    <section id="p-predict" role="tabpanel" aria-labelledby="t-predict" hidden>
+      <div class="card">
+        <h2>Size you made (wet)</h2>
+        <div class="row">
+          <div class="field">
+            <label for="predH">Height</label>
+            <input id="predH" type="number" inputmode="decimal" step="any" min="0" placeholder="e.g. 120">
+            <span class="suffix u"></span>
+          </div>
+          <div class="field">
+            <label for="predW">Width</label>
+            <input id="predW" type="number" inputmode="decimal" step="any" min="0" placeholder="optional">
+            <span class="suffix u"></span>
+          </div>
+        </div>
+      </div>
+      <div class="card result" id="predOut" aria-live="polite"></div>
+    </section>
+
+    <section id="p-test" role="tabpanel" aria-labelledby="t-test" hidden>
+      <div class="card">
+        <h2>Test tile measurements</h2>
+        <div class="field">
+          <label for="tWet">Wet length (a line you scored in the clay)</label>
+          <input id="tWet" type="number" inputmode="decimal" step="any" min="0" placeholder="e.g. 100">
+          <span class="suffix u"></span>
+        </div>
+        <div class="field">
+          <label for="tDry">Dry length (optional)</label>
+          <input id="tDry" type="number" inputmode="decimal" step="any" min="0">
+          <span class="suffix u"></span>
+        </div>
+        <div class="field">
+          <label for="tFired">Fired length</label>
+          <input id="tFired" type="number" inputmode="decimal" step="any" min="0" placeholder="e.g. 88">
+          <span class="suffix u"></span>
+        </div>
+        <p class="hint">Roll a slab, score a 100 mm line (or 10 cm, or 4 in), then measure the same line after drying and after firing.</p>
+      </div>
+      <div class="card result" id="testOut" aria-live="polite"></div>
+      <button class="apply" id="useRate" hidden>Use this shrinkage in Make and Predict</button>
+    </section>
+  </div>
+
+  <!-- ===== IDEAS ===== -->
+  <div id="page-ideas" hidden>
+    <h1 class="page-title">What can I make?</h1>
+    <p class="sub">Enter the clay you have, see which pieces it covers, and plan a batch.</p>
+
+    <div class="card">
+      <h2>Clay you have</h2>
+      <div class="row">
+        <div class="field">
+          <label for="ideaAmt">Amount</label>
+          <input id="ideaAmt" type="number" inputmode="decimal" step="any" min="0" value="1" style="padding-right:12px">
+        </div>
+        <div class="field">
+          <label for="ideaUnit">Unit</label>
+          <select id="ideaUnit">
+            <option value="lb">Pounds (lb)</option>
+            <option value="oz">Ounces (oz)</option>
+            <option value="g">Grams (g)</option>
+            <option value="kg">Kilograms (kg)</option>
+          </select>
+        </div>
+      </div>
+      <label class="check"><input type="checkbox" id="ideaBuf"> Add 10% extra for trimming and mistakes</label>
+    </div>
+
+    <div class="card result" id="ideaSummary" aria-live="polite"></div>
+
+    <div class="card">
+      <div class="card-head">
+        <h2>Batch plan</h2>
+        <button class="btn-ghost danger" id="planClear" hidden>Clear</button>
+      </div>
+      <div id="planOut"></div>
+    </div>
+
+    <div class="card" id="ideaList"></div>
+    <p class="hint">Weights are starting amounts of wet clay for thrown pieces, gathered from published potters&rsquo; charts (including Lakeside Pottery&rsquo;s weight chart). Your clay, wall thickness and throwing style change them, so adjust as you learn what works for you. Bag counts assume 25 lb bags.</p>
+  </div>
+
+  <!-- ===== PROJECTS ===== -->
+  <div id="page-projects" hidden>
+    <div id="projListView">
+      <div class="title-row">
+        <div>
+          <h1 class="page-title">Projects</h1>
+          <p class="sub">Photos of your finished pieces and the glazes you used.</p>
+        </div>
+        <button class="btn" id="projNew">New</button>
+      </div>
+      <p class="store-note" id="storeNote"></p>
+      <div id="projList"></div>
+    </div>
+
+    <div id="projEditView" hidden>
+      <button class="back" id="projBack">&lsaquo; Projects</button>
+      <h1 class="page-title" id="editTitle" style="margin-top:4px">New project</h1>
+      <p class="sub">Add photos, then list each glaze layer in the order you applied it.</p>
+
+      <div class="card">
+        <div class="card-head"><h2>Photos</h2><span class="sub2" id="photoStatus" aria-live="polite"></span></div>
+        <div class="thumbs" id="thumbs"></div>
+        <input type="file" id="photoInput" class="vh" accept="image/*" multiple>
+        <p class="msg err" id="photoErr" hidden></p>
+      </div>
+
+      <div class="card">
+        <h2>Details</h2>
+        <div class="field">
+          <label for="pName">Name</label>
+          <input type="text" id="pName" placeholder="e.g. Speckled mug set">
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="pDate">Date</label>
+            <input type="date" id="pDate">
+          </div>
+          <div class="field">
+            <label for="pCone">Fired to</label>
+            <select id="pCone"></select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="pClay">Clay body</label>
+          <input type="text" id="pClay" list="clayList" placeholder="e.g. B-Mix">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h2>Glaze layers</h2><span class="sub2">Layer 1 goes on first</span></div>
+        <div id="layers"></div>
+        <button class="btn-ghost wide" id="addLayer" style="margin-top:12px">Add glaze</button>
+      </div>
+
+      <div class="card">
+        <h2>Notes</h2>
+        <textarea id="pNotes" aria-label="Notes" placeholder="How it fired, what you’d change next time"></textarea>
+      </div>
+
+      <div class="actions">
+        <button class="btn wide" id="projSave">Save project</button>
+        <button class="btn-ghost wide" id="projCancel">Cancel</button>
+        <button class="btn-ghost danger wide" id="projDel" hidden>Delete project</button>
+      </div>
+      <p class="msg err" id="editMsg" hidden></p>
+    </div>
+    <datalist id="glazeList"></datalist>
+    <datalist id="clayList"></datalist>
+  </div>
+
+  <!-- ===== COMBOS ===== -->
+  <div id="page-combos" hidden>
+    <h1 class="page-title">Glaze combos</h1>
+    <p class="sub">AMACO layering combinations to try, with how to apply each one. Tap the link on any combo to see AMACO&rsquo;s photo of the fired result.</p>
+
+    <div class="card">
+      <div class="field">
+        <label for="comboQ">Find combos with a glaze you own</label>
+        <input type="text" id="comboQ" placeholder="e.g. Seaweed or PC-59">
+      </div>
+      <div class="chips" id="comboChips" role="group" aria-label="Filter combos"></div>
+      <label class="check"><input type="checkbox" id="comboStable"> Hide combos that can run</label>
+    </div>
+
+    <div class="card" id="comboList"></div>
+
+    <div class="card">
+      <h2>Layering tips</h2>
+      <ul class="tips">
+        <li>Put the stiffer glaze on the bottom and the runnier one on top.</li>
+        <li>Keep the top glaze off the lower third of the piece so it has room to flow.</li>
+        <li>Two to three coats of each glaze is the usual starting point.</li>
+        <li>Try a new combo on a test tile or small cup set on a drip tray before glazing a whole batch.</li>
+        <li>Clay color changes the result. Translucent glazes look lighter on white clay and darker on brown or black clay.</li>
+        <li>Cooling matters. Some glazes, like Ancient Copper, change color with a slow cool.</li>
+      </ul>
+    </div>
+    <p class="hint">Previews show approximate colors only. AMACO fired these examples on white stoneware, so results on your clay will differ. Browse many more in <a href="https://amaco.com/resources/layering" target="_blank" rel="noopener">AMACO&rsquo;s layering database</a>.</p>
+  </div>
+
+  <!-- ===== CONES ===== -->
+  <div id="page-cones" hidden>
+    <h1 class="page-title">Cone chart</h1>
+    <p class="sub">Firing temperatures for each cone, plus a quick temperature converter.</p>
+
+    <div class="card">
+      <h2>Convert a temperature</h2>
+      <div class="pick-row" style="grid-template-columns:1fr auto">
+        <div class="field" style="margin:0">
+          <input id="tempIn" type="number" inputmode="decimal" step="any" placeholder="e.g. 2232" aria-label="Temperature" style="padding-right:12px">
+        </div>
+        <div class="seg" role="group" aria-label="Temperature unit" style="margin:0">
+          <button id="tF" aria-pressed="true">&deg;F</button>
+          <button id="tC" aria-pressed="false">&deg;C</button>
+        </div>
+      </div>
+      <div id="convOut" aria-live="polite"></div>
+    </div>
+
+    <div class="card" id="coneTable"></div>
+    <p class="hint">Temperatures are for Orton self-supporting cones heated at 108&deg;F (60&deg;C) per hour over the last 200&deg;F of the firing. Firing slower or faster changes when a cone bends, so use witness cones to check. The dot shows roughly how the kiln glows at that heat.</p>
+  </div>
+</main>
+
+<div class="lightbox" id="lightbox" hidden><img id="lightImg" alt="Project photo"></div>
+
+<nav class="bottom" aria-label="Pages">
+  <a href="#home" id="nav-home"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></svg></span>Home</a>
+  <a href="#calculator" id="nav-calculator"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5"/><rect x="8" y="6" width="8" height="3.5" rx="1"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01"/></svg></span>Shrinkage</a>
+  <a href="#ideas" id="nav-ideas"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v3C6 8 5 12 7 16c1 2.5 1.5 4 1.5 5h7c0-1 .5-2.5 1.5-5 2-4 1-8-3-10V3"/></svg></span>Ideas</a>
+  <a href="#projects" id="nav-projects"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6.5" width="18" height="13.5" rx="3"/><circle cx="12" cy="13.2" r="3.5"/><path d="M8.5 6.5 10 4h4l1.5 2.5"/></svg></span>Projects</a>
+  <a href="#combos" id="nav-combos"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg></span>Combos</a>
+  <a href="#cones" id="nav-cones"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l5 16H7z"/><path d="M5 21h14"/></svg></span>Cones</a>
+</nav>
+
+<script>
+
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function sget(k, d) { try { var r = localStorage.getItem(k); return r ? JSON.parse(r) : d; } catch (e) { return d; } }
+  function sset(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  function num(id) { var v = parseFloat($(id).value); return isFinite(v) ? v : null; }
+  function trimZ(s) { return s.indexOf('.') > -1 ? s.replace(/0+$/, '').replace(/\.$/, '') : s; }
+  function pct(n) { return trimZ(n.toFixed(2)); }
+  function lbOz(g) {
+    var oz = Math.round(g / 28.3495), lb = Math.floor(oz / 16), r = oz % 16;
+    if (lb === 0) return r + ' oz';
+    return lb + ' lb' + (r ? ' ' + r + ' oz' : '');
+  }
+
+  /* ================= CALCULATOR ================= */
+  var state = { tab: 'make', mode: 'total', unit: 'mm' };
+  var clays = sget('clayday:clays', []);
+
+  function saveSettings() {
+    sset('clayday:settings', { mode: state.mode, unit: state.unit, total: $('sTotal').value, dry: $('sDry').value, fire: $('sFire').value, clay: $('claySel').value });
+  }
+  function loadSettings() {
+    var s = sget('clayday:settings', null) || sget('clayShrinkV1', null);
+    if (!s) return null;
+    if (s.mode) state.mode = s.mode;
+    if (s.unit) state.unit = s.unit;
+    if (s.total) $('sTotal').value = s.total;
+    if (s.dry) $('sDry').value = s.dry;
+    if (s.fire) $('sFire').value = s.fire;
+    return s;
+  }
+  function fmt(n) { var d = state.unit === 'in' ? 3 : (state.unit === 'cm' ? 2 : 1); return trimZ(n.toFixed(d)); }
+
+  function shrink() {
+    if (state.mode === 'total') {
+      var t = num('sTotal');
+      if (t === null || t < 0 || t >= 60) return null;
+      return { dryKeep: null, fireKeep: 1 - t / 100, total: t };
+    }
+    var a = num('sDry'), b = num('sFire');
+    if (a === null || b === null || a < 0 || b < 0 || a >= 60 || b >= 60) return null;
+    var ka = 1 - a / 100, kb = 1 - b / 100;
+    return { dryKeep: ka, fireStageKeep: kb, fireKeep: ka * kb, total: (1 - ka * kb) * 100 };
+  }
+  var ERR_SHRINK = '<p class="err">Enter a shrinkage between 0 and 60%.</p>';
+
+  function getDims(hid, wid) {
+    var a = [], h = num(hid), w = num(wid);
+    if (h !== null && h > 0) a.push({ label: 'Height', v: h });
+    if (w !== null && w > 0) a.push({ label: 'Width', v: w });
+    return a;
+  }
+  function sizeResult(dims, stages, headIdx, headLabel, stats) {
+    var u = state.unit;
+    var h = '<div class="label">' + headLabel + '</div><div class="bigs">';
+    dims.forEach(function (d) {
+      h += '<div>' + (dims.length > 1 ? '<div class="label">' + d.label + '</div>' : '') +
+           '<div class="big">' + fmt(d.v * stages[headIdx].f) + ' <small>' + u + '</small></div></div>';
+    });
+    h += '</div><div class="bars" aria-hidden="true">';
+    var max = Math.max.apply(null, stages.map(function (s) { return s.f; }));
+    stages.forEach(function (s) {
+      h += '<div class="legend"><span>' + s.name + '</span><span>' +
+           dims.map(function (d) { return fmt(d.v * s.f); }).join(' &times; ') + ' ' + u + '</span></div>' +
+           '<div class="bar ' + s.cls + '" style="width:' + (s.f / max * 100) + '%"></div>';
+    });
+    h += '</div><div class="stats">' + stats.map(function (x) {
+      return '<div class="stat"><div class="label">' + x[0] + '</div><div class="v">' + x[1] + '</div></div>';
+    }).join('') + '</div>';
+    return h;
+  }
+
+  function renderMake() {
+    var out = $('makeOut'), s = shrink(), dims = getDims('makeH', 'makeW');
+    if (!s) { out.innerHTML = ERR_SHRINK; return; }
+    if (!dims.length) { out.innerHTML = '<p class="empty">Enter the height or width you want after firing to see what size to make it.</p>'; return; }
+    var st = [{ name: 'Wet', cls: 'wet', f: 1 / s.fireKeep }];
+    if (s.dryKeep) st.push({ name: 'Bone dry', cls: 'dry', f: 1 / s.fireStageKeep });
+    st.push({ name: 'Fired', cls: 'fired', f: 1 });
+    out.innerHTML = sizeResult(dims, st, 0, 'Make it this size when wet',
+      [['Scale factor', '&times; ' + (1 / s.fireKeep).toFixed(3)], ['Total shrinkage', pct(s.total) + '%']]);
+  }
+  function renderPredict() {
+    var out = $('predOut'), s = shrink(), dims = getDims('predH', 'predW');
+    if (!s) { out.innerHTML = ERR_SHRINK; return; }
+    if (!dims.length) { out.innerHTML = '<p class="empty">Enter the wet height or width to see how big it will be after firing.</p>'; return; }
+    var st = [{ name: 'Wet', cls: 'wet', f: 1 }];
+    if (s.dryKeep) st.push({ name: 'Bone dry', cls: 'dry', f: s.dryKeep });
+    st.push({ name: 'Fired', cls: 'fired', f: s.fireKeep });
+    out.innerHTML = sizeResult(dims, st, st.length - 1, 'Size after firing',
+      [['Size kept', pct(s.fireKeep * 100) + '%'], ['Total shrinkage', pct(s.total) + '%']]);
+  }
+
+  var lastMeasured = null;
+  function renderTest() {
+    var out = $('testOut'), btn = $('useRate');
+    var w = num('tWet'), d = num('tDry'), f = num('tFired');
+    lastMeasured = null; btn.hidden = true;
+    if (w === null || f === null || w <= 0 || f <= 0) { out.innerHTML = '<p class="empty">Enter the wet and fired lengths of your test line.</p>'; return; }
+    if (f > w) { out.innerHTML = '<p class="err">The fired length is bigger than the wet length. Check the two measurements.</p>'; return; }
+    if (d !== null && (d > w || d < f)) { out.innerHTML = '<p class="err">The dry length should sit between the fired and wet lengths.</p>'; return; }
+    var total = (w - f) / w * 100;
+    var h = '<div class="label">Total shrinkage</div><div class="big">' + pct(total) + '<small>%</small></div><div class="bars" aria-hidden="true">';
+    var items = [{ n: 'Wet', v: w, c: 'wet' }];
+    if (d !== null) items.push({ n: 'Bone dry', v: d, c: 'dry' });
+    items.push({ n: 'Fired', v: f, c: 'fired' });
+    items.forEach(function (i) {
+      h += '<div class="legend"><span>' + i.n + '</span><span>' + fmt(i.v) + ' ' + state.unit + '</span></div><div class="bar ' + i.c + '" style="width:' + (i.v / w * 100) + '%"></div>';
+    });
+    h += '</div>';
+    if (d !== null) {
+      var a = (w - d) / w * 100, b = (d - f) / d * 100;
+      h += '<div class="stats"><div class="stat"><div class="label">Wet to dry</div><div class="v">' + pct(a) + '%</div></div>' +
+           '<div class="stat"><div class="label">Dry to fired</div><div class="v">' + pct(b) + '%</div></div></div>';
+      lastMeasured = { mode: 'stage', a: a, b: b };
+    } else {
+      lastMeasured = { mode: 'total', total: total };
+    }
+    out.innerHTML = h;
+    btn.hidden = false;
+  }
+  function renderStageTotal() {
+    var s = shrink();
+    $('stageTotal').textContent = s ? 'Total shrinkage: ' + pct(s.total) + '%' : 'Enter both percentages (0 to 60).';
+  }
+  function renderCalc() { renderStageTotal(); renderMake(); renderPredict(); renderTest(); }
+
+  function setTab(t) {
+    state.tab = t;
+    ['make', 'predict', 'test'].forEach(function (k) {
+      $('p-' + k).hidden = (k !== t);
+      $('t-' + k).setAttribute('aria-selected', k === t ? 'true' : 'false');
+    });
+    $('shrinkCard').hidden = (t === 'test');
+  }
+  function setMode(m) {
+    state.mode = m;
+    $('totalMode').hidden = (m !== 'total');
+    $('stageMode').hidden = (m !== 'stage');
+    $('m-total').setAttribute('aria-pressed', m === 'total' ? 'true' : 'false');
+    $('m-stage').setAttribute('aria-pressed', m === 'stage' ? 'true' : 'false');
+  }
+  function setUnit(u) {
+    state.unit = u; $('unit').value = u;
+    var els = document.querySelectorAll('.u');
+    for (var i = 0; i < els.length; i++) els[i].textContent = u;
+  }
+
+  // saved clay bodies
+  function renderClaySel(sel) {
+    var h = '<option value="">Custom</option>';
+    clays.forEach(function (c, i) { h += '<option value="' + i + '">' + esc(c.name) + '</option>'; });
+    $('claySel').innerHTML = h;
+    $('claySel').value = (sel === undefined || sel === null) ? '' : String(sel);
+    $('clayDelBtn').hidden = $('claySel').value === '';
+  }
+  $('claySel').addEventListener('change', function () {
+    var v = this.value;
+    $('clayDelBtn').hidden = v === '';
+    if (v !== '') {
+      var c = clays[+v];
+      setMode(c.mode); $('sTotal').value = c.total; $('sDry').value = c.dry; $('sFire').value = c.fire;
+    }
+    renderCalc(); saveSettings();
+  });
+  $('claySaveBtn').addEventListener('click', function () {
+    var v = $('claySel').value;
+    $('clayName').value = v !== '' ? clays[+v].name : '';
+    $('claySaveForm').hidden = false; $('clayErr').hidden = true;
+    $('clayName').focus();
+  });
+  $('clayCancel').addEventListener('click', function () { $('claySaveForm').hidden = true; $('clayErr').hidden = true; });
+  $('clayConfirm').addEventListener('click', function () {
+    var name = $('clayName').value.trim();
+    if (!name) { $('clayErr').hidden = false; return; }
+    var entry = { name: name, mode: state.mode, total: $('sTotal').value, dry: $('sDry').value, fire: $('sFire').value };
+    var idx = -1;
+    clays.forEach(function (c, i) { if (c.name.toLowerCase() === name.toLowerCase()) idx = i; });
+    if (idx > -1) clays[idx] = entry; else { clays.push(entry); idx = clays.length - 1; }
+    sset('clayday:clays', clays);
+    renderClaySel(idx);
+    $('claySaveForm').hidden = true; $('clayErr').hidden = true;
+    saveSettings();
+  });
+  $('clayDelBtn').addEventListener('click', function () {
+    var v = $('claySel').value;
+    if (v === '') return;
+    clays.splice(+v, 1);
+    sset('clayday:clays', clays);
+    renderClaySel('');
+    saveSettings();
+  });
+
+  document.querySelectorAll('.tab').forEach(function (b) {
+    b.addEventListener('click', function () { setTab(b.getAttribute('data-tab')); });
+  });
+  $('m-total').addEventListener('click', function () { setMode('total'); renderCalc(); saveSettings(); });
+  $('m-stage').addEventListener('click', function () { setMode('stage'); renderCalc(); saveSettings(); });
+  $('unit').addEventListener('change', function () { setUnit(this.value); renderCalc(); saveSettings(); });
+  ['sTotal', 'sDry', 'sFire', 'makeH', 'makeW', 'predH', 'predW', 'tWet', 'tDry', 'tFired'].forEach(function (id) {
+    $(id).addEventListener('input', function () { renderCalc(); saveSettings(); });
+  });
+  $('useRate').addEventListener('click', function () {
+    if (!lastMeasured) return;
+    if (lastMeasured.mode === 'stage') {
+      $('sDry').value = pct(lastMeasured.a); $('sFire').value = pct(lastMeasured.b); setMode('stage');
+    } else {
+      $('sTotal').value = pct(lastMeasured.total); setMode('total');
+    }
+    renderClaySel('');
+    setTab('make'); renderCalc(); saveSettings();
+    window.scrollTo(0, 0);
+  });
+
+  /* ================= IDEAS ================= */
+  var ITEMS = [
+    { n: 'Espresso cup (3 oz)', g: 225, c: 'Drinkware' },
+    { n: 'Small mug (6 oz)', g: 283, c: 'Drinkware' },
+    { n: 'Coffee mug (8 oz)', g: 397, c: 'Drinkware' },
+    { n: 'Large mug (12 oz)', g: 453, c: 'Drinkware' },
+    { n: 'Beer mug (14 oz)', g: 595, c: 'Drinkware' },
+    { n: 'Saucer', g: 369, c: 'Plates' },
+    { n: 'Bread and butter plate', g: 595, c: 'Plates' },
+    { n: 'Side plate', g: 992, c: 'Plates' },
+    { n: 'Medium dinner plate', g: 1361, c: 'Plates' },
+    { n: 'Large dinner plate', g: 1814, c: 'Plates' },
+    { n: 'Small bowl', g: 623, c: 'Bowls' },
+    { n: 'Cereal bowl', g: 816, c: 'Bowls' },
+    { n: 'Medium bowl', g: 1814, c: 'Bowls' },
+    { n: 'Large bowl', g: 2608, c: 'Bowls' },
+    { n: 'Sugar bowl', g: 907, c: 'Other' },
+    { n: 'Small vase (1 cup)', g: 680, c: 'Other' },
+    { n: 'Vase (1 quart)', g: 1043, c: 'Other' },
+    { n: 'Large vase (2 quart)', g: 1678, c: 'Other' },
+    { n: '8-cup teapot', g: 1724, c: 'Other' },
+    { n: '4-quart casserole', g: 2608, c: 'Other' }
+  ];
+  ITEMS.forEach(function (it, i) { it.id = i; });
+  var BAG_G = 25 * 453.592;
+  var plan = sget('clayday:plan', []).filter(function (p) { return ITEMS[p.i]; });
+  var ideaSet = sget('clayday:ideas', null);
+  if (ideaSet) { $('ideaAmt').value = ideaSet.amt; $('ideaUnit').value = ideaSet.unit; $('ideaBuf').checked = !!ideaSet.buf; }
+
+  function toGrams(v, u) { return u === 'lb' ? v * 453.592 : u === 'oz' ? v * 28.3495 : u === 'kg' ? v * 1000 : v; }
+  function bufK() { return $('ideaBuf').checked ? 1.1 : 1; }
+  function haveG() { var v = num('ideaAmt'); return (v === null || v <= 0) ? null : toGrams(v, $('ideaUnit').value); }
+  function planQty(i) { var q = 0; plan.forEach(function (p) { if (p.i === i) q = p.q; }); return q; }
+
+  function renderIdeas() {
+    var sum = $('ideaSummary'), list = $('ideaList');
+    var have = haveG(), k = bufK();
+    if (have === null) {
+      sum.innerHTML = '<p class="empty">Enter how much clay you have to see what you can make.</p>';
+    } else {
+      var fitCount = 0, best = null;
+      ITEMS.forEach(function (it) { if (have >= it.g * k) { fitCount++; if (!best || it.g > best.g) best = it; } });
+      var h = best
+        ? '<div class="label">Biggest single piece you can make</div><div class="name-big">' + best.n + '</div>'
+        : '<div class="label">Not enough for a single piece yet</div><div class="name-big">Smallest needs ' + lbOz(225 * k) + '</div>';
+      h += '<div class="stats"><div class="stat"><div class="label">You have</div><div class="v">' + lbOz(have) + '</div></div>' +
+           '<div class="stat"><div class="label">Pieces that fit</div><div class="v">' + fitCount + ' of ' + ITEMS.length + '</div></div></div>';
+      sum.innerHTML = h;
+    }
+    var l = '';
+    ['Drinkware', 'Bowls', 'Plates', 'Other'].forEach(function (cat) {
+      l += '<div class="group"><h3>' + cat + '</h3>';
+      ITEMS.filter(function (i) { return i.c === cat; }).sort(function (a, b) { return a.g - b.g; }).forEach(function (it) {
+        var need = it.g * k, tag = '';
+        if (have !== null) {
+          var ok = have >= need, cnt = Math.floor(have / need);
+          tag = ok ? '<span class="tag fit">' + (cnt > 1 ? 'Makes ' + cnt : 'Fits') + '</span>'
+                   : '<span class="tag no">' + lbOz(need - have) + ' short</span>';
+        }
+        var q = planQty(it.id);
+        l += '<div class="item"><div><div class="nm">' + it.n + '</div><div class="sub2">' + lbOz(need) + ' &middot; ' + Math.round(need) + ' g each' +
+             (q ? ' &middot; <span class="inplan">' + q + ' in plan</span>' : '') + '</div></div>' +
+             '<div class="right">' + tag + '<button class="btn-add" data-add="' + it.id + '" aria-label="Add ' + it.n + ' to batch plan">Add</button></div></div>';
+      });
+      l += '</div>';
+    });
+    list.innerHTML = l;
+    renderPlan();
+  }
+
+  function renderPlan() {
+    var out = $('planOut'), k = bufK(), have = haveG();
+    $('planClear').hidden = !plan.length;
+    if (!plan.length) { out.innerHTML = '<p class="empty">Tap Add on any piece below to plan a batch, like 4 mugs and 2 bowls.</p>'; return; }
+    var total = 0, pieces = 0, h = '';
+    plan.forEach(function (p, j) {
+      var it = ITEMS[p.i], g = it.g * k * p.q;
+      total += g; pieces += p.q;
+      h += '<div class="plan-row"><div><div class="nm">' + it.n + '</div><div class="sub2">' + lbOz(g) + ' total</div></div>' +
+           '<div class="stepper"><button data-dec="' + j + '" aria-label="One fewer ' + it.n + '">&minus;</button><span>' + p.q + '</span>' +
+           '<button data-inc="' + j + '" aria-label="One more ' + it.n + '">+</button></div>' +
+           '<button class="icon-btn" data-del="' + j + '" aria-label="Remove ' + it.n + '">&times;</button></div>';
+    });
+    h += '<div class="stats"><div class="stat"><div class="label">Clay needed</div><div class="v">' + lbOz(total) + '</div><div class="sub2">' + (total / 1000).toFixed(1) + ' kg &middot; ' + pieces + ' pieces</div></div>' +
+         '<div class="stat"><div class="label">25 lb bags</div><div class="v">' + Math.ceil(total / BAG_G) + '</div><div class="sub2">' + trimZ((total / BAG_G).toFixed(1)) + ' bags of clay</div></div></div>';
+    if (have !== null) {
+      h += have >= total
+        ? '<div class="banner ok">You have enough, with ' + lbOz(have - total) + ' left over.</div>'
+        : '<div class="banner warn">You need ' + lbOz(total - have) + ' more clay for this plan.</div>';
+    }
+    out.innerHTML = h;
+  }
+  function savePlan() { sset('clayday:plan', plan); }
+  function saveIdeaSet() { sset('clayday:ideas', { amt: $('ideaAmt').value, unit: $('ideaUnit').value, buf: $('ideaBuf').checked }); }
+
+  $('ideaList').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-add]'); if (!b) return;
+    var i = +b.getAttribute('data-add'), found = false;
+    plan.forEach(function (p) { if (p.i === i) { p.q++; found = true; } });
+    if (!found) plan.push({ i: i, q: 1 });
+    savePlan(); renderIdeas();
+  });
+  $('planOut').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    if (b.hasAttribute('data-inc')) plan[+b.getAttribute('data-inc')].q++;
+    else if (b.hasAttribute('data-dec')) { var j = +b.getAttribute('data-dec'); plan[j].q--; if (plan[j].q < 1) plan.splice(j, 1); }
+    else if (b.hasAttribute('data-del')) plan.splice(+b.getAttribute('data-del'), 1);
+    else return;
+    savePlan(); renderIdeas();
+  });
+  $('planClear').addEventListener('click', function () { plan = []; savePlan(); renderIdeas(); });
+  ['ideaAmt', 'ideaUnit', 'ideaBuf'].forEach(function (id) {
+    $(id).addEventListener('input', function () { renderIdeas(); saveIdeaSet(); });
+    $(id).addEventListener('change', function () { renderIdeas(); saveIdeaSet(); });
+  });
+
+  /* ================= CONES ================= */
+  var CONES = [
+    ['022', 1087, 586], ['021', 1112, 600], ['020', 1159, 626], ['019', 1252, 678], ['018', 1319, 715], ['017', 1360, 738],
+    ['016', 1422, 772], ['015', 1456, 791], ['014', 1485, 807], ['013', 1539, 837], ['012', 1582, 861], ['011', 1607, 875],
+    ['010', 1657, 903], ['09', 1688, 920], ['08', 1728, 942], ['07', 1789, 976], ['06', 1828, 998], ['05\u00bd', 1859, 1015],
+    ['05', 1888, 1031], ['04', 1945, 1063], ['03', 1987, 1086], ['02', 2016, 1102], ['01', 2046, 1119], ['1', 2079, 1137],
+    ['2', 2088, 1142], ['3', 2106, 1152], ['4', 2124, 1162], ['5', 2167, 1186], ['5\u00bd', 2197, 1203], ['6', 2232, 1222],
+    ['7', 2262, 1239], ['8', 2280, 1249], ['9', 2300, 1260], ['10', 2345, 1285], ['11', 2361, 1294], ['12', 2383, 1306]
+  ];
+  var NOTES = { '08': 'Low bisque', '06': 'Bisque, low-fire glaze', '04': 'Bisque, earthenware glaze', '5': 'Mid-fire glaze', '6': 'Mid-fire glaze, most common', '10': 'High-fire glaze' };
+  var BANDS = {
+    '022': ['Overglaze', 'Lustres, decals and china paints.'],
+    '010': ['Low fire', 'Bisque (often cone 08 to 04) and earthenware glazes (often cone 06 to 04).'],
+    '2': ['Mid fire', 'Most studio stoneware and porcelain, usually cone 5 or 6.'],
+    '8': ['High fire', 'Traditional stoneware and porcelain, usually cone 10.']
+  };
+  function glow(F) {
+    if (F < 1300) return '#8f1d17';
+    if (F < 1500) return '#c62d22';
+    if (F < 1700) return '#e8521f';
+    if (F < 1900) return '#f7871e';
+    if (F < 2100) return '#fbb829';
+    if (F < 2300) return '#fde27a';
+    return '#fff7d6';
+  }
+  function renderConeTable() {
+    var h = '<div class="chead"><span></span><span>Cone</span><span>&deg;F</span><span>&deg;C</span><span>Common use</span></div>';
+    CONES.forEach(function (c, i) {
+      if (BANDS[c[0]]) h += '<div class="band"><h3>' + BANDS[c[0]][0] + '</h3><p>' + BANDS[c[0]][1] + '</p></div>';
+      h += '<div class="crow" id="cone-' + i + '"><span class="sw" style="background:' + glow(c[1]) + '"></span><span class="cn">' + c[0] + '</span>' +
+           '<span>' + c[1] + '</span><span>' + c[2] + '</span><span class="use">' + (NOTES[c[0]] || '') + '</span></div>';
+    });
+    $('coneTable').innerHTML = h;
+  }
+  var tUnit = 'F', hit = null;
+  function renderConv() {
+    var out = $('convOut'), v = num('tempIn');
+    if (hit !== null) { $('cone-' + hit).classList.remove('hit'); hit = null; }
+    if (v === null) { out.innerHTML = '<p class="empty" style="margin-top:12px">Enter a temperature to convert it and find the closest cone.</p>'; return; }
+    var F = tUnit === 'F' ? v : v * 9 / 5 + 32, C = tUnit === 'F' ? (v - 32) * 5 / 9 : v;
+    var best = 0, bd = Infinity;
+    CONES.forEach(function (c, i) { var d = Math.abs(c[1] - F); if (d < bd) { bd = d; best = i; } });
+    var c = CONES[best];
+    var h = '<div class="stats" style="margin-top:12px;padding-top:12px">' +
+            '<div class="stat"><div class="label">Same as</div><div class="v">' + (tUnit === 'F' ? Math.round(C) + '&deg;C' : Math.round(F) + '&deg;F') + '</div></div>' +
+            '<div class="stat"><div class="label">Closest cone</div><div class="v">Cone ' + c[0] + '</div><div class="sub2">' + c[1] + '&deg;F &middot; ' + c[2] + '&deg;C</div></div></div>';
+    if (F < CONES[0][1] - 50 || F > CONES[CONES.length - 1][1] + 50) h += '<p class="hint">That&rsquo;s outside the range of this chart.</p>';
+    out.innerHTML = h;
+    hit = best; $('cone-' + best).classList.add('hit');
+  }
+  function setTUnit(u) {
+    tUnit = u;
+    $('tF').setAttribute('aria-pressed', u === 'F' ? 'true' : 'false');
+    $('tC').setAttribute('aria-pressed', u === 'C' ? 'true' : 'false');
+    renderConv();
+  }
+  $('tF').addEventListener('click', function () { setTUnit('F'); });
+  $('tC').addEventListener('click', function () { setTUnit('C'); });
+  $('tempIn').addEventListener('input', renderConv);
+
+  /* ================= COMBOS ================= */
+  var SRC = {
+    fav: 'https://amaco.com/resources/blog/customer-favorite-amaco-glaze-combinations-to-try',
+    fall: 'https://amaco.com/resources/blog/amaco-fall-layering-favorites',
+    dl: 'https://amaco.com/resources/blog/hidden-gems-dipping-and-layering-glazes',
+    winter: 'https://amaco.com/resources/blog/favorite-winter-layering-combinations'
+  };
+  var COMBOS = [
+    { t: 'Surprise purple', top: 'PC-31 Oatmeal', base: 'PC-33 Iron Lustre', how: '2\u20133 coats of Iron Lustre all over, then 1 coat of Oatmeal on the top half only, leaving room to run. Too much Oatmeal turns brown.', cone: 'Best at cone 6', tags: ['purple'], light: true, bc: '#6d6c5b', tc: '#7b5e93', src: 'fav' },
+    { t: 'Blue-green over black', top: 'PC-42 Seaweed', base: 'C-1 Obsidian', how: '2 coats of Seaweed over 2\u20133 coats of Obsidian. Seaweed gets runnier the hotter it is fired.', cone: 'Cone 5\u20136', tags: ['blue', 'green', 'dark'], run: true, bc: '#1c1d21', tc: '#2f8178', src: 'fav' },
+    { t: 'Floating blues', top: 'PC-25 Textured Turquoise', base: 'PC-20 Blue Rutile', how: '2 coats of Blue Rutile, then 2 coats of Textured Turquoise. Firing hotter brings out more tan float.', cone: 'Cone 5\u20136, not hotter', tags: ['blue'], run: true, light: true, bc: '#33557f', tc: '#6ab7bd', src: 'fav' },
+    { t: 'Garnet and ice blue', top: 'PC-21 Arctic Blue', base: 'PC-59 Deep Firebrick', how: '2\u20133 coats of Deep Firebrick as the base, then 2 coats of Arctic Blue as an accent. Works on many clay bodies.', cone: 'Cone 5\u20136', tags: ['blue', 'warm'], stable: true, bc: '#6b2a2c', tc: '#9cc0dc', src: 'fav' },
+    { t: 'Creamy tan overlap', top: 'PC-17 Honey Flux', base: 'PC-56 Ancient Copper', rel: 'overlapping', how: '2\u20133 coats of each with just a small overlap. Use a fast or natural cool: a slow cool turns Ancient Copper brown.', cone: 'Cone 6', tags: ['warm'], bc: '#8a5b3a', tc: '#cfae78', src: 'fav' },
+    { t: 'Speckled cream and stone', top: 'PCF-74 River Birch', base: 'PC-15 Satin Oribe', how: '2 coats of Satin Oribe, then 2 coats of River Birch with a small overlap. River Birch can run, so the stiffer Oribe goes underneath.', cone: 'Cone 5\u20136', tags: ['green', 'neutral'], run: true, bc: '#5e7d63', tc: '#ece4d2', src: 'fav' },
+    { t: 'Green over mulberry', top: 'PC-47 Emerald Falls', base: 'C-57 Mulberry', how: '2 coats of Emerald Falls over 2 coats of Mulberry. A greener take on the classic Seaweed over Mulberry.', cone: 'Cone 6', tags: ['green', 'purple'], bc: '#5c2d50', tc: '#2f8a5c', src: 'fav' },
+    { t: 'Ripe Wheat', top: 'PC-68 Golden Honey', base: 'PCF-60 Sun Beam', how: '2 coats over 2 coats. Two yellows that give each other depth.', cone: 'Cone 6', tags: ['warm'], bc: '#e3b93f', tc: '#c8882a', src: 'fall' },
+    { t: 'Blackberry Harvest', top: 'PC-57 Smokey Merlot', base: 'SH-46 Matcha Matte Shino', how: '3 coats over 3 coats. Matcha Matte shows brown where thin and green where thick, and Smokey Merlot turns a dark ruby over it.', cone: 'Cone 6', tags: ['purple', 'green', 'dark'], bc: '#727c45', tc: '#4a1d2d', src: 'fall' },
+    { t: 'Purple Magic', top: 'PC-66 Cosmic Oil Spot', base: 'C-57 Mulberry', how: '3 coats over 3 coats for deep purple with a dark sparkle.', cone: 'Cone 6', tags: ['purple', 'dark'], bc: '#5c2d50', tc: '#2b2234', fx: 'spots', src: 'fall' },
+    { t: 'Maple Butter', top: 'PCF-18 Honeydew', base: 'PC-59 Deep Firebrick', how: '2 coats of Deep Firebrick all over, then 2 coats of Honeydew on the top third only. Honeydew flows over the stable base in patterns.', cone: 'Cone 6', tags: ['warm'], run: true, bc: '#6b2a2c', tc: '#c7b462', src: 'fall' },
+    { t: 'Corn Maze', top: 'CR-61 Speckled Yellow Crawl', base: 'SM-53 Cayenne', how: '2 coats of the crawl over 3 coats of Cayenne. Crawls over Satin Mattes are very stable.', cone: 'Cone 5', tags: ['warm'], stable: true, bc: '#a4452c', tc: '#e9c84c', fx: 'crawl', src: 'fall' },
+    { t: 'Stormy Oil Spot', top: 'DL-12 Enamel White', base: 'DL-27 Storm Cloud', how: 'Dipping & Layering glazes, quick to apply for production work.', cone: 'Cone 6, no hold', tags: ['neutral', 'dark'], bc: '#5b646e', tc: '#efeee8', fx: 'spots', src: 'dl' },
+    { t: 'Snowy oil spot', top: 'C-10 Snow', base: 'C-27 Storm', how: 'Snow breaks into an oil-spot effect over Storm. It does the same over Rainforest, Ancient Copper and Deep Firebrick.', cone: 'Cone 5', tags: ['neutral'], bc: '#56626b', tc: '#eef1f2', fx: 'spots', src: 'winter' }
+  ];
+  var CHIPS = [['all', 'All', ''], ['fav', '\u2605 Saved', ''], ['blue', 'Blue', '#3f7fd6'], ['green', 'Green', '#2f9a62'], ['purple', 'Purple', '#7b4fa0'], ['warm', 'Warm', '#d9822b'], ['dark', 'Dark', '#2b2f36'], ['neutral', 'Neutral', '#c9c4b8']];
+  var cFilter = 'all';
+  var favs = sget('clayday:combofavs', []);
+  var DOTS = [[18, 14], [30, 22], [44, 12], [58, 20], [24, 30], [50, 30], [64, 10], [38, 28], [14, 24], [66, 30]];
+  function comboSvg(c, i) {
+    var cup = 'M8 6 H72 V78 Q72 90 60 90 H20 Q8 90 8 78 Z';
+    var drip = 'M0 0 H80 V36 Q74 50 68 38 Q62 58 54 40 Q47 52 40 38 Q33 60 26 40 Q19 50 12 38 Q6 48 0 36 Z';
+    var fx = '';
+    if (c.fx === 'spots') DOTS.forEach(function (d, k) { fx += '<circle cx="' + d[0] + '" cy="' + d[1] + '" r="' + (1.5 + (k % 3) * 0.6) + '" fill="' + c.bc + '" opacity=".85"/>'; });
+    if (c.fx === 'crawl') fx = '<path d="M8 14 L22 18 L30 12 L42 20 L54 14 L72 20 M10 28 L28 30 L40 24 L52 32 L72 26 M22 18 L24 30 M42 20 L40 24 M54 14 L52 32" stroke="' + c.bc + '" stroke-width="2" fill="none"/>';
+    return '<svg viewBox="0 0 80 96" aria-hidden="true"><defs><clipPath id="cc' + i + '"><path d="' + cup + '"/></clipPath></defs>' +
+      '<g clip-path="url(#cc' + i + ')"><rect width="80" height="96" fill="' + c.bc + '"/><path d="' + drip + '" fill="' + c.tc + '"/>' + fx + '</g>' +
+      '<path d="' + cup + '" fill="none" stroke="rgba(0,0,0,.2)"/><rect x="8" y="6" width="64" height="3" rx="1.5" fill="rgba(255,255,255,.4)"/></svg>';
+  }
+  function renderCombos() {
+    $('comboChips').innerHTML = CHIPS.map(function (ch) {
+      return '<button class="chip" data-chip="' + ch[0] + '" aria-pressed="' + (cFilter === ch[0]) + '">' + (ch[2] ? '<span class="dot" style="background:' + ch[2] + '"></span>' : '') + ch[1] + '</button>';
+    }).join('');
+    var q = $('comboQ').value.trim().toLowerCase(), noRun = $('comboStable').checked;
+    var h = '';
+    COMBOS.forEach(function (c, i) {
+      var isFav = favs.indexOf(c.t) > -1;
+      if (cFilter === 'fav' && !isFav) return;
+      if (cFilter !== 'all' && cFilter !== 'fav' && c.tags.indexOf(cFilter) < 0) return;
+      if (noRun && c.run) return;
+      if (q && (c.t + ' ' + c.top + ' ' + c.base).toLowerCase().indexOf(q) < 0) return;
+      h += '<div class="combo">' + comboSvg(c, i) + '<div><div class="combo-top"><h3>' + c.t + '</h3>' +
+        '<button class="star" data-fav="' + i + '" aria-pressed="' + isFav + '" aria-label="Save ' + c.t + '">' + (isFav ? '\u2605' : '\u2606') + '</button></div>' +
+        '<p class="pair"><b>' + c.top + '</b> ' + (c.rel || 'over') + ' <b>' + c.base + '</b></p>' +
+        '<div class="badges"><span class="badge">' + c.cone + '</span>' +
+        (c.run ? '<span class="badge run">Can run</span>' : '') +
+        (c.stable ? '<span class="badge ok">Stable, good first try</span>' : '') +
+        (c.light ? '<span class="badge">Best on light clay</span>' : '') + '</div>' +
+        '<p class="how">' + c.how + '</p>' +
+        '<a href="' + SRC[c.src] + '" target="_blank" rel="noopener">See AMACO\u2019s photo</a></div></div>';
+    });
+    if (!h) h = '<p class="empty">' + (cFilter === 'fav' && !favs.length ? 'Tap the star on any combo to save it here.' : 'No combos match. Try another glaze name or color.') + '</p>';
+    $('comboList').innerHTML = h;
+  }
+  $('comboChips').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-chip]'); if (!b) return;
+    cFilter = b.getAttribute('data-chip'); renderCombos();
+  });
+  $('comboList').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-fav]'); if (!b) return;
+    var t = COMBOS[+b.getAttribute('data-fav')].t, k = favs.indexOf(t);
+    if (k > -1) favs.splice(k, 1); else favs.push(t);
+    sset('clayday:combofavs', favs); renderCombos();
+  });
+  $('comboQ').addEventListener('input', renderCombos);
+  $('comboStable').addEventListener('change', renderCombos);
+
+    /* ================= PROJECTS ================= */
+  var Store = { mode: 'loading', items: [], loaded: false, note: '' };
+  var cloud = null, idb = null;
+  var CLOUD_NOTE = 'Saved to your account, so your projects show up wherever you open Clay Day.';
+
+  function storeChanged() {
+    Store.items.sort(function (a, b) { return (b.updated || 0) - (a.updated || 0); });
+    renderProjects(); renderHome();
+  }
+  function openIdb() {
+    return new Promise(function (res, rej) {
+      try {
+        var r = indexedDB.open('clayday', 1);
+        r.onupgradeneeded = function () { r.result.createObjectStore('projects', { keyPath: 'id' }); };
+        r.onsuccess = function () { res(r.result); };
+        r.onerror = function () { rej(r.error); };
+      } catch (e) { rej(e); }
+    });
+  }
+  function idbReq(mode, fn) {
+    return new Promise(function (res, rej) {
+      var tx = idb.transaction('projects', mode), r = fn(tx.objectStore('projects'));
+      tx.oncomplete = function () { res(r ? r.result : undefined); };
+      tx.onerror = function () { rej(tx.error); };
+    });
+  }
+  function initLocal() {
+    Store.mode = 'local';
+    openIdb().then(function (d) {
+      idb = d;
+      return idbReq('readonly', function (st) { return st.getAll(); });
+    }).then(function (rows) {
+      Store.items = rows || [];
+      Store.note = 'Projects are saved on this device.';
+    }).catch(function () {
+      idb = null; Store.items = [];
+      Store.note = 'This browser can\u2019t save projects, so they\u2019ll be lost when you close Clay Day.';
+    }).then(function () { Store.loaded = true; storeChanged(); });
+  }
+  function initCloud(db, assets, uid) {
+    Store.mode = 'cloud'; Store.note = CLOUD_NOTE;
+    var col = db.doc('data/users/' + uid + '/projects').collection('items');
+    cloud = { col: col, assets: assets };
+    var timer = setTimeout(function () {
+      if (!Store.loaded) { Store.note = 'Your saved projects can\u2019t be reached yet. Check your connection.'; storeChanged(); }
+    }, 10000);
+    col.onSnapshot(function (snap) {
+      Store.items = snap.docs.map(function (d) { return Object.assign({}, d.data(), { id: d.id }); });
+      if (!snap.metadata.fromCache) { clearTimeout(timer); Store.note = CLOUD_NOTE; }
+      Store.loaded = true; storeChanged();
+    }, function () {
+      clearTimeout(timer); Store.loaded = true;
+      Store.note = 'Saved projects aren\u2019t available right now.'; storeChanged();
+    });
+  }
+  function initStore() {
+    initLocal(); return;
+    Promise.all([window.claude.use('db'), window.claude.use('assets'), window.claude.use('user')]).then(function (r) {
+      var db = r[0], assets = r[1], user = r[2];
+      if (!db || !assets || !user) { initLocal(); return; }
+      return user.id().then(function (uid) { if (uid) initCloud(db, assets, uid); else initLocal(); });
+    }).catch(function () { initLocal(); });
+  }
+  function storeSave(id, data) {
+    var body = JSON.parse(JSON.stringify(data));
+    delete body.id;
+    if (Store.mode === 'cloud') return cloud.col.doc(id).set(body);
+    var rec = Object.assign({}, body, { id: id });
+    return (idb ? idbReq('readwrite', function (st) { return st.put(rec); }) : Promise.resolve()).then(function () {
+      var i = -1; Store.items.forEach(function (p, k) { if (p.id === id) i = k; });
+      if (i > -1) Store.items[i] = rec; else Store.items.push(rec);
+      storeChanged();
+    });
+  }
+  function storeRemove(id) {
+    if (Store.mode === 'cloud') return cloud.col.doc(id).delete();
+    return (idb ? idbReq('readwrite', function (st) { return st.delete(id); }) : Promise.resolve()).then(function () {
+      Store.items = Store.items.filter(function (p) { return p.id !== id; });
+      storeChanged();
+    });
+  }
+  function storeAddPhoto(prep) {
+    if (Store.mode === 'cloud') return cloud.assets.upload(prep.blob, { type: 'image/jpeg' }).then(function (r) { return r.id; });
+    return Promise.resolve(prep.dataUrl);
+  }
+  function storeDropPhoto(ref) {
+    if (Store.mode === 'cloud' && ref && ref.indexOf('data:') !== 0) cloud.assets.delete(ref).catch(function () {});
+  }
+  function photoSrc(ref) { return ref.indexOf('data:') === 0 ? ref : '/_blob/' + ref; }
+
+  function fileToDataUrl(f) {
+    return new Promise(function (res, rej) {
+      var r = new FileReader();
+      r.onload = function () { res(r.result); };
+      r.onerror = function () { rej(r.error); };
+      r.readAsDataURL(f);
+    });
+  }
+  function prepPhoto(file) {
+    return fileToDataUrl(file).then(function (src) {
+      return new Promise(function (res, rej) {
+        var im = new Image();
+        im.onload = function () { res(im); };
+        im.onerror = function () { rej(new Error('decode')); };
+        im.src = src;
+      });
+    }).then(function (img) {
+      var max = 1600, w = img.naturalWidth, h = img.naturalHeight, s = Math.min(1, max / Math.max(w, h));
+      var c = document.createElement('canvas');
+      c.width = Math.max(1, Math.round(w * s)); c.height = Math.max(1, Math.round(h * s));
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      var url = c.toDataURL('image/jpeg', 0.85);
+      var bin = atob(url.split(',')[1]), arr = new Uint8Array(bin.length);
+      for (var i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+      return { dataUrl: url, blob: new Blob([arr], { type: 'image/jpeg' }) };
+    });
+  }
+
+  function todayISO() { var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function fmtDate(s) {
+    if (!s) return '';
+    var p = s.split('-'); if (p.length !== 3) return esc(s);
+    return new Date(+p[0], +p[1] - 1, +p[2]).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+  var VASE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v3C6 8 5 12 7 16c1 2.5 1.5 4 1.5 5h7c0-1 .5-2.5 1.5-5 2-4 1-8-3-10V3"/></svg>';
+
+  function projCard(p) {
+    var photos = p.photos || [];
+    var cover = photos.length ? '<img src="' + esc(photoSrc(photos[0])) + '" alt="" loading="lazy">' : '<div class="ph">' + VASE + '</div>';
+    var gl = (p.glazes || []).filter(function (g) { return g.name; });
+    var chips = gl.slice(0, 2).map(function (g) {
+      return '<span class="gchip">' + esc(g.name) + ' &middot; ' + (+g.coats || 1) + (+g.coats > 1 ? ' coats' : ' coat') + '</span>';
+    }).join('') + (gl.length > 2 ? '<span class="gchip more">+' + (gl.length - 2) + ' more</span>' : '');
+    return '<button class="pcard" data-open="' + esc(p.id) + '"><div class="cover">' + cover +
+      (photos.length > 1 ? '<span class="pcount">' + photos.length + ' photos</span>' : '') + '</div>' +
+      '<div class="pbody"><div class="nm">' + esc(p.name || 'Untitled piece') + '</div>' +
+      '<div class="sub2">' + fmtDate(p.date) + (p.cone ? ' &middot; Cone ' + esc(p.cone) : '') + '</div>' +
+      (chips ? '<div class="gchips">' + chips + '</div>' : '') + '</div></button>';
+  }
+  function emptyProjects(small) {
+    return '<div class="card empty-card">' + VASE + '<p>' + (small ? 'Your finished pieces will show up here.' : 'No projects yet. Add your first piece with photos and the glazes you used.') + '</p>' +
+      '<button class="btn" data-newproj>Start a project</button></div>';
+  }
+
+  var editing = null, delArmed = false, delTimer = null, uploading = 0;
+
+  function renderProjects() {
+    $('projListView').hidden = !!editing;
+    $('projEditView').hidden = !editing;
+    if (editing) return;
+    $('storeNote').textContent = Store.note;
+    var out = $('projList');
+    if (!Store.loaded) { out.innerHTML = '<p class="empty">Loading your projects\u2026</p>'; return; }
+    out.innerHTML = Store.items.length ? '<div class="pgrid">' + Store.items.map(projCard).join('') + '</div>' : emptyProjects(false);
+  }
+
+  function renderLists() {
+    var names = {};
+    COMBOS.forEach(function (c) { names[c.top] = 1; names[c.base] = 1; });
+    Store.items.forEach(function (p) { (p.glazes || []).forEach(function (g) { if (g.name) names[g.name] = 1; }); });
+    $('glazeList').innerHTML = Object.keys(names).sort().map(function (n) { return '<option value="' + esc(n) + '"></option>'; }).join('');
+    $('clayList').innerHTML = clays.map(function (c) { return '<option value="' + esc(c.name) + '"></option>'; }).join('');
+  }
+  function openEditor(proj) {
+    if (proj) {
+      var d = JSON.parse(JSON.stringify(proj)); delete d.id;
+      d.photos = d.photos || [];
+      d.glazes = (d.glazes && d.glazes.length) ? d.glazes : [{ name: '', coats: 2 }];
+      editing = { id: proj.id, isNew: false, data: d, orig: d.photos.slice(), added: [] };
+    } else {
+      editing = { id: 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7), isNew: true,
+        data: { name: '', date: todayISO(), clay: '', cone: '', notes: '', photos: [], glazes: [{ name: '', coats: 2 }] }, orig: [], added: [] };
+    }
+    delArmed = false;
+    var d2 = editing.data;
+    $('editTitle').textContent = editing.isNew ? 'New project' : 'Edit project';
+    $('pName').value = d2.name || ''; $('pDate').value = d2.date || ''; $('pClay').value = d2.clay || ''; $('pNotes').value = d2.notes || '';
+    $('pCone').innerHTML = '<option value="">Not set</option>' + CONES.map(function (c) { return '<option value="' + c[0] + '">Cone ' + c[0] + '</option>'; }).join('');
+    $('pCone').value = d2.cone || '';
+    $('projDel').hidden = editing.isNew; $('projDel').textContent = 'Delete project';
+    $('editMsg').hidden = true; $('photoErr').hidden = true; $('photoStatus').textContent = '';
+    $('projSave').disabled = false; $('projSave').textContent = 'Save project';
+    renderLists(); renderThumbs(); renderLayers();
+    if (location.hash !== '#projects') location.hash = '#projects';
+    renderProjects(); window.scrollTo(0, 0);
+  }
+  function closeEditor() { editing = null; renderProjects(); window.scrollTo(0, 0); }
+
+  function renderThumbs() {
+    var h = editing.data.photos.map(function (r, i) {
+      return '<div class="thumb"><img src="' + esc(photoSrc(r)) + '" alt="Photo ' + (i + 1) + '" data-view="' + i + '">' +
+             '<button class="thumb-x" data-rmphoto="' + i + '" aria-label="Remove photo ' + (i + 1) + '">&times;</button></div>';
+    }).join('');
+    h += '<label class="add-photo" for="photoInput"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="6.5" width="18" height="13.5" rx="3"/><path d="M12 10v6M9 13h6"/></svg>Add photos</label>';
+    $('thumbs').innerHTML = h;
+  }
+  function renderLayers() {
+    $('layers').innerHTML = editing.data.glazes.map(function (g, i) {
+      var n = i + 1;
+      return '<div class="layer"><span class="lnum">' + n + '</span>' +
+        '<input type="text" list="glazeList" data-gi="' + i + '" data-gf="name" value="' + esc(g.name || '') + '" placeholder="Glaze, e.g. PC-20 Blue Rutile" aria-label="Glaze for layer ' + n + '">' +
+        '<button class="icon-btn" data-rmlayer="' + i + '" aria-label="Remove layer ' + n + '">&times;</button>' +
+        '<select data-gi="' + i + '" data-gf="coats" aria-label="Coats for layer ' + n + '">' +
+        [1, 2, 3, 4, 5].map(function (k) { return '<option value="' + k + '"' + ((+g.coats || 2) === k ? ' selected' : '') + '>' + k + (k > 1 ? ' coats' : ' coat') + '</option>'; }).join('') +
+        '</select></div>';
+    }).join('');
+  }
+
+  $('projNew').addEventListener('click', function () { openEditor(null); });
+  $('heroNew').addEventListener('click', function () { openEditor(null); });
+  document.addEventListener('click', function (e) {
+    var n = e.target.closest('[data-newproj]'); if (n) { openEditor(null); return; }
+    var o = e.target.closest('[data-open]');
+    if (o) { var id = o.getAttribute('data-open'); Store.items.forEach(function (p) { if (p.id === id) openEditor(p); }); }
+  });
+  ['pName', 'pDate', 'pClay', 'pNotes', 'pCone'].forEach(function (id) {
+    $(id).addEventListener('input', function () {
+      if (!editing) return;
+      editing.data[{ pName: 'name', pDate: 'date', pClay: 'clay', pNotes: 'notes', pCone: 'cone' }[id]] = this.value;
+    });
+  });
+  $('pCone').addEventListener('change', function () { if (editing) editing.data.cone = this.value; });
+  $('layers').addEventListener('input', function (e) {
+    var t = e.target; if (!editing || !t.hasAttribute('data-gi')) return;
+    var g = editing.data.glazes[+t.getAttribute('data-gi')], f = t.getAttribute('data-gf');
+    g[f] = f === 'coats' ? +t.value : t.value;
+  });
+  $('layers').addEventListener('change', function (e) {
+    var t = e.target; if (!editing || t.getAttribute('data-gf') !== 'coats') return;
+    editing.data.glazes[+t.getAttribute('data-gi')].coats = +t.value;
+  });
+  $('layers').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-rmlayer]'); if (!b || !editing) return;
+    editing.data.glazes.splice(+b.getAttribute('data-rmlayer'), 1);
+    if (!editing.data.glazes.length) editing.data.glazes.push({ name: '', coats: 2 });
+    renderLayers();
+  });
+  $('addLayer').addEventListener('click', function () {
+    if (!editing) return;
+    editing.data.glazes.push({ name: '', coats: 2 });
+    renderLayers();
+    var ins = $('layers').querySelectorAll('input[type="text"]');
+    if (ins.length) ins[ins.length - 1].focus();
+  });
+
+  $('photoInput').addEventListener('change', function () {
+    var files = Array.prototype.slice.call(this.files || []);
+    this.value = '';
+    if (!editing || !files.length) return;
+    $('photoErr').hidden = true;
+    var ed = editing, total = files.length, done = 0, failed = 0;
+    uploading++;
+    $('photoStatus').textContent = 'Adding ' + total + (total > 1 ? ' photos\u2026' : ' photo\u2026');
+    files.reduce(function (chain, f) {
+      return chain.then(function () {
+        return prepPhoto(f).then(storeAddPhoto).then(function (ref) {
+          if (editing !== ed) { storeDropPhoto(ref); return; }
+          ed.data.photos.push(ref); ed.added.push(ref); renderThumbs();
+        }).catch(function () { failed++; }).then(function () {
+          done++;
+          if (done < total) $('photoStatus').textContent = 'Added ' + done + ' of ' + total + '\u2026';
+        });
+      });
+    }, Promise.resolve()).then(function () {
+      uploading--;
+      $('photoStatus').textContent = '';
+      if (failed) {
+        $('photoErr').textContent = failed + (failed > 1 ? ' photos' : ' photo') + ' couldn\u2019t be added. Try a JPEG or PNG.';
+        $('photoErr').hidden = false;
+      }
+    });
+  });
+  $('thumbs').addEventListener('click', function (e) {
+    if (!editing) return;
+    var x = e.target.closest('[data-rmphoto]');
+    if (x) {
+      var i = +x.getAttribute('data-rmphoto'), ref = editing.data.photos[i];
+      editing.data.photos.splice(i, 1);
+      var k = editing.added.indexOf(ref);
+      if (k > -1) { editing.added.splice(k, 1); storeDropPhoto(ref); }
+      renderThumbs(); return;
+    }
+    var v = e.target.closest('[data-view]');
+    if (v) { $('lightImg').src = v.getAttribute('src'); $('lightbox').hidden = false; }
+  });
+  $('lightbox').addEventListener('click', function () { this.hidden = true; $('lightImg').removeAttribute('src'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('lightbox').hidden) $('lightbox').click(); });
+
+  function editError(text) { $('editMsg').textContent = text; $('editMsg').hidden = false; }
+  $('projSave').addEventListener('click', function () {
+    if (!editing) return;
+    if (uploading) { editError('Wait for your photos to finish adding, then save.'); return; }
+    var ed = editing, d = ed.data;
+    d.name = (d.name || '').trim() || 'Untitled piece';
+    d.glazes = d.glazes.filter(function (g) { return (g.name || '').trim(); }).map(function (g) { return { name: g.name.trim(), coats: +g.coats || 2 }; });
+    d.updated = Date.now(); if (!d.created) d.created = d.updated;
+    this.disabled = true; this.textContent = 'Saving\u2026'; $('editMsg').hidden = true;
+    var btn = this;
+    storeSave(ed.id, d).then(function () {
+      ed.orig.forEach(function (r) { if (d.photos.indexOf(r) < 0) storeDropPhoto(r); });
+      closeEditor();
+    }).catch(function (err) {
+      btn.disabled = false; btn.textContent = 'Save project';
+      if (!d.glazes.length) d.glazes.push({ name: '', coats: 2 });
+      editError(err && err.code === 'quota_exceeded' ? 'Storage is full. Delete an old project, then save again.' : 'Couldn\u2019t save this project. Check your connection and try again.');
+    });
+  });
+  $('projCancel').addEventListener('click', function () {
+    if (!editing) return;
+    editing.added.forEach(storeDropPhoto);
+    closeEditor();
+  });
+  $('projBack').addEventListener('click', function () { $('projCancel').click(); });
+  $('projDel').addEventListener('click', function () {
+    if (!editing || editing.isNew) return;
+    if (!delArmed) {
+      delArmed = true; this.textContent = 'Tap again to delete';
+      clearTimeout(delTimer);
+      var b = this; delTimer = setTimeout(function () { delArmed = false; b.textContent = 'Delete project'; }, 4000);
+      return;
+    }
+    var ed = editing;
+    storeRemove(ed.id).then(function () {
+      ed.orig.concat(ed.added).forEach(storeDropPhoto);
+      closeEditor();
+    }).catch(function () { editError('Couldn\u2019t delete this project. Try again.'); });
+  });
+
+  /* ================= HOME ================= */
+  function renderHome() {
+    $('hsProjects').textContent = Store.loaded ? Store.items.length : '\u2013';
+    $('hsClays').textContent = clays.length;
+    $('hsCombos').textContent = favs.length;
+    var rec = $('homeRecent');
+    if (!Store.loaded) rec.innerHTML = '<div class="card"><p class="empty">Loading your projects\u2026</p></div>';
+    else rec.innerHTML = Store.items.length ? '<div class="pgrid">' + Store.items.slice(0, 4).map(projCard).join('') + '</div>' : emptyProjects(true);
+    var now = new Date(), day = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+    var c = COMBOS[day % COMBOS.length];
+    $('homeCombo').innerHTML = '<div class="today">' + comboSvg(c, 'home') + '<div><div class="k">' + c.cone + '</div><h3>' + c.t + '</h3>' +
+      '<p><b>' + c.top + '</b> ' + (c.rel || 'over') + ' <b>' + c.base + '</b></p>' +
+      '<a class="link" href="' + SRC[c.src] + '" target="_blank" rel="noopener">See AMACO\u2019s photo</a></div></div>';
+  }
+
+  /* ================= ROUTING ================= */
+  var PAGES = ['home', 'calculator', 'ideas', 'projects', 'combos', 'cones'];
+  function route() {
+    var h = location.hash.replace('#', '');
+    var page = PAGES.indexOf(h) > -1 ? h : 'home';
+    PAGES.forEach(function (p) {
+      $('page-' + p).hidden = (p !== page);
+      if (p === page) $('nav-' + p).setAttribute('aria-current', 'page'); else $('nav-' + p).removeAttribute('aria-current');
+    });
+    $('topBrand').hidden = page === 'home';
+    if (page === 'home') renderHome();
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', route);
+
+  /* ================= START ================= */
+  var s = loadSettings();
+  renderClaySel(s && s.clay !== undefined && s.clay !== '' && clays[+s.clay] ? s.clay : '');
+  setMode(state.mode); setUnit(state.unit); setTab('make');
+  renderCalc();
+  renderIdeas();
+  renderConeTable(); renderConv();
+  renderCombos();
+  renderProjects();
+  route();
+  initStore();
+})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+}
+</script>
+</body>
+</html>
