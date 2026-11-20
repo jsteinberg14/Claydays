@@ -783,20 +783,12 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       <div class="card wiz"><button class="btn wide" id="comboNew">New</button></div>
 
       <div class="tabs ctabs" id="comboTabs" role="tablist" aria-label="Combo views">
-        <button class="tab" role="tab" id="ct-glaze" aria-selected="true" aria-controls="cp-glaze" data-ctab="glaze">Combos for a glaze</button>
-        <button class="tab" role="tab" id="ct-mine" aria-selected="false" aria-controls="cp-mine" data-ctab="mine">Your combinations</button>
-        <button class="tab" role="tab" id="ct-try" aria-selected="false" aria-controls="cp-try" data-ctab="try">Combos to try</button>
+        <button class="tab" role="tab" id="ct-try" aria-selected="true" aria-controls="cp-try" data-ctab="try">Explore</button>
+        <button class="tab" role="tab" id="ct-mine" aria-selected="false" aria-controls="cp-mine" data-ctab="mine">My Combos</button>
+        <button class="tab" role="tab" id="ct-glaze" aria-selected="false" aria-controls="cp-glaze" data-ctab="glaze">Glaze Specific</button>
       </div>
 
-      <div id="cp-glaze" role="tabpanel" aria-labelledby="ct-glaze">
-        <div class="card" id="recCard"></div>
-      </div>
-
-      <div id="cp-mine" role="tabpanel" aria-labelledby="ct-mine" hidden>
-        <div class="card" id="myCombos"></div>
-      </div>
-
-      <div id="cp-try" role="tabpanel" aria-labelledby="ct-try" hidden>
+      <div id="cp-try" role="tabpanel" aria-labelledby="ct-try">
         <div class="card">
           <div class="field">
             <label for="comboQ">Find combos with a glaze you own</label>
@@ -806,6 +798,14 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
           <label class="check"><input type="checkbox" id="comboStable"> Hide combos that can run</label>
         </div>
         <div class="card" id="comboList"></div>
+      </div>
+
+      <div id="cp-mine" role="tabpanel" aria-labelledby="ct-mine" hidden>
+        <div class="card" id="myCombos"></div>
+      </div>
+
+      <div id="cp-glaze" role="tabpanel" aria-labelledby="ct-glaze" hidden>
+        <div class="card" id="recCard"></div>
       </div>
 
       <div class="card">
@@ -1965,8 +1965,8 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   var myCombos = sget('clayday:mycombos', []);
   var comboEditing = null, cDelArmed = false;
   function saveMyCombos() { sset('clayday:mycombos', myCombos); }
-  var cTab = sget('clayday:combotab', 'glaze');
-  if (['glaze', 'mine', 'try'].indexOf(cTab) < 0) cTab = 'glaze';
+  var cTab = sget('clayday:combotab', 'try');
+  if (['try', 'mine', 'glaze'].indexOf(cTab) < 0) cTab = 'try';
   function setCTab(t) {
     cTab = t; sset('clayday:combotab', t);
     ['glaze', 'mine', 'try'].forEach(function (k) {
