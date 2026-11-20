@@ -1,4 +1,5 @@
-var CACHE = 'clayday-v26';
+/* Clay Day. Copyright (c) 2026 Jon Steinberg. All rights reserved. The code, design, text, data compilation and artwork in this app are the original work of Jon Steinberg. No part may be copied, modified, redistributed, sold, or used to make money without his written permission. Fingerprint CD-JS-2026-7F673EDE-683A-48FD-B3B2-8F6A8A9F782E. */
+var CACHE = 'clayday-v34';
 var FILES = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));

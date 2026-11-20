@@ -1,7 +1,12 @@
 <!DOCTYPE html>
+<!--
+  Clay Day. Copyright (c) 2026 Jon Steinberg. All rights reserved. The code, design, text, data compilation and artwork in this app are the original work of Jon Steinberg. No part may be copied, modified, redistributed, sold, or used to make money without his written permission. Fingerprint CD-JS-2026-7F673EDE-683A-48FD-B3B2-8F6A8A9F782E.
+-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="author" content="Jon Steinberg">
+<meta name="copyright" content="Copyright (c) 2026 Jon Steinberg. All rights reserved.">
 <title>Clay Day</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -14,7 +19,9 @@
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
+/* Clay Day. Copyright (c) 2026 Jon Steinberg. All rights reserved. The code, design, text, data compilation and artwork in this app are the original work of Jon Steinberg. No part may be copied, modified, redistributed, sold, or used to make money without his written permission. Fingerprint CD-JS-2026-7F673EDE-683A-48FD-B3B2-8F6A8A9F782E. */
 :root {
+  --cd-id: 'CD-JS-2026-7F673EDE-683A-48FD-B3B2-8F6A8A9F782E';
   --bg: #f5f7ff;
   --bg-grad: radial-gradient(900px 460px at -10% -8%, rgba(110, 122, 255, .18), transparent 62%),
              radial-gradient(720px 420px at 110% -4%, rgba(255, 138, 108, .16), transparent 60%),
@@ -498,11 +505,15 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 .sh-actions .low-btn, .sh-actions .btn-ghost { min-height: 44px; font-size: 14px; }
 .shop-list { margin: 0 0 12px; padding-left: 20px; }
 .shop-list li { margin-bottom: 4px; }
+.app-foot { text-align: center; color: var(--muted); font-size: 13px; margin: 20px 0 6px; }
+.app-foot p { margin: 0 0 4px; }
+.app-foot .handmade { font-size: 15px; font-weight: 700; color: var(--ink); }
 [hidden] { display: none !important; }
 @media (prefers-reduced-motion: reduce) { .bar { transition: none; } }
 </style>
 </head>
 <body>
+<div hidden aria-hidden="true" id="cdOwner" data-owner="Jon Steinberg" data-fingerprint="CD-JS-2026-7F673EDE-683A-48FD-B3B2-8F6A8A9F782E">Copyright &copy; 2026 Jon Steinberg. All rights reserved. CD-JS-2026-7F673EDE-683A-48FD-B3B2-8F6A8A9F782E</div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <linearGradient id="lg-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b6cff"/><stop offset="1" stop-color="#9b5cf6"/></linearGradient>
@@ -547,6 +558,16 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 
     <div class="section-head" style="margin-top:4px"><h2>Combo to try today</h2><a class="link" href="#combos">All combos</a></div>
     <div class="card" id="homeCombo"></div>
+
+    <div class="section-head" style="margin-top:4px"><h2>A shared app for everyone</h2></div>
+    <div class="card">
+      <p class="hint" style="margin:0">Clay Day is made for potters of every level and is free for everyone to use. Please keep it that way: it must never be monetized, copied, or distributed for sale. If you enjoy it, the best thing you can do is share it with a friend.</p>
+    </div>
+    <footer class="app-foot">
+      <p class="handmade">Handmade with Love by Jon Steinberg.</p>
+      <p>&copy; 2026 Jon Steinberg. All rights reserved.</p>
+      <p id="homeVersion"></p>
+    </footer>
   </div>
 
   <!-- ===== CALCULATOR ===== -->
@@ -864,8 +885,9 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
         <div class="field"><label for="setWeight">Clay weight</label><select id="setWeight"><option value="lb">Pounds</option><option value="oz">Ounces</option><option value="g">Grams</option><option value="kg">Kilograms</option></select></div>
         <div class="field"><label for="setTemp">Temperature</label><select id="setTemp"><option value="F">Fahrenheit</option><option value="C">Celsius</option></select></div>
         <div class="field"><label for="setCur">Currency</label><select id="setCur"><option value="$">$ Dollar</option><option value="&euro;">&euro; Euro</option><option value="&pound;">&pound; Pound</option><option value="&yen;">&yen; Yen</option><option value="CA$">CA$ Canadian</option><option value="A$">A$ Australian</option></select></div>
+        <div class="field"><label for="setCone">Clay cone</label><select id="setCone"></select></div>
       </div>
-      <p class="hint" style="margin:10px 0 0">Measurements apply to new pieces on the Shrinkage page. Currency is used for pricing.</p>
+      <p class="hint" style="margin:10px 0 0">Measurements apply to new pieces on the Shrinkage page. Currency is used for pricing. The clay cone is the starting &ldquo;Fired to&rdquo; cone for new projects.</p>
     </div>
 
     <div class="card">
@@ -877,6 +899,15 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       </div>
       <button class="btn wide" id="shareApp">Share with friends</button>
       <p class="msg err" id="shareAppMsg" hidden>Paste the link to your Clay Day app above, then try again.</p>
+    </div>
+
+    <div class="card">
+      <h2>Add Clay Day to your phone</h2>
+      <ol class="tips">
+        <li><b>iPhone:</b> open Clay Day&rsquo;s web address in Safari, tap Share, then Add to Home Screen.</li>
+        <li><b>Android:</b> open it in Chrome, tap the three-dot menu, then Install app.</li>
+      </ol>
+      <p class="hint" style="margin:10px 0 0">Once it&rsquo;s on your home screen it opens full screen, and your phone is less likely to clear your saved data.</p>
     </div>
 
     <div class="card">
@@ -909,17 +940,10 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     </div>
 
     <div class="card">
-      <h2>Add Clay Day to your phone</h2>
-      <ol class="tips">
-        <li><b>iPhone:</b> open Clay Day&rsquo;s web address in Safari, tap Share, then Add to Home Screen.</li>
-        <li><b>Android:</b> open it in Chrome, tap the three-dot menu, then Install app.</li>
-      </ol>
-      <p class="hint" style="margin:10px 0 0">Once it&rsquo;s on your home screen it opens full screen, and your phone is less likely to clear your saved data.</p>
-    </div>
-
-    <div class="card">
       <h2>Privacy</h2>
-      <p class="hint" id="privText" style="margin:0"></p>
+      <p class="hint" style="margin:0 0 10px">Clay Day has no account and no ads. Your projects, photos, combinations and settings are private to you, and no one else can see them unless you choose to share them. If you scan a glaze label, the photo is sent to be read, and only after you give permission. Links to videos and photo searches open other websites, which have their own privacy rules.</p>
+      <h3 style="margin:16px 0 6px">A shared app for everyone</h3>
+      <p class="hint" style="margin:0">Clay Day is made for potters of every level and is free for everyone to use. Please keep it that way: it must never be monetized, copied, or distributed for sale. If you enjoy it, the best thing you can do is share it with a friend.</p>
     </div>
     <p class="hint" id="aboutText"></p>
   </div>
@@ -1082,7 +1106,10 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 
 <script>
 
+/*! Clay Day. Copyright (c) 2026 Jon Steinberg. All rights reserved. The code, design, text, data compilation and artwork in this app are the original work of Jon Steinberg. No part may be copied, modified, redistributed, sold, or used to make money without his written permission. Fingerprint CD-JS-2026-7F673EDE-683A-48FD-B3B2-8F6A8A9F782E. */
 (function () {
+  var CD_OWNER = { owner: 'Jon Steinberg', year: 2026, rights: 'All rights reserved', id: 'CD-JS-2026-7F673EDE-683A-48FD-B3B2-8F6A8A9F782E', notice: 'Q2xheSBEYXkuIENvcHlyaWdodCAoYykgMjAyNiBKb24gU3RlaW5iZXJnLiBBbGwgcmlnaHRzIHJlc2VydmVkLiBUaGUgY29kZSwgZGVzaWduLCB0ZXh0LCBkYXRhIGNvbXBpbGF0aW9uIGFuZCBhcnR3b3JrIGluIHRoaXMgYXBwIGFyZSB0aGUgb3JpZ2luYWwgd29yayBvZiBKb24gU3RlaW5iZXJnLiBObyBwYXJ0IG1heSBiZSBjb3BpZWQsIG1vZGlmaWVkLCByZWRpc3RyaWJ1dGVkLCBzb2xkLCBvciB1c2VkIHRvIG1ha2UgbW9uZXkgd2l0aG91dCBoaXMgd3JpdHRlbiBwZXJtaXNzaW9uLiBGaW5nZXJwcmludCBDRC1KUy0yMDI2LTdGNjczRURFLTY4M0EtNDhGRC1CM0IyLThGNkE4QTlGNzgyRS4=' };
+  try { document.documentElement.setAttribute('data-cd-origin', CD_OWNER.id); window.__cdOrigin = CD_OWNER.id; console.info('Clay Day (c) 2026 Jon Steinberg. All rights reserved.'); } catch (e) {}
   var $ = function (id) { return document.getElementById(id); };
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function sget(k, d) { try { var r = localStorage.getItem(k); return r ? JSON.parse(r) : d; } catch (e) { return d; } }
@@ -2610,7 +2637,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       editing = { id: proj.id, isNew: false, data: d, orig: d.photos.slice(), added: [] };
     } else {
       editing = { id: 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7), isNew: true,
-        data: { name: '', kind: projKind, stage: projKind === 'tile' ? '' : 'planned', date: todayISO(), clay: '', cone: '', notes: '', photos: [], glazes: [] }, orig: [], added: [] };
+        data: { name: '', kind: projKind, stage: projKind === 'tile' ? '' : 'planned', date: todayISO(), clay: '', cone: defaultCone(), notes: '', photos: [], glazes: [] }, orig: [], added: [] };
     }
     delArmed = false;
     var d2 = editing.data;
@@ -2738,6 +2765,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 
   /* ================= HOME ================= */
   function renderHome() {
+    $('homeVersion').textContent = versionLine();
     $('hsProjects').textContent = Store.loaded ? Store.items.length : '\u2013';
     $('hsClays').textContent = clays.length;
     $('hsCombos').textContent = favs.length;
@@ -3119,6 +3147,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   var PRICE_KEYS = ['clay', 'cpl', 'mat', 'fire', 'hrs', 'rate', 'oh'];
   var priceDefaults = sget('clayday:pricing', { cpl: '', rate: '', oh: '10', fire: '' });
   var currency = sget('clayday:currency', '$');
+  function defaultCone() { var v = sget('clayday:defcone', '6'); return typeof v === 'string' ? v : '6'; }
   function money(n) { return currency + n.toFixed(2); }
   function priceCalc(p) {
     if (!p) return null;
@@ -3197,7 +3226,8 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   });
 
   /* ================= SETTINGS, SHARING AND IMPORT ================= */
-  var APP_BUILD = '2026-11-20';
+  var APP_BUILD = '2026-11-20', APP_VERSION = '1.0';
+  function versionLine() { return 'Version ' + APP_VERSION + ' \u00b7 build ' + APP_BUILD; }
   var themePref = sget('clayday:theme', 'auto');
   function applyTheme(t) {
     var r = document.documentElement;
@@ -3206,15 +3236,13 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   applyTheme(themePref);
   function applyCurrency() { document.querySelectorAll('.cur').forEach(function (e) { e.textContent = currency; }); }
   function noteBackup() { sset('clayday:lastbackup', Date.now()); renderSettings(); }
-  function appLink() {
-    var s = sget('clayday:applink', '');
-    if (s) return s;
-    try { if (/^https?:/.test(location.href)) return location.href.split('#')[0]; } catch (e) {}
-    return '';
-  }
+  var DEFAULT_APP_LINK = 'https://jsteinberg14.github.io/Claydays/';
+  // One-time reset so everyone starts from the current default link
+  try { if (!localStorage.getItem('clayday:applink_v2')) { localStorage.removeItem('clayday:applink'); localStorage.setItem('clayday:applink_v2', '1'); } } catch (e) {}
+  function appLink() { return sget('clayday:applink', '') || DEFAULT_APP_LINK; }
   function renderStorage() {
     var el = $('storeStatus'), btn = $('persistBtn'); btn.hidden = true;
-    if (Store.mode === 'cloud') { el.textContent = 'Your projects and photos are saved to your Claude account. Combinations, shelves and settings stay on this device, so a backup is still a good idea.'; return; }
+    if (Store.mode === 'cloud') { el.textContent = 'Your projects and photos are saved online for you, so they appear wherever you open Clay Day. Combinations, shelves and settings stay on this device, so a backup is still a good idea.'; return; }
     if (!(navigator.storage && navigator.storage.persisted)) { el.textContent = 'Your projects are saved in this browser. Add Clay Day to your home screen and keep a recent backup, because browsers can clear saved data you haven\u2019t used in a while.'; return; }
     navigator.storage.persisted().then(function (v) {
       el.textContent = v ? 'Storage protection is on, so your browser won\u2019t clear Clay Day\u2019s saved data when space is low.' : 'Storage protection is off, so your browser may clear saved data you haven\u2019t used in a while. Keep a recent backup.';
@@ -3224,14 +3252,13 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   function renderSettings() {
     document.querySelectorAll('[data-theme-set]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-theme-set') === themePref ? 'true' : 'false'); });
     $('setUnit').value = state.unit; $('setWeight').value = $('ideaUnit').value; $('setTemp').value = tUnit; $('setCur').value = currency;
+    if (!$('setCone').options.length) $('setCone').innerHTML = '<option value="">Not set</option>' + CONES.map(function (c) { return '<option value="' + c[0] + '">Cone ' + c[0] + '</option>'; }).join('');
+    $('setCone').value = defaultCone();
     $('appLink').value = appLink();
     var lb = sget('clayday:lastbackup', 0);
     $('bkLast').textContent = lb ? 'Last backup: ' + new Date(lb).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) + (Date.now() - lb > 30 * 864e5 ? '. It may be time for a new one.' : '.') : 'You haven\u2019t saved a backup yet.';
     renderStorage();
-    $('privText').textContent = 'Clay Day has no account and no ads. ' + (Store.mode === 'cloud'
-      ? 'In the Claude version, projects and photos are saved to your Claude account. If you scan a glaze label, the photo is sent to Claude to read it, and only after you give permission. '
-      : 'Your projects, photos, combinations and settings stay on this device. ') + 'Links to videos and photo searches open other websites, which have their own privacy rules.';
-    $('aboutText').textContent = 'Clay Day \u00b7 build ' + APP_BUILD + ' \u00b7 shrinkage, glaze combos, projects and studio tools for potters.';
+    $('aboutText').textContent = 'Clay Day \u00b7 ' + versionLine().toLowerCase() + ' \u00b7 shrinkage, glaze combos, projects and studio tools for potters.';
   }
   document.querySelectorAll('[data-theme-set]').forEach(function (b) {
     b.addEventListener('click', function () { themePref = b.getAttribute('data-theme-set'); sset('clayday:theme', themePref); applyTheme(themePref); renderSettings(); });
@@ -3239,6 +3266,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   $('setUnit').addEventListener('change', function () { state.unit = this.value; saveSettings(); });
   $('setWeight').addEventListener('change', function () { $('ideaUnit').value = this.value; renderIdeas(); saveIdeaSet(); });
   $('setTemp').addEventListener('change', function () { setTUnit(this.value); });
+  $('setCone').addEventListener('change', function () { sset('clayday:defcone', this.value); });
   $('setCur').addEventListener('change', function () { currency = this.value; sset('clayday:currency', currency); applyCurrency(); if (editing) renderPrice(); renderProjects(); });
   $('persistBtn').addEventListener('click', function () {
     var m = $('persistMsg');
