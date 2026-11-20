@@ -409,6 +409,72 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 .listtext { margin-top: 12px; font-size: 14px; min-height: 120px; font-variant-numeric: tabular-nums; }
 .tabs { grid-template-columns: repeat(4, 1fr) !important; }
 .tabs .tab { font-size: 14px; padding-left: 2px; padding-right: 2px; }
+.combo-links { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.combo-ph { width: 76px; height: 92px; object-fit: cover; border-radius: 14px; display: block; }
+.mc-ph { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; display: block; }
+.cd-photos { display: flex; gap: 10px; overflow-x: auto; margin: 4px 0 16px; padding-bottom: 4px; }
+.cd-photos .thumb, .cd-photos .add-photo { width: 132px; height: 132px; }
+.ref-list { display: grid; gap: 8px; }
+.ref-list a { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; padding: 12px 14px; border-radius: 14px; background: var(--accent-soft); color: var(--ink); text-decoration: none; }
+.ref-list a b { display: block; color: var(--accent); font-size: 15px; }
+.ref-list a small { color: var(--muted); font-size: 13px; }
+.ref-list a .arr { color: var(--accent); font-size: 18px; }
+.rec-sel { display: grid; grid-template-columns: auto 1fr auto auto; gap: 8px; align-items: center; margin-bottom: 12px; }
+.rec-sel b { display: block; font-size: 17px; }
+.rec-row { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; width: 100%; padding: 12px 0; border: 0; border-top: 1px solid var(--line); background: transparent; font: inherit; color: var(--ink); text-align: left; cursor: pointer; }
+.rec-row:first-child { border-top: 0; padding-top: 4px; }
+.rec-row b { display: block; font-weight: 700; line-height: 1.25; }
+.rec-steps { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+.rec-src { display: inline-block; font-size: 11px; font-weight: 650; padding: 1px 7px; border-radius: 999px; background: var(--ok-soft); color: var(--ok); margin-top: 4px; }
+.rec-ph { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; display: block; }
+.rec-count { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
+.wiz { border: 1.5px solid transparent; background: linear-gradient(var(--surface), var(--surface)) padding-box, var(--grad) border-box; }
+.wiz-prog { display: flex; gap: 6px; margin-bottom: 14px; }
+.wiz-prog span { flex: 1; height: 4px; border-radius: 2px; background: var(--line); }
+.wiz-prog span.on { background: var(--grad); }
+.wiz-opts { display: grid; gap: 8px; }
+.wiz-opt { display: block; width: 100%; text-align: left; border: 1px solid var(--line); background: var(--surface); padding: 12px 14px; border-radius: 14px; font: inherit; color: var(--ink); cursor: pointer; min-height: 52px; }
+.wiz-opt b { display: block; font-size: 16px; }
+.wiz-opt small { color: var(--muted); font-size: 13px; }
+.wiz-opt[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.wiz-nav { margin-top: 12px; }
+.wsug { padding: 12px 0; border-top: 1px solid var(--line); }
+.wsug:first-of-type { border-top: 0; }
+.wsug-top { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+.wsug-top b { font-size: 16px; }
+.wsug-why { font-size: 13px; color: var(--ink); margin-top: 6px; }
+.wsug-tip { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.link-btn { border: 0; background: transparent; padding: 0; font: inherit; font-weight: 700; color: inherit; text-decoration: underline; cursor: pointer; }
+.lrn small { display: block; }
+.lv { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; align-self: center; }
+.lv-beginner { background: var(--ok-soft); color: var(--ok); }
+.lv-intermediate { background: var(--accent-soft); color: var(--accent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent); }
+.lv-advanced { background: var(--warn-soft); color: var(--warn); }
+.lv-all { background: var(--field); color: var(--muted); }
+.ref-list a.lrn { grid-template-columns: 1fr auto; }
+.tb { border-top: 1px solid var(--line); }
+.tb:first-child { border-top: 0; }
+.tb summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 0; cursor: pointer; min-height: 48px; }
+.tb summary::-webkit-details-marker { display: none; }
+.tb summary::after { content: "+"; color: var(--accent); font-size: 22px; font-weight: 600; }
+.tb[open] summary::after { content: "\2212"; }
+.tb summary b { display: block; font-size: 16px; }
+.tb summary small { color: var(--muted); font-size: 13px; }
+.tb-body { padding: 0 0 12px; font-size: 15px; }
+.tb-body p { margin: 0 0 8px; }
+.shelf-row { display: grid; grid-template-columns: auto 1fr auto 40px; gap: 10px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+.shelf-row:first-child { border-top: 0; padding-top: 0; }
+.shelf-row b { display: block; font-weight: 650; }
+.low-btn { border: 1px solid var(--line); background: var(--surface); color: var(--muted); font: inherit; font-size: 13px; font-weight: 650; border-radius: 999px; padding: 0 10px; min-height: 34px; cursor: pointer; }
+.low-btn[aria-pressed="true"] { background: var(--warn-soft); color: var(--warn); border-color: transparent; }
+.cshelf-row { display: grid; grid-template-columns: 1fr 82px auto 40px; gap: 8px; align-items: center; margin-top: 8px; }
+.cshelf-row input { min-height: 44px; font-size: 16px; padding: 10px; }
+.shop { margin-top: 14px; padding: 12px; border-radius: 14px; background: var(--warn-soft); }
+.shop h3 { margin: 0 0 6px; font-size: 15px; color: var(--warn); }
+.shop ul { margin: 0 0 8px; padding-left: 18px; }
+.price-grid { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-variant-numeric: tabular-nums; }
+.price-grid .tot { font-weight: 700; color: var(--accent); font-size: 18px; }
+.kind-seg { margin-bottom: 14px; }
 [hidden] { display: none !important; }
 @media (prefers-reduced-motion: reduce) { .bar { transition: none; } }
 </style>
@@ -450,7 +516,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       <a class="tile" href="#calculator"><div class="ic indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><rect x="8" y="6" width="8" height="3.5" rx="1"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01"/></svg></div><b>Shrinkage</b><span>Size pieces for firing</span></a>
       <a class="tile" href="#ideas"><div class="ic mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v3C6 8 5 12 7 16c1 2.5 1.5 4 1.5 5h7c0-1 .5-2.5 1.5-5 2-4 1-8-3-10V3"/></svg></div><b>Ideas</b><span>What your clay can make</span></a>
       <a class="tile" href="#combos"><div class="ic violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg></div><b>Glaze combos</b><span>AMACO layers to try</span></a>
-      <a class="tile" href="#cones"><div class="ic coral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l5 16H7z"/><path d="M5 21h14"/></svg></div><b>Cone chart</b><span>Firing temperatures</span></a>
+      <a class="tile" href="#learn"><div class="ic coral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg></div><b>Mud School</b><span>Videos and how-tos</span></a>
     </div>
 
     <div class="section-head"><h2>Recent projects</h2><a class="link" href="#projects">See all</a></div>
@@ -458,6 +524,18 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 
     <div class="section-head" style="margin-top:4px"><h2>Combo to try today</h2><a class="link" href="#combos">All combos</a></div>
     <div class="card" id="homeCombo"></div>
+
+    <div class="section-head" style="margin-top:4px"><h2>Back up your studio</h2></div>
+    <div class="card">
+      <p class="hint" style="margin:0 0 12px">Save a backup file of your projects, combinations, clays, shelf and settings, or restore one on a new phone.</p>
+      <div class="btn-row">
+        <button class="btn" id="bkSave">Save backup</button>
+        <label class="btn-ghost" for="bkFile" style="margin:0;cursor:pointer">Restore</label>
+      </div>
+      <input type="file" id="bkFile" class="vh" accept=".json,application/json">
+      <p class="msg" id="bkMsg" hidden></p>
+      <textarea id="bkText" class="listtext" readonly hidden aria-label="Backup text"></textarea>
+    </div>
   </div>
 
   <!-- ===== CALCULATOR ===== -->
@@ -532,6 +610,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   <div id="page-ideas" hidden>
     <h1 class="page-title">What can I make?</h1>
     <p class="sub">Enter the clay you have, see which pieces it covers, and plan a batch.</p>
+    <div class="card wiz" id="wizCard"></div>
 
     <div class="card">
       <h2>Clay you have</h2>
@@ -551,6 +630,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
         </div>
       </div>
       <label class="check"><input type="checkbox" id="ideaBuf"> Add 10% extra for trimming and mistakes</label>
+      <div id="clayShelf"></div>
     </div>
 
     <div class="card result" id="ideaSummary" aria-live="polite"></div>
@@ -563,8 +643,30 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       <div id="planOut"></div>
     </div>
 
+    <div class="card" id="sizeCard">
+      <h2>How much clay for a size?</h2>
+      <p class="hint" style="margin:-6px 0 12px">Enter the finished size you want. Clay Day adds shrinkage from your Shrinkage setting and estimates the clay to weigh out.</p>
+      <div class="seg" role="group" aria-label="Shape">
+        <button data-shape="cyl" aria-pressed="true">Mug or vase</button>
+        <button data-shape="bowl" aria-pressed="false">Bowl</button>
+        <button data-shape="plate" aria-pressed="false">Plate</button>
+      </div>
+      <div class="row3">
+        <div class="field" id="szHf"><label for="szH">Height</label><input id="szH" type="number" inputmode="decimal" step="any" min="0" placeholder="4" style="padding-right:10px"></div>
+        <div class="field"><label for="szD">Width</label><input id="szD" type="number" inputmode="decimal" step="any" min="0" placeholder="3.5" style="padding-right:10px"></div>
+        <div class="field"><label for="szU">Units</label><select id="szU"><option value="in">in</option><option value="cm">cm</option></select></div>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <div class="field"><label for="szW">Walls</label><select id="szW"><option value="0.4">Thin</option><option value="0.5" selected>Medium</option><option value="0.7">Sturdy</option></select></div>
+        <div class="field" style="align-self:end">
+          <label class="check" style="margin:0;min-height:30px"><input type="checkbox" id="szTrim"> I trim a foot</label>
+          <label class="check" style="margin:0;min-height:30px" id="szHandleL"><input type="checkbox" id="szHandle"> Add a handle</label>
+        </div>
+      </div>
+      <div class="lres" id="sizeOut" aria-live="polite"></div>
+    </div>
     <div class="card" id="ideaList"></div>
-    <p class="hint">Weights are starting amounts of wet clay for thrown pieces, gathered from published potters&rsquo; charts (including Lakeside Pottery&rsquo;s weight chart). Your clay, wall thickness and throwing style change them, so adjust as you learn what works for you. Bag counts assume 25 lb bags.</p>
+    <p class="hint">Weights are starting amounts of wet clay, gathered from published potters&rsquo; charts (including Lakeside Pottery&rsquo;s weight chart). Pieces marked estimate are Clay Day&rsquo;s best guess based on similar forms. Your clay, wall thickness and throwing style change them, so adjust as you learn what works for you. Bag counts assume 25 lb bags.</p>
   </div>
 
   <!-- ===== PROJECTS ===== -->
@@ -577,6 +679,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
         </div>
         <button class="btn" id="projNew">New</button>
       </div>
+      <div class="seg kind-seg" id="kindSeg" role="group" aria-label="Show"></div>
       <p class="store-note" id="storeNote"></p>
       <div id="projList"></div>
     </div>
@@ -611,7 +714,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
           <label for="pClay">Clay body</label>
           <input type="text" id="pClay" list="clayList" placeholder="e.g. B-Mix">
         </div>
-        <div class="field">
+        <div class="field" id="stageField">
           <label id="stageLabel">Stage</label>
           <div class="stages" id="pStages" role="group" aria-labelledby="stageLabel"></div>
           <p class="stage-hint" id="stageHint"></p>
@@ -627,6 +730,21 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       <div class="card">
         <h2>Notes</h2>
         <textarea id="pNotes" aria-label="Notes" placeholder="How it fired, what you’d change next time"></textarea>
+      </div>
+
+      <div class="card" id="priceCard">
+        <h2>Pricing</h2>
+        <p class="hint" style="margin:-6px 0 12px">Add up what this piece cost to make and get a suggested price. Your rates are remembered for next time.</p>
+        <div class="row">
+          <div class="field"><label for="prClay">Clay used (lb)</label><input id="prClay" data-pf="clay" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
+          <div class="field"><label for="prCpl">Clay cost per lb ($)</label><input id="prCpl" data-pf="cpl" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
+          <div class="field"><label for="prMat">Glaze and materials ($)</label><input id="prMat" data-pf="mat" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
+          <div class="field"><label for="prFire">Firing cost ($)</label><input id="prFire" data-pf="fire" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
+          <div class="field"><label for="prHrs">Hours of work</label><input id="prHrs" data-pf="hrs" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
+          <div class="field"><label for="prRate">Hourly rate ($)</label><input id="prRate" data-pf="rate" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
+          <div class="field"><label for="prOh">Overhead (%)</label><input id="prOh" data-pf="oh" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
+        </div>
+        <div class="lres" id="priceOut" aria-live="polite" style="margin-top:12px"></div>
       </div>
 
       <div class="actions">
@@ -650,6 +768,12 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
         </div>
         <button class="btn" id="comboNew">New</button>
       </div>
+
+      <div class="section-head"><h2>Find combos for a glaze</h2></div>
+      <div class="card" id="recCard"></div>
+
+      <div class="section-head"><h2>My glaze shelf</h2></div>
+      <div class="card" id="shelfCard"></div>
 
       <div class="section-head"><h2>Your combinations</h2></div>
       <div class="card" id="myCombos"></div>
@@ -676,7 +800,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
           <li>Cooling matters. Some glazes, like Ancient Copper, change color with a slow cool.</li>
         </ul>
       </div>
-      <p class="hint">Previews show approximate colors only. AMACO fired these examples on white stoneware, so results on your clay will differ. Browse many more in <a href="https://amaco.com/resources/layering" target="_blank" rel="noopener">AMACO&rsquo;s layering database</a>.</p>
+      <p class="hint">Swatches show approximate glaze colors. Open a combo to see AMACO&rsquo;s fired example and potters&rsquo; photos, or add your own photo. AMACO fires its examples on white stoneware, so results on your clay will differ. Browse many more in <a href="https://amaco.com/resources/layering" target="_blank" rel="noopener">AMACO&rsquo;s layering database</a>.</p>
     </div>
 
     <div id="comboDetailView" class="cd" hidden></div>
@@ -707,6 +831,34 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       </div>
       <p class="msg err" id="cMsg" hidden></p>
     </div>
+  </div>
+
+  <!-- ===== MUD SCHOOL ===== -->
+  <div id="page-learn" hidden>
+    <h1 class="page-title">Mud School</h1>
+    <p class="sub">Videos and how-to guides for every step, from your first pinch pot to your hundredth teapot.</p>
+    <div class="card">
+      <label for="lrnQ">Find a video on anything</label>
+      <div class="pick-row" style="grid-template-columns:1fr auto;margin:0">
+        <input type="text" id="lrnQ" placeholder="Fixing S-cracks">
+        <a class="btn" id="lrnGo" href="https://www.youtube.com/results?search_query=pottery" target="_blank" rel="noopener">Search</a>
+      </div>
+      <div class="chips" id="lrnLv" role="group" aria-label="Filter by level" style="margin-top:12px">
+        <button class="chip" data-lv="all" aria-pressed="true">All</button>
+        <button class="chip" data-lv="beginner" aria-pressed="false">Beginner</button>
+        <button class="chip" data-lv="intermediate" aria-pressed="false">Intermediate</button>
+        <button class="chip" data-lv="advanced" aria-pressed="false">Advanced</button>
+      </div>
+    </div>
+      <div class="card" id="tbCard"><h2>Troubleshooting</h2><p class="hint" style="margin:-6px 0 10px">Tap a problem to see why it happens and how to fix it.</p><input type="search" id="tbQ" placeholder="Search problems, like cracks or crawling" aria-label="Search problems"><div id="tbList" style="margin-top:10px"><details class="tb" data-q="s-cracks in the bottom bowls, mugs an s or curved crack in the floor of a pot, often found after bisque. the floor wasn’t compressed, water sat in the bottom, or the base dried faster or slower than the walls."><summary><span><b>S-cracks in the bottom</b><small>Bowls, mugs</small></span></summary><div class="tb-body"><p><b>What you see:</b> An S or curved crack in the floor of a pot, often found after bisque.</p><p><b>Why it happens:</b> The floor wasn’t compressed, water sat in the bottom, or the base dried faster or slower than the walls.</p><p><b>How to fix it:</b> Compress the inside floor with a rib or sponge as you throw, sponge out any water, and dry pots slowly, flipping them once the rims firm up.</p></div></details><details class="tb" data-q="cracks while drying rims, handles, joins cracks at the rim, at handles or where pieces join, before firing. thin parts dried faster than thick parts, or two pieces were joined at different dryness."><summary><span><b>Cracks while drying</b><small>Rims, handles, joins</small></span></summary><div class="tb-body"><p><b>What you see:</b> Cracks at the rim, at handles or where pieces join, before firing.</p><p><b>Why it happens:</b> Thin parts dried faster than thick parts, or two pieces were joined at different dryness.</p><p><b>How to fix it:</b> Dry slowly under loose plastic, wrap rims and handles, join pieces at the same leather-hard stage, and always score and slip.</p></div></details><details class="tb" data-q="handles cracking or popping off mugs, pitchers gaps or cracks where the handle meets the body. the handle and mug were at different moisture, or the join wasn’t blended in."><summary><span><b>Handles cracking or popping off</b><small>Mugs, pitchers</small></span></summary><div class="tb-body"><p><b>What you see:</b> Gaps or cracks where the handle meets the body.</p><p><b>Why it happens:</b> The handle and mug were at different moisture, or the join wasn’t blended in.</p><p><b>How to fix it:</b> Attach handles when both are leather hard, score and slip both surfaces, smooth the join with a finger or tool, and dry under plastic for a day.</p></div></details><details class="tb" data-q="warped rims or plates plates, wide bowls rims turn oval or plates rock after drying or firing. uneven wall thickness, uneven drying, an uneven kiln shelf, or firing past the clay’s cone."><summary><span><b>Warped rims or plates</b><small>Plates, wide bowls</small></span></summary><div class="tb-body"><p><b>What you see:</b> Rims turn oval or plates rock after drying or firing.</p><p><b>Why it happens:</b> Uneven wall thickness, uneven drying, an uneven kiln shelf, or firing past the clay’s cone.</p><p><b>How to fix it:</b> Keep walls even, dry flat pieces slowly and evenly (weighting the rim helps), use a flat shelf, and fire to the cone on the clay bag.</p></div></details><details class="tb" data-q="glaze crawling any glaze glaze pulls back into beads or islands, leaving bare clay. dust, oil or water on the bisque, glaze put on too thick, or a coat that cracked as it dried."><summary><span><b>Glaze crawling</b><small>Any glaze</small></span></summary><div class="tb-body"><p><b>What you see:</b> Glaze pulls back into beads or islands, leaving bare clay.</p><p><b>Why it happens:</b> Dust, oil or water on the bisque, glaze put on too thick, or a coat that cracked as it dried.</p><p><b>How to fix it:</b> Wipe bisque with a damp sponge, keep hand lotion off pieces, apply thinner coats and let each coat dry before the next.</p></div></details><details class="tb" data-q="pinholes and blisters any glaze tiny holes or bubbles in the fired glaze surface. gases escaping from the clay or glaze, a very thick application, or a firing that ended too quickly."><summary><span><b>Pinholes and blisters</b><small>Any glaze</small></span></summary><div class="tb-body"><p><b>What you see:</b> Tiny holes or bubbles in the fired glaze surface.</p><p><b>Why it happens:</b> Gases escaping from the clay or glaze, a very thick application, or a firing that ended too quickly.</p><p><b>How to fix it:</b> Bisque to the recommended cone, stir and apply glaze evenly, avoid overly thick layers, and try a short hold at peak temperature or a slower cool.</p></div></details><details class="tb" data-q="crazing glazed ware a fine network of cracks in the glaze, sometimes appearing days or weeks later. the glaze shrinks more than the clay as it cools, so it is stretched until it cracks."><summary><span><b>Crazing</b><small>Glazed ware</small></span></summary><div class="tb-body"><p><b>What you see:</b> A fine network of cracks in the glaze, sometimes appearing days or weeks later.</p><p><b>Why it happens:</b> The glaze shrinks more than the clay as it cools, so it is stretched until it cracks.</p><p><b>How to fix it:</b> Use a glaze and clay that are made to fit, fire to the full recommended cone, or test a different clay body. Crazed food surfaces can trap bacteria, so keep them off the inside of mugs and bowls.</p></div></details><details class="tb" data-q="shivering glazed ware flakes of glaze chip off rims and edges. the opposite of crazing: the glaze is squeezed too hard by the clay."><summary><span><b>Shivering</b><small>Glazed ware</small></span></summary><div class="tb-body"><p><b>What you see:</b> Flakes of glaze chip off rims and edges.</p><p><b>Why it happens:</b> The opposite of crazing: the glaze is squeezed too hard by the clay.</p><p><b>How to fix it:</b> Switch the glaze or clay. Don’t use shivered pieces for food or drink, because the flakes are sharp.</p></div></details><details class="tb" data-q="glaze ran onto the kiln shelf runny glazes glaze pooled at the foot or stuck the pot to the shelf. too thick a layer, a fluid glaze near the bottom, or firing hotter than the glaze likes."><summary><span><b>Glaze ran onto the kiln shelf</b><small>Runny glazes</small></span></summary><div class="tb-body"><p><b>What you see:</b> Glaze pooled at the foot or stuck the pot to the shelf.</p><p><b>Why it happens:</b> Too thick a layer, a fluid glaze near the bottom, or firing hotter than the glaze likes.</p><p><b>How to fix it:</b> Keep runny glazes off the bottom third, wipe the foot clean, fire test pieces on a drip tray or cookie, and check the glaze’s cone range.</p></div></details><details class="tb" data-q="cracks after firing (dunting) fired ware sharp cracks right through a pot after the kiln is opened. the piece cooled too quickly or had very uneven thickness."><summary><span><b>Cracks after firing (dunting)</b><small>Fired ware</small></span></summary><div class="tb-body"><p><b>What you see:</b> Sharp cracks right through a pot after the kiln is opened.</p><p><b>Why it happens:</b> The piece cooled too quickly or had very uneven thickness.</p><p><b>How to fix it:</b> Let the kiln cool fully before opening, keep walls and bases even, and avoid placing pieces near open peepholes during cooling.</p></div></details><details class="tb" data-q="bloating clay body bumps or bubbles in the clay itself after glaze firing. the clay was fired hotter than it’s made for, or the bisque was too fast to burn everything out."><summary><span><b>Bloating</b><small>Clay body</small></span></summary><div class="tb-body"><p><b>What you see:</b> Bumps or bubbles in the clay itself after glaze firing.</p><p><b>Why it happens:</b> The clay was fired hotter than it’s made for, or the bisque was too fast to burn everything out.</p><p><b>How to fix it:</b> Fire to the cone on the clay bag and use a slower bisque firing.</p></div></details><details class="tb" data-q="clay won’t center or walls collapse wheel clay wobbles off-center, or walls twist and slump while throwing. clay too soft or too much water, hands not braced, or the wheel spinning too fast for the stage."><summary><span><b>Clay won’t center or walls collapse</b><small>Wheel</small></span></summary><div class="tb-body"><p><b>What you see:</b> Clay wobbles off-center, or walls twist and slump while throwing.</p><p><b>Why it happens:</b> Clay too soft or too much water, hands not braced, or the wheel spinning too fast for the stage.</p><p><b>How to fix it:</b> Brace your elbows, use just enough water, cone the clay up and down to center, slow the wheel as the walls get taller, and let soft clay firm up.</p></div></details><details class="tb" data-q="patchy or streaky glaze brushed glaze brush marks, light spots or uneven color after firing. glaze not stirred, too few coats, or coats applied before the last one dried."><summary><span><b>Patchy or streaky glaze</b><small>Brushed glaze</small></span></summary><div class="tb-body"><p><b>What you see:</b> Brush marks, light spots or uneven color after firing.</p><p><b>Why it happens:</b> Glaze not stirred, too few coats, or coats applied before the last one dried.</p><p><b>How to fix it:</b> Stir well, brush on 2 to 3 even coats in different directions, and let each coat dry to the touch first.</p></div></details></div><p class="empty" id="tbNone" hidden>No match. Try the video search above.</p></div>
+      <div class="card lrn-sec"><h2>Getting started</h2><div class="ref-list"><a class="lrn" href="https://www.hot-clay.com/blogs/knowledge-base/where-do-i-start-and-how-do-i-learn" target="_blank" rel="noopener" data-lv="beginner"><span><b>Where do I start?</b><small>Hot Clay &middot; Guide</small></span><span class="lv lv-beginner">Beginner</span></a><a class="lrn" href="https://ceramic.school/7-youtube-channels-to-follow-to-learn-pottery-at-home" target="_blank" rel="noopener" data-lv="beginner"><span><b>7 YouTube channels with free beginner lessons</b><small>Ceramic School &middot; Guide</small></span><span class="lv lv-beginner">Beginner</span></a><a class="lrn" href="https://www.youtube.com/results?search_query=how+to+wedge+clay+for+beginners" target="_blank" rel="noopener" data-lv="beginner"><span><b>Wedging clay for beginners</b><small>YouTube &middot; Videos</small></span><span class="lv lv-beginner">Beginner</span></a><a class="lrn" href="https://www.youtube.com/results?search_query=pottery+tools+for+beginners+explained" target="_blank" rel="noopener" data-lv="beginner"><span><b>Pottery tools and what they do</b><small>YouTube &middot; Videos</small></span><span class="lv lv-beginner">Beginner</span></a></div></div>
+      <div class="card lrn-sec"><h2>Wheel throwing</h2><div class="ref-list"><a class="lrn" href="https://www.youtube.com/results?search_query=how+to+center+clay+on+the+pottery+wheel+beginner" target="_blank" rel="noopener" data-lv="beginner"><span><b>Centering clay on the wheel</b><small>YouTube &middot; Videos</small></span><span class="lv lv-beginner">Beginner</span></a><a class="lrn" href="https://www.youtube.com/results?search_query=how+to+throw+a+cylinder+on+the+pottery+wheel" target="_blank" rel="noopener" data-lv="beginner"><span><b>Throwing a cylinder</b><small>YouTube &middot; Videos</small></span><span class="lv lv-beginner">Beginner</span></a><a class="lrn" href="https://www.youtube.com/results?search_query=how+to+throw+a+bowl+on+the+pottery+wheel" target="_blank" rel="noopener" data-lv="beginner"><span><b>Throwing a bowl</b><small>YouTube &middot; Videos</small></span><span class="lv lv-beginner">Beginner</span></a><a class="lrn" href="https://www.youtube.com/results?search_query=pottery+trimming+foot+ring+tutorial" target="_blank" rel="noopener" data-lv="intermediate"><span><b>Trimming a foot ring</b><small>YouTube &middot; Videos</small></span><span class="lv lv-intermediate">Intermediate</span></a><a class="lrn" href="https://www.youtube.com/results?search_query=how+to+pull+and+attach+a+mug+handle+pottery" target="_blank" rel="noopener" data-lv="intermediate"><span><b>Pulling and attaching mug handles</b><small>YouTube &middot; Videos</small></span><span class="lv lv-intermediate">Intermediate</span></a><a class="lrn" href="https://www.youtube.com/results?search_query=how+to+throw+a+teapot+spout+and+lid+pottery" target="_blank" rel="noopener" data-lv="advanced"><span><b>Throwing lids and teapots</b><small>YouTube &middot; Videos</small></span><span class="lv lv-advanced">Advanced</span></a></div></div>
+      <div class="card lrn-sec"><h2>Hand-building</h2><div class="ref-list"><a class="lrn" href="https://www.youtube.com/results?search_query=how+to+make+a+pinch+pot" target="_blank" rel="noopener" data-lv="beginner"><span><b>Making a pinch pot</b><small>YouTube &middot; Videos</small></span><span class="lv lv-beginner">Beginner</span></a><a class="lrn" href="https://www.youtube.com/results?search_query=coil+pottery+tutorial+beginner" target="_blank" rel="noopener" data-lv="beginner"><span><b>Coil building</b><small>YouTube &middot; Videos</small></span><span class="lv lv-beginner">Beginner</span></a><a class="lrn" href="https://www.youtube.com/results?search_query=slab+built+mug+tutorial+pottery" target="_blank" rel="noopener" data-lv="intermediate"><span><b>Slab mugs and plates</b><small>YouTube &middot; Videos</small></span><span class="lv lv-intermediate">Intermediate</span></a></div></div>
+      <div class="card lrn-sec"><h2>Glazing and layering</h2><div class="ref-list"><a class="lrn" href="https://www.youtube.com/channel/UCkK3spxheWGDPQrxFk0UNzg" target="_blank" rel="noopener" data-lv="all"><span><b>AMACO on YouTube</b><small>AMACO &middot; Videos</small></span><span class="lv lv-all">All levels</span></a><a class="lrn" href="https://amaco.com/resources/layering" target="_blank" rel="noopener" data-lv="all"><span><b>AMACO layering database</b><small>AMACO &middot; Guide</small></span><span class="lv lv-all">All levels</span></a><a class="lrn" href="https://amaco.com/resources/blog/customer-favorite-amaco-glaze-combinations-to-try" target="_blank" rel="noopener" data-lv="beginner"><span><b>Customer favorite AMACO glaze combinations</b><small>AMACO &middot; Article</small></span><span class="lv lv-beginner">Beginner</span></a><a class="lrn" href="https://www.theceramicshop.com/downloads/Coyote%20glazing%20tips.pdf" target="_blank" rel="noopener" data-lv="beginner"><span><b>Coyote glazing tips</b><small>Coyote Clay &amp; Color &middot; Guide</small></span><span class="lv lv-beginner">Beginner</span></a><a class="lrn" href="https://www.youtube.com/results?search_query=how+to+brush+and+dip+glaze+pottery+beginner" target="_blank" rel="noopener" data-lv="beginner"><span><b>Brushing, dipping and layering glazes</b><small>YouTube &middot; Videos</small></span><span class="lv lv-beginner">Beginner</span></a><a class="lrn" href="https://www.glazeshare.com/glaze/pc-33-iron-lustre" target="_blank" rel="noopener" data-lv="all"><span><b>GlazeShare community combinations</b><small>GlazeShare &middot; Photos</small></span><span class="lv lv-all">All levels</span></a></div></div>
+      <div class="card lrn-sec"><h2>Clay, shrinkage and testing</h2><div class="ref-list"><a class="lrn" href="https://ceramicartsnetwork.org/daily/article/Testing-1-2-3-How-to-Test-Clay-Bodies-to-Find-the-Right-Sculpture-or-Pottery-Clay-for-Your-Work" target="_blank" rel="noopener" data-lv="intermediate"><span><b>How to test clay bodies</b><small>Ceramic Arts Network &middot; Article</small></span><span class="lv lv-intermediate">Intermediate</span></a><a class="lrn" href="https://ceramicartsnetwork.org/pottery-making-illustrated/pottery-making-illustrated-article/Reverse-Engineering-for-the-Potter-128708" target="_blank" rel="noopener" data-lv="intermediate"><span><b>Reverse engineering a pot: how much clay to use</b><small>Pottery Making Illustrated &middot; Article</small></span><span class="lv lv-intermediate">Intermediate</span></a><a class="lrn" href="https://ceramicartsnetwork.org/pottery-making-illustrated/pottery-making-illustrated-article/in-the-studio-math-for-potters-part-2-volume" target="_blank" rel="noopener" data-lv="advanced"><span><b>Math for potters: volume</b><small>Pottery Making Illustrated &middot; Article</small></span><span class="lv lv-advanced">Advanced</span></a><a class="lrn" href="https://lakesidepottery.com/HTML%20Text/Tips/amount-of-clay-per-pottery-ware.htm" target="_blank" rel="noopener" data-lv="beginner"><span><b>Clay weights for different pots</b><small>Lakeside Pottery &middot; Guide</small></span><span class="lv lv-beginner">Beginner</span></a><a class="lrn" href="https://lagunaclay.com/_files/ugd/e5330f_e932d6d4f0da494eb46f5695b9df9bd1.pdf" target="_blank" rel="noopener" data-lv="intermediate"><span><b>Choosing a clay body</b><small>Laguna Clay &middot; Guide</small></span><span class="lv lv-intermediate">Intermediate</span></a><a class="lrn" href="https://digitalfire.com/glossary/firing%2Bshrinkage" target="_blank" rel="noopener" data-lv="advanced"><span><b>Firing shrinkage explained</b><small>Digitalfire &middot; Article</small></span><span class="lv lv-advanced">Advanced</span></a></div></div>
+      <div class="card lrn-sec"><h2>Firing and kilns</h2><div class="ref-list"><a class="lrn" href="https://www.youtube.com/results?search_query=bisque+vs+glaze+firing+explained+pottery" target="_blank" rel="noopener" data-lv="beginner"><span><b>Bisque and glaze firing basics</b><small>YouTube &middot; Videos</small></span><span class="lv lv-beginner">Beginner</span></a><a class="lrn" href="https://www.youtube.com/results?search_query=how+to+load+an+electric+kiln+pottery" target="_blank" rel="noopener" data-lv="intermediate"><span><b>Loading an electric kiln</b><small>YouTube &middot; Videos</small></span><span class="lv lv-intermediate">Intermediate</span></a><a class="lrn" href="https://www.youtube.com/results?search_query=how+to+use+witness+cones+kiln+firing" target="_blank" rel="noopener" data-lv="intermediate"><span><b>Using witness cones</b><small>YouTube &middot; Videos</small></span><span class="lv lv-intermediate">Intermediate</span></a></div></div>
+      <div class="card lrn-sec"><h2>Potters worth following</h2><div class="ref-list"><a class="lrn" href="https://www.youtube.com/user/sleachpots" target="_blank" rel="noopener" data-lv="all"><span><b>Simon Leach</b><small>YouTube channel &middot; Videos</small></span><span class="lv lv-all">All levels</span></a><a class="lrn" href="https://www.youtube.com/user/hsinchuen" target="_blank" rel="noopener" data-lv="intermediate"><span><b>Hsin-Chuen Lin</b><small>YouTube channel &middot; Videos</small></span><span class="lv lv-intermediate">Intermediate</span></a><a class="lrn" href="https://www.youtube.com/results?search_query=Florian+Gadsby+pottery" target="_blank" rel="noopener" data-lv="all"><span><b>Florian Gadsby</b><small>YouTube &middot; Videos</small></span><span class="lv lv-all">All levels</span></a><a class="lrn" href="https://lakesidepottery.com/HTML%20Text/Tips/amount-of-clay-per-pottery-ware.htm" target="_blank" rel="noopener" data-lv="all"><span><b>Lakeside Pottery tips</b><small>Lakeside Pottery &middot; Guide</small></span><span class="lv lv-all">All levels</span></a></div></div>
+    <p class="hint">Links open in a new tab. Topic links show the latest YouTube results, so you always get current videos.</p>
   </div>
 
   <!-- ===== CONES ===== -->
@@ -764,6 +916,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 <div class="more-menu" id="moreMenu" hidden role="menu" aria-label="More pages">
   <h2>More</h2>
   <a href="#cones" id="more-cones" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l5 16H7z"/><path d="M5 21h14"/></svg><span>Cone chart<small>Firing temperatures and converter</small></span></a>
+  <a href="#learn" id="more-learn" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg><span>Mud School<small>Pottery videos and how-to guides</small></span></a>
 </div>
 
 <nav class="bottom" aria-label="Pages">
@@ -1055,28 +1208,70 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   });
 
   /* ================= IDEAS ================= */
+  // m: w = wheel, h = hand-building, b = either; lv: 1 beginner to 3 advanced; pt: 1 = needs handle, lid or spout
   var ITEMS = [
-    { n: 'Espresso cup (3 oz)', g: 225, c: 'Drinkware' },
-    { n: 'Small mug (6 oz)', g: 283, c: 'Drinkware' },
-    { n: 'Coffee mug (8 oz)', g: 397, c: 'Drinkware' },
-    { n: 'Large mug (12 oz)', g: 453, c: 'Drinkware' },
-    { n: 'Beer mug (14 oz)', g: 595, c: 'Drinkware' },
-    { n: 'Saucer', g: 369, c: 'Plates' },
-    { n: 'Bread and butter plate', g: 595, c: 'Plates' },
-    { n: 'Side plate', g: 992, c: 'Plates' },
-    { n: 'Medium dinner plate', g: 1361, c: 'Plates' },
-    { n: 'Large dinner plate', g: 1814, c: 'Plates' },
-    { n: 'Small bowl', g: 623, c: 'Bowls' },
-    { n: 'Cereal bowl', g: 816, c: 'Bowls' },
-    { n: 'Medium bowl', g: 1814, c: 'Bowls' },
-    { n: 'Large bowl', g: 2608, c: 'Bowls' },
-    { n: 'Sugar bowl', g: 907, c: 'Other' },
-    { n: 'Small vase (1 cup)', g: 680, c: 'Other' },
-    { n: 'Vase (1 quart)', g: 1043, c: 'Other' },
-    { n: 'Large vase (2 quart)', g: 1678, c: 'Other' },
-    { n: '8-cup teapot', g: 1724, c: 'Other' },
-    { n: '4-quart casserole', g: 2608, c: 'Other' }
+    { n: 'Espresso cup (3 oz)', g: 225, c: 'Drinkware', m: 'b', lv: 1, tg: ['use', 'gift'], pt: 0 },
+    { n: 'Small mug (6 oz)', g: 283, c: 'Drinkware', m: 'b', lv: 2, tg: ['use', 'gift'], pt: 1 },
+    { n: 'Coffee mug (8 oz)', g: 397, c: 'Drinkware', m: 'b', lv: 2, tg: ['use', 'gift'], pt: 1 },
+    { n: 'Large mug (12 oz)', g: 453, c: 'Drinkware', m: 'b', lv: 2, tg: ['use', 'gift'], pt: 1 },
+    { n: 'Beer mug (14 oz)', g: 595, c: 'Drinkware', m: 'b', lv: 2, tg: ['use', 'gift'], pt: 1 },
+    { n: 'Saucer', g: 369, c: 'Plates', m: 'b', lv: 1, tg: ['use', 'learn'], pt: 0 },
+    { n: 'Bread and butter plate', g: 595, c: 'Plates', m: 'b', lv: 1, tg: ['use', 'gift'], pt: 0 },
+    { n: 'Side plate', g: 992, c: 'Plates', m: 'b', lv: 2, tg: ['use'], pt: 0 },
+    { n: 'Medium dinner plate', g: 1361, c: 'Plates', m: 'b', lv: 2, tg: ['use'], pt: 0 },
+    { n: 'Large dinner plate', g: 1814, c: 'Plates', m: 'b', lv: 3, tg: ['use'], pt: 0 },
+    { n: 'Small bowl', g: 623, c: 'Bowls', m: 'b', lv: 1, tg: ['use', 'gift', 'learn'], pt: 0 },
+    { n: 'Cereal bowl', g: 816, c: 'Bowls', m: 'b', lv: 1, tg: ['use', 'learn'], pt: 0 },
+    { n: 'Medium bowl', g: 1814, c: 'Bowls', m: 'b', lv: 2, tg: ['use'], pt: 0 },
+    { n: 'Large bowl', g: 2608, c: 'Bowls', m: 'w', lv: 3, tg: ['use', 'decor'], pt: 0 },
+    { n: 'Sugar bowl', g: 907, c: 'Teaware & pitchers', m: 'w', lv: 2, tg: ['use', 'gift'], pt: 1 },
+    { n: 'Small vase (1 cup)', g: 680, c: 'Home & garden', m: 'b', lv: 1, tg: ['decor', 'gift', 'learn'], pt: 0 },
+    { n: 'Vase (1 quart)', g: 1043, c: 'Home & garden', m: 'b', lv: 2, tg: ['decor', 'gift'], pt: 0 },
+    { n: 'Large vase (2 quart)', g: 1678, c: 'Home & garden', m: 'w', lv: 2, tg: ['decor'], pt: 0 },
+    { n: '8-cup teapot', g: 1724, c: 'Teaware & pitchers', m: 'w', lv: 3, tg: ['use', 'gift'], pt: 1 },
+    { n: '4-quart casserole', g: 2608, c: 'Kitchen & serving', m: 'w', lv: 3, tg: ['use'], pt: 1 },
+    // added
+    { n: 'Sake cup', g: 113, c: 'Drinkware', m: 'b', lv: 1, tg: ['use', 'gift', 'learn'], pt: 0, est: true },
+    { n: 'Yunomi (handleless cup)', g: 340, c: 'Drinkware', m: 'w', lv: 1, tg: ['use', 'gift', 'learn'], pt: 0, est: true },
+    { n: 'Cocktail glass (8 oz)', g: 453, c: 'Drinkware', m: 'w', lv: 1, tg: ['use', 'gift'], pt: 0 },
+    { n: 'Tumbler (12 oz)', g: 567, c: 'Drinkware', m: 'w', lv: 1, tg: ['use', 'gift', 'learn'], pt: 0 },
+    { n: 'Tall tumbler (16 oz)', g: 680, c: 'Drinkware', m: 'w', lv: 2, tg: ['use', 'gift'], pt: 0 },
+    { n: 'Berry bowl', g: 680, c: 'Bowls', m: 'w', lv: 2, tg: ['use', 'gift'], pt: 0, est: true },
+    { n: 'Ramen bowl', g: 1134, c: 'Bowls', m: 'w', lv: 2, tg: ['use'], pt: 0, est: true },
+    { n: 'Pie plate', g: 1134, c: 'Plates', m: 'b', lv: 2, tg: ['use', 'gift'], pt: 0 },
+    { n: 'Pasta plate', g: 2223, c: 'Plates', m: 'w', lv: 3, tg: ['use'], pt: 0 },
+    { n: 'Round platter', g: 2041, c: 'Plates', m: 'b', lv: 2, tg: ['use', 'gift', 'decor'], pt: 0 },
+    { n: 'Sake jar or small creamer', g: 340, c: 'Teaware & pitchers', m: 'w', lv: 2, tg: ['use', 'gift'], pt: 0 },
+    { n: 'Cream pitcher', g: 397, c: 'Teaware & pitchers', m: 'w', lv: 2, tg: ['use', 'gift'], pt: 1 },
+    { n: '1 pint pitcher', g: 680, c: 'Teaware & pitchers', m: 'w', lv: 2, tg: ['use', 'gift'], pt: 1 },
+    { n: '4 pint pitcher', g: 2608, c: 'Teaware & pitchers', m: 'w', lv: 3, tg: ['use'], pt: 1 },
+    { n: 'Small teapot', g: 992, c: 'Teaware & pitchers', m: 'w', lv: 3, tg: ['use', 'gift'], pt: 1 },
+    { n: 'Medium teapot', g: 1531, c: 'Teaware & pitchers', m: 'w', lv: 3, tg: ['use', 'gift'], pt: 1 },
+    { n: 'Large teapot', g: 1984, c: 'Teaware & pitchers', m: 'w', lv: 3, tg: ['use'], pt: 1 },
+    { n: 'Small carafe', g: 1134, c: 'Teaware & pitchers', m: 'w', lv: 3, tg: ['use', 'gift'], pt: 0 },
+    { n: 'Small wine decanter', g: 1219, c: 'Teaware & pitchers', m: 'w', lv: 3, tg: ['use', 'gift'], pt: 0 },
+    { n: '1 liter wine decanter', g: 1984, c: 'Teaware & pitchers', m: 'w', lv: 3, tg: ['use'], pt: 0 },
+    { n: 'Salt or pepper shaker', g: 181, c: 'Kitchen & serving', m: 'w', lv: 2, tg: ['use', 'gift'], pt: 1 },
+    { n: 'Spoon rest', g: 635, c: 'Kitchen & serving', m: 'b', lv: 1, tg: ['use', 'gift', 'learn'], pt: 0 },
+    { n: 'Honey pot with lid', g: 680, c: 'Kitchen & serving', m: 'w', lv: 2, tg: ['use', 'gift'], pt: 1, est: true },
+    { n: 'Butter dish', g: 1134, c: 'Kitchen & serving', m: 'b', lv: 2, tg: ['use', 'gift'], pt: 1, est: true },
+    { n: '1 quart casserole', g: 992, c: 'Kitchen & serving', m: 'w', lv: 3, tg: ['use'], pt: 1 },
+    { n: 'Utensil crock', g: 1361, c: 'Kitchen & serving', m: 'b', lv: 1, tg: ['use', 'gift'], pt: 0, est: true },
+    { n: 'Medium storage jar', g: 1531, c: 'Kitchen & serving', m: 'w', lv: 2, tg: ['use'], pt: 1 },
+    { n: '2 quart casserole', g: 1814, c: 'Kitchen & serving', m: 'w', lv: 3, tg: ['use'], pt: 1 },
+    { n: 'Large storage jar', g: 2268, c: 'Kitchen & serving', m: 'w', lv: 3, tg: ['use'], pt: 1 },
+    { n: 'Candle holder', g: 283, c: 'Home & garden', m: 'b', lv: 1, tg: ['decor', 'gift', 'learn'], pt: 0, est: true },
+    { n: 'Bud vase', g: 340, c: 'Home & garden', m: 'w', lv: 1, tg: ['decor', 'gift', 'learn'], pt: 0, est: true },
+    { n: 'Small planter (4 inch)', g: 680, c: 'Home & garden', m: 'b', lv: 1, tg: ['garden', 'decor', 'gift'], pt: 0, est: true },
+    { n: 'Piggy bank', g: 680, c: 'Home & garden', m: 'w', lv: 2, tg: ['gift', 'decor'], pt: 0 },
+    { n: 'Medium planter (6 inch)', g: 1361, c: 'Home & garden', m: 'b', lv: 2, tg: ['garden', 'decor'], pt: 0, est: true },
+    { n: 'Lamp base', g: 4173, c: 'Home & garden', m: 'w', lv: 3, tg: ['decor'], pt: 0 },
+    { n: 'Clay ornament', g: 57, c: 'Small gifts', m: 'h', lv: 1, tg: ['gift', 'decor', 'learn'], pt: 0, est: true },
+    { n: 'Ring dish', g: 170, c: 'Small gifts', m: 'h', lv: 1, tg: ['gift', 'decor', 'learn'], pt: 0, est: true },
+    { n: 'Pinch pot', g: 227, c: 'Small gifts', m: 'h', lv: 1, tg: ['learn', 'gift', 'decor'], pt: 0, est: true },
+    { n: 'Soap dish', g: 340, c: 'Small gifts', m: 'h', lv: 1, tg: ['use', 'gift'], pt: 0, est: true }
   ];
+  var CATS = ['Drinkware', 'Bowls', 'Plates', 'Teaware & pitchers', 'Kitchen & serving', 'Home & garden', 'Small gifts'];
   ITEMS.forEach(function (it, i) { it.id = i; });
   var BAG_G = 25 * 453.592;
   var plan = sget('clayday:plan', []).filter(function (p) { return ITEMS[p.i]; });
@@ -1098,13 +1293,13 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       ITEMS.forEach(function (it) { if (have >= it.g * k) { fitCount++; if (!best || it.g > best.g) best = it; } });
       var h = best
         ? '<div class="label">Biggest single piece you can make</div><div class="name-big">' + best.n + '</div>'
-        : '<div class="label">Not enough for a single piece yet</div><div class="name-big">Smallest needs ' + lbOz(225 * k) + '</div>';
+        : '<div class="label">Not enough for a single piece yet</div><div class="name-big">Smallest needs ' + lbOz(57 * k) + '</div>';
       h += '<div class="stats"><div class="stat"><div class="label">You have</div><div class="v">' + lbOz(have) + '</div></div>' +
            '<div class="stat"><div class="label">Pieces that fit</div><div class="v">' + fitCount + ' of ' + ITEMS.length + '</div></div></div>';
       sum.innerHTML = h;
     }
     var l = '';
-    ['Drinkware', 'Bowls', 'Plates', 'Other'].forEach(function (cat) {
+    CATS.forEach(function (cat) {
       l += '<div class="group"><h3>' + cat + '</h3>';
       ITEMS.filter(function (i) { return i.c === cat; }).sort(function (a, b) { return a.g - b.g; }).forEach(function (it) {
         var need = it.g * k, tag = '';
@@ -1114,7 +1309,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
                    : '<span class="tag no">' + lbOz(need - have) + ' short</span>';
         }
         var q = planQty(it.id);
-        l += '<div class="item"><div><div class="nm">' + it.n + '</div><div class="sub2">' + lbOz(need) + ' &middot; ' + Math.round(need) + ' g each' +
+        l += '<div class="item"><div><div class="nm">' + it.n + '</div><div class="sub2">' + lbOz(need) + ' &middot; ' + Math.round(need) + ' g each' + (it.est ? ' &middot; estimate' : '') +
              (q ? ' &middot; <span class="inplan">' + q + ' in plan</span>' : '') + '</div></div>' +
              '<div class="right">' + tag + '<button class="btn-add" data-add="' + it.id + '" aria-label="Add ' + it.n + ' to batch plan">Add</button></div></div>';
       });
@@ -1148,6 +1343,116 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   }
   function savePlan() { sset('clayday:plan', plan); }
   function saveIdeaSet() { sset('clayday:ideas', { amt: $('ideaAmt').value, unit: $('ideaUnit').value, buf: $('ideaBuf').checked }); }
+
+  /* ---- "what should I make?" wizard ---- */
+  var WIZ_STEPS = [
+    { k: 'clay', q: 'How much clay do you have?', opts: [] },
+    { k: 'method', q: 'How do you want to make it?', opts: [['w', 'On the wheel', 'Throwing'], ['h', 'Hand-building', 'Pinch, coil or slab'], ['b', 'Either is fine', '']] },
+    { k: 'lv', q: 'How much experience do you have?', opts: [[1, 'New to clay', 'Still learning the basics'], [2, 'Some practice', 'Comfortable with simple forms'], [3, 'Experienced', 'Ready for lids, spouts and big forms']] },
+    { k: 'goal', q: 'What is it for?', opts: [['use', 'Things to use every day', 'Mugs, bowls, plates'], ['gift', 'Gifts', 'Something to give away'], ['decor', 'Home and garden', 'Vases, planters, decor'], ['learn', 'Practice my skills', 'Quick pieces to build confidence']] },
+    { k: 'time', q: 'How much time do you have?', opts: [['one', 'One session', 'No handles, lids or spouts'], ['multi', 'A few sessions', 'Handles and lids are fine']] }
+  ];
+  var CAT_TIPS = {
+    'Drinkware': 'Keep the walls an even thickness, about 1/4 inch, so cups feel light in the hand.',
+    'Bowls': 'Compress the inside floor with a rib to help prevent S-cracks.',
+    'Plates': 'Dry flat pieces slowly under plastic so the rims don\u2019t warp.',
+    'Teaware & pitchers': 'Make spouts, lids and handles in the same session so everything dries at the same rate.',
+    'Kitchen & serving': 'Measure the lid seat with calipers so the lid still fits after drying.',
+    'Home & garden': 'Planters need a drainage hole. Cut it before the clay is leather hard.',
+    'Small gifts': 'A good use for scraps. Wedge leftovers together before you start.'
+  };
+  var wiz = { on: false, step: 0, a: {} };
+  function wizClayOpts() {
+    var o = [], have = haveG();
+    if (have !== null) o.push(['have', 'What I entered above', lbOz(have)]);
+    o.push([453, 'About 1 lb', 'A small lump'], [1361, 'About 3 lb', 'A few pieces'], [4536, 'About 10 lb', 'A good session'], [11340, 'A 25 lb bag', 'Enough for a batch']);
+    return o;
+  }
+  function wizClayG() { return wiz.a.clay === 'have' ? (haveG() || 0) : +wiz.a.clay; }
+  function wizResults() {
+    var have = wizClayG(), k = bufK(), lv = +wiz.a.lv, m = wiz.a.method, goal = wiz.a.goal, one = wiz.a.time === 'one';
+    var list = [];
+    ITEMS.forEach(function (it) {
+      var need = it.g * k; if (need > have) return;
+      if (m !== 'b' && it.m !== 'b' && it.m !== m) return;
+      if (it.lv > lv) return;
+      if (one && it.pt) return;
+      var score = 0;
+      if (it.tg.indexOf(goal) > -1 || (goal === 'decor' && it.tg.indexOf('garden') > -1)) score += 4;
+      if (it.lv === lv) score += (lv === 3 ? 1 : 2);
+      if (goal === 'learn' && it.lv === 1) score += 2;
+      if (m !== 'b' && it.m === m) score += 1;
+      score += Math.min(2, Math.floor(have / need) / 3);
+      list.push({ it: it, need: need, count: Math.floor(have / need), score: score });
+    });
+    list.sort(function (a, b) { return b.score - a.score || b.it.g - a.it.g; });
+    return list;
+  }
+  function wizReasons(r) {
+    var it = r.it, why = [];
+    why.push(r.count > 1 ? 'Your clay makes ' + r.count : 'Your clay covers one');
+    why.push(it.m === 'h' ? 'Made by hand' : it.m === 'w' ? 'Thrown on the wheel' : 'Wheel or hand-building');
+    why.push(it.pt ? 'Needs a handle, lid or spout' : 'Done in one session');
+    return why.join(' \u00b7 ');
+  }
+  function renderWiz() {
+    var el = $('wizCard');
+    if (!wiz.on) {
+      el.innerHTML = '<div class="wiz-intro"><div><h2 style="margin:0 0 4px">Not sure what to make?</h2><p class="hint" style="margin:0">Answer five quick questions and Clay Day will suggest pieces that fit your clay, skills and time.</p></div></div>' +
+        '<button class="btn wide" id="wizStart" style="margin-top:12px">Help me decide</button>';
+      return;
+    }
+    var h = '<div class="wiz-prog" aria-hidden="true">' + WIZ_STEPS.map(function (s, i) { return '<span class="' + (i <= wiz.step ? 'on' : '') + '"></span>'; }).join('') + '<span class="' + (wiz.step >= WIZ_STEPS.length ? 'on' : '') + '"></span></div>';
+    if (wiz.step < WIZ_STEPS.length) {
+      var s = WIZ_STEPS[wiz.step], opts = s.k === 'clay' ? wizClayOpts() : s.opts;
+      h += '<div class="label">Question ' + (wiz.step + 1) + ' of ' + WIZ_STEPS.length + '</div><h2 style="margin:2px 0 12px">' + s.q + '</h2><div class="wiz-opts">' +
+        opts.map(function (o) {
+          return '<button class="wiz-opt" data-wv="' + o[0] + '" aria-pressed="' + (String(wiz.a[s.k]) === String(o[0])) + '"><b>' + o[1] + '</b>' + (o[2] ? '<small>' + o[2] + '</small>' : '') + '</button>';
+        }).join('') + '</div>';
+      h += '<div class="wiz-nav"><button class="btn-ghost" id="wizBack">' + (wiz.step ? 'Back' : 'Cancel') + '</button></div>';
+    } else {
+      var res = wizResults(), top = res.slice(0, 6), have = wizClayG();
+      h += '<div class="label">Suggestions for ' + lbOz(have) + ' of clay</div><h2 style="margin:2px 0 8px">You could make\u2026</h2>';
+      if (!top.length) {
+        h += '<p class="empty">Nothing in the list fits those answers yet. Try more clay, choose \u201cEither is fine\u201d, or allow a few sessions.</p>';
+      } else {
+        h += top.map(function (r) {
+          return '<div class="wsug"><div class="wsug-top"><div><b>' + r.it.n + '</b><div class="sub2">' + lbOz(r.need) + ' each' + (r.it.est ? ' \u00b7 estimate' : '') + '</div></div>' +
+            '<button class="btn-add" data-wadd="' + r.it.id + ':1">Add</button></div>' +
+            '<div class="wsug-why">' + wizReasons(r) + '</div><div class="wsug-tip">Tip: ' + CAT_TIPS[r.it.c] + '</div></div>';
+        }).join('');
+        var a = top[0], b = top[1];
+        if (a && a.count >= 2) {
+          var setN = Math.min(a.count, 6);
+          h += '<div class="banner ok" style="font-weight:500">Make a set: ' + setN + ' \u00d7 ' + a.it.n + ' uses ' + lbOz(a.need * setN) + '. <button class="link-btn" data-wadd="' + a.it.id + ':' + setN + '">Add the set to my plan</button></div>';
+        } else if (a && b && a.need + b.need <= have) {
+          h += '<div class="banner ok" style="font-weight:500">Pair them: one ' + a.it.n + ' and one ' + b.it.n + ' use ' + lbOz(a.need + b.need) + '. <button class="link-btn" data-wadd="' + a.it.id + ':1,' + b.it.id + ':1">Add both to my plan</button></div>';
+        }
+      }
+      h += '<p class="msg ok" id="wizMsg" hidden></p><div class="btn-row" style="margin-top:12px"><button class="btn-ghost" id="wizBack">Change answers</button><button class="btn-ghost" id="wizRestart">Start over</button></div>';
+    }
+    el.innerHTML = h;
+  }
+  $('wizCard').addEventListener('click', function (e) {
+    if (e.target.closest('#wizStart')) { wiz = { on: true, step: 0, a: {} }; renderWiz(); return; }
+    if (e.target.closest('#wizRestart')) { wiz = { on: true, step: 0, a: {} }; renderWiz(); return; }
+    if (e.target.closest('#wizBack')) {
+      if (wiz.step === 0) { wiz.on = false; } else { wiz.step--; }
+      renderWiz(); return;
+    }
+    var o = e.target.closest('[data-wv]');
+    if (o) { wiz.a[WIZ_STEPS[wiz.step].k] = o.getAttribute('data-wv'); wiz.step++; renderWiz(); $('wizCard').scrollIntoView({ block: 'start', behavior: 'smooth' }); return; }
+    var ad = e.target.closest('[data-wadd]');
+    if (ad) {
+      ad.getAttribute('data-wadd').split(',').forEach(function (pair) {
+        var p = pair.split(':'), i = +p[0], q = +p[1], found = false;
+        plan.forEach(function (x) { if (x.i === i) { x.q += q; found = true; } });
+        if (!found) plan.push({ i: i, q: q });
+      });
+      savePlan(); renderIdeas();
+      var msg = $('wizMsg'); if (msg) { msg.textContent = 'Added to your batch plan below.'; msg.hidden = false; }
+    }
+  });
 
   $('ideaList').addEventListener('click', function (e) {
     var b = e.target.closest('[data-add]'); if (!b) return;
@@ -1279,7 +1584,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       if (cFilter !== 'all' && cFilter !== 'fav' && c.tags.indexOf(cFilter) < 0) return;
       if (noRun && c.run) return;
       if (q && (c.t + ' ' + c.top + ' ' + c.base).toLowerCase().indexOf(q) < 0) return;
-      h += '<div class="combo"><button class="combo-sw" data-combo="a:' + i + '" aria-label="Open ' + c.t + '">' + comboSvg(c, i) + '</button><div><div class="combo-top"><h3><button class="combo-t" data-combo="a:' + i + '">' + c.t + '</button></h3>' +
+      h += '<div class="combo"><button class="combo-sw" data-combo="a:' + i + '" aria-label="Open ' + c.t + '">' + (comboPhotoList('a:' + i).length ? '<img class="combo-ph" src="' + esc(photoSrc(comboPhotoList('a:' + i)[0])) + '" alt="">' : comboSvg(c, i)) + '</button><div><div class="combo-top"><h3><button class="combo-t" data-combo="a:' + i + '">' + c.t + '</button></h3>' +
         '<button class="star" data-fav="' + i + '" aria-pressed="' + isFav + '" aria-label="Save ' + c.t + '">' + (isFav ? '\u2605' : '\u2606') + '</button></div>' +
         '<p class="pair"><b>' + c.top + '</b> ' + (c.rel || 'over') + ' <b>' + c.base + '</b></p>' +
         '<div class="badges"><span class="badge">' + c.cone + '</span>' +
@@ -1287,7 +1592,8 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
         (c.stable ? '<span class="badge ok">Stable, good first try</span>' : '') +
         (c.light ? '<span class="badge">Best on light clay</span>' : '') + '</div>' +
         '<p class="how">' + c.how + '</p>' +
-        '<a href="' + SRC[c.src] + '" target="_blank" rel="noopener">See AMACO\u2019s photo</a></div></div>';
+        '<div class="combo-links"><a href="' + amacoFind(c.top, c.base) + '" target="_blank" rel="noopener">AMACO\u2019s fired example</a>' +
+        '<a href="' + gImages(c.top.replace(/^\S+\s/, '') + ' over ' + c.base.replace(/^\S+\s/, '') + ' AMACO glaze') + '" target="_blank" rel="noopener">Potters\u2019 photos</a></div></div></div>';
     });
     if (!h) h = '<p class="empty">' + (cFilter === 'fav' && !favs.length ? 'Tap the star on any combo to save it here.' : 'No combos match. Try another glaze name or color.') + '</p>';
     $('comboList').innerHTML = h;
@@ -1309,6 +1615,10 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   var RAW = [
     'AMACO|Potter\u2019s Choice|6|PC-2 Saturation Gold #c98b2a;PC-4 Palladium #6b6660;PC-12 Blue Midnight #1f2c55;PC-15 Satin Oribe #5e7d63;PC-16 Purple Crystal #3c2f6b;PC-17 Honey Flux #d9b878;PC-20 Blue Rutile #33557f;PC-21 Arctic Blue #9cc0dc;PC-23 Indigo Float #2b3f73;PC-24 Sapphire Float #2d5d8f;PC-25 Textured Turquoise #6ab7bd;PC-27 Tourmaline #2f6f78;PC-29 Deep Olive Speckle #5d5a2e;PC-30 Temmoku #3a2418;PC-31 Oatmeal #d9ccb0;PC-32 Albany Slip Brown #4a2c1c;PC-33 Iron Lustre #6d4a35;PC-34 Light Sepia #b89a73;PC-36 Ironstone #8a5a33;PC-38 Iron Yellow #c9a03f;PC-40 True Celadon #9fc2a8;PC-42 Seaweed #2f8178;PC-43 Toasted Sage #8f9670;PC-46 Lustrous Jade #4f8a6e;PC-47 Emerald Falls #2f8a5c;PC-48 Art Deco Green #3f7d52;PC-52 Deep Sienna Speckle #8a3f22;PC-53 Ancient Jasper #6a2e24;PC-55 Chun Plum #6c3c62;PC-56 Ancient Copper #8a5b3a;PC-57 Smokey Merlot #4a1d2d;PC-59 Deep Firebrick #6b2a2c;PC-63 Cosmic Tea Dust #4a4a2e;PC-66 Cosmic Oil Spot #2b2234;PC-68 Golden Honey #c8882a;PCF-3 Midnight Run #24345e;PCF-18 Honeydew #c7b462;PCF-19 Cirrus Flow #d6dde3;PCF-54 Flux Blossom #d9a6a8;PCF-60 Sun Beam #e3b93f;PCF-74 River Birch #ece4d2;PCF-75 Moss Mist #9aa77a',
     'AMACO|Celadon|6|C-1 Obsidian #1c1d21;C-5 Charcoal #2e2f2d;C-10 Snow #eef1f2;C-19 Glacier #8fb3a8;C-20 Cobalt #1b2357;C-22 Fog #5b7a66;C-23 Ice #a8bba9;C-25 Downpour #3f4a66;C-27 Storm #56626b;C-29 Deep Sea #3d5258;C-40 Aqua #7fae8a;C-50 Cherry Blossom #c87a6a;C-57 Mulberry #5c2d50',
+    'AMACO|Potter\u2019s Choice|6|PC-1 Saturation Metallic #3a3a34;PC-11 Blue Spark #2a4a8a;PC-13 Serpentine Green #4a6a4a;PC-14 Lapis Flow #2a3f8a;PC-18 Tuscan Blue #3f5f8a;PC-19 Moon River #6f8fa8;PC-22 Blue Stone #6f8aa0;PC-26 Blue Lagoon #2f8aa0;PC-28 Frosted Turquoise #8fc8c8;PC-35 Oil Spot #2a2622;PC-37 Smoked Sienna #6a3a26;PC-39 Umber Float #5a4a3a;PC-41 Vert Lustre #4a5a3a;PC-44 Sage #8a9a7a;PC-45 Dark Green #2a4a32;PC-49 Frosted Melon #e0a080;PC-50 Shino #d0a080;PC-60 Salt Buff #d8cdb8;PC-61 Textured Amber #b07a3a;PC-62 Textured Amber Brown #7a4a2a;PC-64 Aventurine #4a3a22',
+    'AMACO|Celadon|6|C-32 Ochre #c8a040;C-36 Iron #7a5a3a',
+    'AMACO|Shino|6|SH-12 Chai Matte #b89070;SH-41 Oolong Gloss #8a6a3a',
+    'AMACO|Satin Matte|6|SM-1 Black #1e1e1e',
     'AMACO|Shino|6|SH-46 Matcha Matte Shino #727c45',
     'AMACO|Crawl|6|CR-61 Speckled Yellow Crawl #e9c84c',
     'AMACO|Satin Matte|6|SM-53 Cayenne #a4452c',
@@ -1487,6 +1797,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   var comboEditing = null, cDelArmed = false;
   function saveMyCombos() { sset('clayday:mycombos', myCombos); }
   function showComboView(v) {
+    if (v === 'list') { renderCombos(); renderMyCombos(); renderRecs(); renderShelf(); }
     $('comboListView').hidden = v !== 'list';
     $('comboDetailView').hidden = v !== 'detail';
     $('comboEditView').hidden = v !== 'edit';
@@ -1499,7 +1810,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       return;
     }
     el.innerHTML = myCombos.slice().sort(function (a, b) { return (b.updated || 0) - (a.updated || 0); }).map(function (c) {
-      return '<button class="mc-row" data-combo="m:' + esc(c.id) + '"><span class="mini-sw">' + c.layers.slice(0, 4).map(function (l) { return swatch(layerHex(l)); }).join('') + '</span>' +
+      return '<button class="mc-row" data-combo="m:' + esc(c.id) + '">' + (comboPhotoList('m:' + c.id).length ? '<img class="mc-ph" src="' + esc(photoSrc(comboPhotoList('m:' + c.id)[0])) + '" alt="">' : '<span class="mini-sw">' + c.layers.slice(0, 4).map(function (l) { return swatch(layerHex(l)); }).join('') + '</span>') +
         '<span><b>' + esc(c.name || 'Untitled combination') + '</b><span class="sub2">' + c.layers.map(function (l) { return esc(l.name); }).join(' then ') + '</span></span><span class="chev" aria-hidden="true">&rsaquo;</span></button>';
     }).join('');
   }
@@ -1519,12 +1830,246 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>Find examples</a>' +
       '<a class="btn-ghost" href="https://www.pinterest.com/search/pins/?q=' + encodeURIComponent(q) + '" target="_blank" rel="noopener">Search Pinterest</a></div>';
   }
-  function openComboDetail(ref) {
+  /* ---- recommendations from AMACO's published layering sheets ---- */
+  var PC_BUFF = 'Buff Stoneware No. 46', AMIX = 'A-Mix White Stoneware No. 11', ASSET = 'https://amaco.com/asset/';
+  var FLYERS = {
+    'PC-12': { tops: 'PC-1 PC-4 PC-35 PC-36 PC-37 PC-39 PC-41 PC-42 PC-43', b: 2, t: 2, clay: PC_BUFF, url: ASSET + '66192ea60a3fb' },
+    'PC-20': { tops: 'PC-1 PC-28 PC-29 PC-30 PC-32 PC-33', b: 2, t: 2, clay: PC_BUFF, url: ASSET + '66192ea9cea11' },
+    'PC-21': { tops: 'PC-1 PC-4 PC-12 PC-23 PC-25 PC-27 PC-28 PC-30 PC-31 PC-32 PC-33 PC-35 PC-37 PC-40 PC-41 PC-42 PC-45 PC-46 PC-48 PC-53 PC-57 PC-59 PC-60', b: 2, t: 2, url: ASSET + '66192ead093c2' },
+    'PC-27': { tops: 'PC-23 PC-30 PC-31 PC-32 PC-33', b: 2, t: 2, url: ASSET + '66192ecb6d280' },
+    'PC-28': { tops: 'PC-31 PC-32 PC-33 PC-34 PC-41 PC-42 PC-53', b: 2, t: 2, clay: PC_BUFF, url: ASSET + '66192ed2c7614' },
+    'PC-30': { tops: 'PC-1 PC-2 PC-4 PC-12 PC-20 PC-21', b: 2, t: 2, url: ASSET + '66192ede0d75a' },
+    'PC-31': { tops: 'PC-12 PC-20 PC-23 PC-27 PC-28 PC-29 PC-35 PC-39 PC-41 PC-42 PC-45 PC-46 PC-48 PC-49 PC-52 PC-53 PC-55 PC-57 PC-59 PC-61', b: 2, t: 2, url: ASSET + '66192ee46ba0f' },
+    'PC-32': { tops: 'PC-33 PC-34 PC-35 PC-36', b: 2, t: 2, url: ASSET + '66192eeba3734' },
+    'PC-33': { tops: 'PC-1 PC-4 PC-20 PC-21 PC-23 PC-25 PC-28 PC-30 PC-31 PC-34 PC-35 PC-39 PC-40 PC-42 PC-43 PC-45 PC-46 PC-49 PC-52 PC-53 PC-55 PC-57 PC-59 PC-60 PC-61', b: 2, t: 2, conf: true, clay: PC_BUFF, url: ASSET + '66192ef311cb8' },
+    'PC-34': { tops: 'PC-25 PC-27 PC-28 PC-29 PC-31', b: 2, t: 2, url: ASSET + '66192ef998b6f' },
+    'PC-36': { tops: 'PC-29 PC-31 PC-32 PC-33 PC-34 PC-35 PC-50 PC-52 PC-53', b: 2, t: 2, conf: true, url: ASSET + '66192f004b398' },
+    'PC-40': { tops: 'PC-21 PC-23 PC-25 PC-29 PC-30 PC-33', b: 2, t: 2, url: ASSET + '66192f068754f' },
+    'PC-44': { tops: 'PC-1 PC-12 PC-20 PC-21 PC-33 PC-34 PC-48 PC-55 PC-57 PC-59 PC-60 PC-61', b: 2, t: 2, url: ASSET + '66192f209228c' },
+    'PC-53': { tops: 'PC-4 PC-20 PC-21 PC-23 PC-25 PC-27 PC-29 PC-31 PC-33 PC-34 PC-37', b: 2, t: 2, url: ASSET + '66192f4d90b7f' },
+    'PC-57': { tops: 'PC-4 PC-12 PC-20 PC-23 PC-25 PC-27 PC-28 PC-29 PC-31 PC-32 PC-33 PC-55 PC-59 PC-61', b: 2, t: 1, conf: true, clay: PC_BUFF, url: ASSET + '66192f5b35b02' },
+    'PC-59': { tops: 'PC-1 PC-4 PC-12 PC-20 PC-23 PC-30 PC-32 PC-33 PC-34 PC-35 PC-37 PC-39 PC-40 PC-41 PC-42 PC-43 PC-46 PC-49 PC-50 PC-53 PC-60', b: 2, t: 2, conf: true, url: ASSET + '66192f610f914' },
+    'PC-62': { tops: 'PC-4 PC-21 PC-23 PC-25 PC-30 PC-52 PC-53 PC-55 PC-57 PC-59', b: 2, t: 2, url: ASSET + '66192f6fb4e1e' },
+    'C-19': { tops: 'PC-2 PC-4 PC-20 PC-21 PC-23 PC-24 PC-25 PC-27 PC-28 PC-31 PC-32 PC-33 PC-37 PC-39 PC-42 PC-44 PC-45 PC-46 PC-48 PC-52 PC-55 PC-57 PC-59 PC-63 PC-64', b: 3, t: 3, url: ASSET + '66e068df8db40' },
+    'C-25': { tops: 'PC-4 PC-20 PC-21 PC-25 PC-27 PC-28 PC-30 PC-32 PC-34 PC-36 PC-39 PC-40 PC-42 PC-43 PC-44 PC-46 PC-48 PC-49 PC-52 PC-59 PC-64', b: 3, t: 3, conf: true, clay: AMIX, url: ASSET + '66e068eaddecf' },
+    'C-32': { tops: 'PC-20 PC-25 PC-28 PC-32 PC-33 PC-36', b: 3, t: 3, conf: true, url: ASSET + '66e07efd88c20' },
+    'C-40': { tops: 'PC-1 PC-4 PC-20 PC-21 PC-23 PC-27 PC-29 PC-35 PC-36 PC-37 PC-42 PC-45 PC-46 PC-48 PC-49 PC-52 PC-53 PC-55 PC-57 PC-59 PC-60 PC-61', b: 3, t: 3, conf: true, clay: AMIX, url: 'https://cdn.shopify.com/s/files/1/0010/1931/4239/files/c-40_aqua_layering_sku_11539k_web.pdf' },
+    'SH-41': { tops: 'PC-1 PC-21 PC-23 PC-25 PC-27 PC-30', b: 2, t: 2, url: 'https://cdn.shopify.com/s/files/1/0010/1931/4239/files/pc_over_sh-41_brochure_web.pdf' }
+  };
+  var LAYER_PAGE = 'https://amaco.com/resources/layering/';
+  var DB_PAGES = [
+    ['PC-42', 'SM-1', 2, 3, 'pc-42-seaweed-over-sm-1-black'],
+    ['PC-42', 'PCF-19', 2, 2, 'pc-42-seaweed-over-pcf-19-cirrus-flow'],
+    ['PC-42', 'C-22', 2, 2, 'pc-42-seaweed-over-c-22-fog'],
+    ['PC-42', 'PCF-75', null, null, 'pc-42-seaweed-over-pcf-75-moss-mist'],
+    ['PC-42', 'PC-25', null, null, 'pc-42-seaweed-over-pc-25-textured-turquoise'],
+    ['PC-42', 'PC-44', null, null, 'pc-42-seaweed-over-pc-44-sage'],
+    ['PC-42', 'PCF-54', null, 2, 'pc-42-seaweed-over-pcf-54-flux-blossom'],
+    ['PC-42', 'C-36', null, null, 'pc-42-seaweed-over-c-36-iron'],
+    ['PC-42', 'PC-12', null, null, 'pc-42-seaweed-over-pc-12-blue-midnight'],
+    ['PC-33', 'PC-31', null, null, 'pc-33-iron-lustre-over-pc-31-oatmeal'],
+    ['PC-21', 'PC-25', null, null, 'pc-21-arctic-blue-over-pc-25-textured-turquoise'],
+    ['PC-25', 'PC-20', 2, 2, 'pc-25-textured-turquoise-over-pc-20-blue-rutile']
+  ];
+  var REC = {}, REC_PAGES = {};
+  (function buildRecs() {
+    Object.keys(FLYERS).forEach(function (base) {
+      var F = FLYERS[base];
+      F.tops.split(' ').forEach(function (top) {
+        REC[base + '|' + top] = { base: base, top: top, b: F.b, t: F.t, conf: !!F.conf, clay: F.clay || '', sheet: F.url, src: 'sheet' };
+      });
+    });
+    DB_PAGES.forEach(function (d) {
+      var k = d[1] + '|' + d[0], r = REC[k] || { base: d[1], top: d[0], b: null, t: null, src: 'page' };
+      r.page = LAYER_PAGE + d[4];
+      if (d[2] != null) { r.t = d[2]; r.conf = true; }
+      if (d[3] != null) { r.b = d[3]; r.conf = true; }
+      REC[k] = r;
+    });
+    COMBOS.forEach(function (a, i) {
+      var top = a.top.split(' ')[0], base = a.base.split(' ')[0], k = base + '|' + top;
+      var r = REC[k] || { base: base, top: top, b: null, t: null, src: 'blog' };
+      r.blog = i; REC[k] = r;
+    });
+    Object.keys(REC).forEach(function (k) {
+      var r = REC[k], tn = glazeByCode(r.top), bn = glazeByCode(r.base);
+      if (tn && bn && r.page) REC_PAGES[(r.top + ' ' + tn.name + '|' + r.base + ' ' + bn.name).toLowerCase()] = r.page;
+    });
+  })();
+  var REC_COUNT = Object.keys(REC).length;
+  function gName(code) { var g = glazeByCode(code); return g ? g.name : code; }
+  function gHex(code) { var g = glazeByCode(code); return g ? g.hex : hashColor(code); }
+  function coatsText(n) { return n + (n > 1 ? ' coats' : ' coat'); }
+  function recSteps(r) {
+    if (r.b == null && r.t == null) return '1. ' + esc(gName(r.base)) + ' first, then 2. ' + esc(gName(r.top)) + ' on top';
+    return '1. ' + esc(gName(r.base)) + ' \u00b7 ' + coatsText(r.b || 2) + ' \u2192 2. ' + esc(gName(r.top)) + ' \u00b7 ' + coatsText(r.t || 2);
+  }
+  function recBuild(id) {
+    var r = REC[id]; if (!r) return null;
+    var layers = [r.base, r.top].map(function (code) { var g = glazeByCode(code); return g ? makeLayer(g) : { name: code, code: code, brand: 'AMACO', method: 'paint', coats: 2, secs: 3 }; });
+    if (r.b == null && r.t == null && r.blog == null) layers.forEach(function (l) { l.method = 'none'; });
+    else { layers[0].coats = r.b || 2; layers[1].coats = r.t || 2; }
+    var notes;
+    if (r.blog != null && r.src === 'blog') notes = COMBOS[r.blog].how;
+    else if (r.src === 'sheet') {
+      notes = r.conf
+        ? 'From AMACO\u2019s layering test sheet for ' + gName(r.base) + ': brush on ' + coatsText(r.b) + ' of the base, then ' + coatsText(r.t) + ' on top, letting each coat dry first.'
+        : 'Listed on AMACO\u2019s layering test sheet for ' + gName(r.base) + '. The coats shown are AMACO\u2019s usual starting point for this glaze line, so check the sheet\u2019s notes.';
+      notes += ' AMACO\u2019s test tiles were fired to cone 6' + (r.clay ? ' on ' + r.clay : '') + '.';
+    } else {
+      notes = 'From AMACO\u2019s layering database.' + (r.b == null || r.t == null ? ' Not every coat count was listed, so start with 2 coats of each and test.' : '');
+    }
+    var extra = '<div class="badges" style="margin:-8px 0 16px"><span class="badge">' + (r.src === 'sheet' ? 'Cone 6 test tiles' : 'Cone 5\u20136') + '</span><span class="badge ok">From AMACO</span></div>';
+    return { layers: layers, title: gName(r.top) + ' over ' + gName(r.base), notes: notes, extra: extra, rec: r };
+  }
+
+  var recCode = sget('clayday:recglaze', ''), recSide = 'over';
+  function recRow(r, k) {
+    var ph = comboPhotoList('r:' + k);
+    var vis = ph.length ? '<img class="rec-ph" src="' + esc(photoSrc(ph[0])) + '" alt="">' : '<span class="mini-sw">' + swatch(gHex(r.base)) + swatch(gHex(r.top)) + '</span>';
+    return '<button class="rec-row" data-combo="r:' + esc(k) + '">' + vis +
+      '<span><b>' + esc(gName(r.top)) + ' over ' + esc(gName(r.base)) + '</b><span class="rec-steps">' + recSteps(r) + '</span>' +
+      (r.conf ? '<span class="rec-src">Coats from AMACO</span>' : '') + '</span><span class="chev" aria-hidden="true">&rsaquo;</span></button>';
+  }
+  function renderRecs() {
+    var el = $('recCard'), g = recCode ? glazeByCode(recCode) : null;
+    if (!g) {
+      el.innerHTML = '<p class="hint" style="margin:0 0 12px">Pick a glaze to see what AMACO has layered with it: which goes first, how many coats, and photos of the fired result. ' + REC_COUNT + ' combinations from AMACO\u2019s published layering sheets.</p>' +
+        '<button class="btn wide" id="recPick">Choose a glaze</button>';
+      return;
+    }
+    var over = [], under = [];
+    Object.keys(REC).forEach(function (k) { var r = REC[k]; if (r.base === g.code) over.push(k); if (r.top === g.code) under.push(k); });
+    function byName(list, side) { return list.sort(function (a, b) { return gName(REC[a][side]).localeCompare(gName(REC[b][side])); }); }
+    byName(over, 'top'); byName(under, 'base');
+    var h = '<div class="rec-sel">' + swatch(g.hex) + '<span><b>' + esc(g.name) + '</b><span class="sub2">' + esc([g.brand, g.code].join(' \u00b7 ')) + '</span></span><button class="btn-ghost" id="recPick">Change</button><button class="round-btn" id="recClear" aria-label="Clear glaze" title="Clear">&times;</button></div>';
+    if (g.brand !== 'AMACO') {
+      h += '<p class="hint" style="margin:0 0 12px">Clay Day\u2019s layering data comes from AMACO, so there are no saved recommendations for ' + esc(g.brand) + ' glazes yet. These searches show what other potters have tried:</p>';
+    } else {
+      if (recSide === 'over' && !over.length && under.length) recSide = 'under';
+      if (recSide === 'under' && !under.length && over.length) recSide = 'over';
+      h += '<div class="seg" role="group" aria-label="Which way to layer"><button data-rside="over" aria-pressed="' + (recSide === 'over') + '">Goes over it (' + over.length + ')</button>' +
+        '<button data-rside="under" aria-pressed="' + (recSide === 'under') + '">Goes under it (' + under.length + ')</button></div>' +
+        '<p class="hint" style="margin:-4px 0 6px">' + (recSide === 'over' ? 'Put ' + esc(g.name) + ' on first, then one of these on top.' : 'Put one of these on first, then ' + esc(g.name) + ' on top.') + '</p>';
+      h += '<label class="check" style="margin:0 0 4px"><input type="checkbox" id="recOnly"' + (recOnly ? ' checked' : '') + '> Only combos I can make with my shelf</label>';
+      var list = recSide === 'over' ? over : under;
+      if (recOnly) list = list.filter(function (k) { return onShelf(REC[k].base) && onShelf(REC[k].top); });
+      if (recSide === 'over' && FLYERS[g.code]) {
+        h += '<div class="ref-list" style="margin:8px 0 6px">' + refLink(FLYERS[g.code].url, 'AMACO\u2019s test tile photos', 'Every glaze below, fired over ' + esc(g.name)) + '</div>';
+      }
+      h += (recOnly && !list.length) ? '<p class="empty" style="margin:10px 0">None of these have both glazes on your shelf. Clear the box above to see them all.</p>' : list.length ? list.map(function (k) { return recRow(REC[k], k); }).join('')
+        : '<p class="empty" style="margin:10px 0">AMACO hasn\u2019t published layering results with ' + esc(g.name) + ' in Clay Day\u2019s collection yet. Try the searches below.</p>';
+    }
+    var nm = (g.brand + ' ' + g.name).trim();
+    h += '<div class="ref-list" style="margin-top:14px">' +
+      (g.brand === 'AMACO' ? refLink('https://www.google.com/search?q=' + encodeURIComponent('site:amaco.com/resources/layering "' + g.code + ' ' + g.name + '"'), 'More in AMACO\u2019s layering database', 'Every combination AMACO lists with ' + esc(g.name)) : '') +
+      (g.brand === 'AMACO' ? refLink(glazeshare(g.code + ' ' + g.name), 'GlazeShare', 'Potters\u2019 photos of combinations with ' + esc(g.name)) : '') +
+      refLink(gImages(nm + ' glaze combinations'), 'Photo search', 'Pictures of ' + esc(nm) + ' layered with other glazes') + '</div>';
+    el.innerHTML = h;
+  }
+  $('recCard').addEventListener('click', function (e) {
+    if (e.target.closest('#recClear')) { recCode = ''; recSide = 'over'; sset('clayday:recglaze', ''); renderRecs(); return; }
+    if (e.target.closest('#recPick')) {
+      openPicker(function (g) { recCode = g.code || ''; recSide = 'over'; sset('clayday:recglaze', recCode); renderRecs(); });
+      return;
+    }
+    var s = e.target.closest('[data-rside]'); if (s) { recSide = s.getAttribute('data-rside'); renderRecs(); }
+  });
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-recsave]'); if (!b) return;
+    var rr = recBuild(b.getAttribute('data-recsave')); if (!rr) return;
+    var layers = rr.layers.map(function (l) { var o = JSON.parse(JSON.stringify(l)); if (o.method === 'none') o.method = 'paint'; return o; });
+    var rec = { id: 'c' + Date.now().toString(36), name: rr.title, notes: rr.notes, layers: cleanLayers(layers), updated: Date.now() };
+    myCombos.push(rec); saveMyCombos(); renderMyCombos();
+    var key = 'r:' + b.getAttribute('data-recsave');
+    if (comboPhotos[key]) { comboPhotos['m:' + rec.id] = comboPhotos[key].slice(); saveComboPhotos(); }
+    openComboDetail('m:' + rec.id);
+  });
+
+  /* ---- combo references and your photos ---- */
+  var comboPhotos = sget('clayday:combophotos', {});
+  var cdRef = null;
+  function cpKey(ref) { if (ref.slice(0, 1) === 'a') { var a = COMBOS[+ref.slice(2)]; return a ? 'a:' + a.t : ref; } return ref; }
+  function comboPhotoList(ref) { return comboPhotos[cpKey(ref)] || []; }
+  function saveComboPhotos() { try { localStorage.setItem('clayday:combophotos', JSON.stringify(comboPhotos)); return true; } catch (e) { return false; } }
+  function slug(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
+  function gImages(q) { return 'https://www.google.com/search?tbm=isch&q=' + encodeURIComponent(q); }
+  var AMACO_PAGES = { 'pc-25 textured turquoise|pc-20 blue rutile': 'https://amaco.com/resources/layering/pc-25-textured-turquoise-over-pc-20-blue-rutile' };
+  function amacoFind(top, base) {
+    var direct = AMACO_PAGES[(top + '|' + base).toLowerCase()] || REC_PAGES[(top + '|' + base).toLowerCase()];
+    return direct || 'https://www.google.com/search?q=' + encodeURIComponent('site:amaco.com/resources/layering "' + top + '" "' + base + '"');
+  }
+  function glazeshare(name) { return 'https://www.glazeshare.com/glaze/' + slug(name); }
+  function refLink(href, title, sub) {
+    return '<a href="' + href + '" target="_blank" rel="noopener"><span><b>' + title + '</b><small>' + sub + '</small></span><span class="arr" aria-hidden="true">&#8599;</span></a>';
+  }
+  function layerFull(l) { var g = layerGlaze(l); return [((g && g.code) || l.code || ''), l.name].join(' ').trim(); }
+  function isAmacoLayer(l) { var g = layerGlaze(l); return ((g && g.brand) || l.brand || '') === 'AMACO' && !!((g && g.code) || l.code); }
+  function referenceLinks(kind, id, layers) {
+    var top = layers[layers.length - 1], base = layers[0], h = '';
+    var names = layers.slice().reverse().map(function (l) { var g = layerGlaze(l); return (((g && g.brand) || l.brand || '') + ' ' + l.name).trim(); });
+    if (layers.length >= 2 && isAmacoLayer(top) && isAmacoLayer(base)) {
+      var direct = !!(AMACO_PAGES[(layerFull(top) + '|' + layerFull(base)).toLowerCase()] || REC_PAGES[(layerFull(top) + '|' + layerFull(base)).toLowerCase()]);
+      h += refLink(amacoFind(layerFull(top), layerFull(base)), 'AMACO\u2019s fired example', (direct ? 'Opens AMACO\u2019s layering page for ' : 'Searches AMACO\u2019s layering database for ') + esc(layerFull(top)) + ' over ' + esc(layerFull(base)));
+    }
+    h += refLink(gImages(names.join(' over ') + ' glaze'), 'Photos from potters', 'Image search for this exact combination');
+    if (top && isAmacoLayer(top)) h += refLink(glazeshare(layerFull(top)), 'GlazeShare', 'Community photos of combinations with ' + esc(layerFull(top)));
+    if (kind === 'a' && COMBOS[+id]) h += refLink(SRC[COMBOS[+id].src], 'AMACO\u2019s application notes', 'The AMACO article this combo comes from');
+    if (kind === 'r' && REC[id]) {
+      var rr2 = REC[id];
+      if (rr2.sheet) h = refLink(rr2.sheet, 'AMACO\u2019s test tile photos', 'AMACO\u2019s sheet of glazes fired over ' + esc(gName(rr2.base)) + ', including this one') + h;
+      if (rr2.blog != null) h += refLink(SRC[COMBOS[rr2.blog].src], 'AMACO\u2019s application notes', 'The AMACO article that features this combo');
+    }
+    return '<div class="ref-list">' + h + '</div>';
+  }
+  function photoStrip(ref) {
+    var photos = comboPhotoList(ref);
+    return '<div class="cd-photos">' + photos.map(function (r, i) {
+      return '<div class="thumb"><img src="' + esc(photoSrc(r)) + '" alt="Your photo ' + (i + 1) + '" data-cpview="' + i + '">' +
+        '<button class="thumb-x" data-cprm="' + i + '" aria-label="Remove photo ' + (i + 1) + '">&times;</button></div>';
+    }).join('') + '<label class="add-photo" for="cpInput"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="6.5" width="18" height="13.5" rx="3"/><path d="M12 10v6M9 13h6"/></svg>' +
+      (photos.length ? 'Add photo' : 'Add your photo') + '</label></div><input type="file" id="cpInput" class="vh" accept="image/*" multiple>' +
+      '<p class="msg err" id="cpErr" hidden></p>';
+  }
+  $('comboDetailView').addEventListener('change', function (e) {
+    if (e.target.id !== 'cpInput' || !cdRef) return;
+    var files = Array.prototype.slice.call(e.target.files || []), ref = cdRef, key = cpKey(ref), failed = 0, full = false;
+    e.target.value = '';
+    files.reduce(function (chain, f) {
+      return chain.then(function () {
+        return prepPhoto(f, 1000).then(storeAddPhoto).then(function (r) {
+          comboPhotos[key] = (comboPhotos[key] || []).concat([r]);
+          if (!saveComboPhotos()) { comboPhotos[key].pop(); storeDropPhoto(r); full = true; }
+        }).catch(function () { failed++; });
+      });
+    }, Promise.resolve()).then(function () {
+      if (cdRef === ref) openComboDetail(ref, true);
+      var err = $('cpErr');
+      if (err && (failed || full)) { err.textContent = full ? 'Storage is full. Remove some photos and try again.' : 'That photo couldn\u2019t be added. Try a JPEG or PNG.'; err.hidden = false; }
+    });
+  });
+  $('comboDetailView').addEventListener('click', function (e) {
+    if (!cdRef) return;
+    var x = e.target.closest('[data-cprm]');
+    if (x) {
+      var key = cpKey(cdRef), list = comboPhotos[key] || [], i = +x.getAttribute('data-cprm'), r = list[i];
+      list.splice(i, 1); if (!list.length) delete comboPhotos[key];
+      saveComboPhotos(); if (r) storeDropPhoto(r);
+      openComboDetail(cdRef, true); return;
+    }
+    var v = e.target.closest('[data-cpview]');
+    if (v) { $('lightImg').src = v.getAttribute('src'); $('lightbox').hidden = false; }
+  });
+
+  function openComboDetail(ref, keepScroll) {
     var kind = ref.slice(0, 1), id = ref.slice(2), c = null, layers, title, notes, extra = '';
     if (kind === 'm') {
       myCombos.forEach(function (x) { if (x.id === id) c = x; });
       if (!c) return;
       layers = c.layers; title = c.name || 'Untitled combination'; notes = c.notes;
+    } else if (kind === 'r') {
+      var rb = recBuild(id); if (!rb) return;
+      layers = rb.layers; title = rb.title; notes = rb.notes; extra = rb.extra;
     } else {
       var a = COMBOS[+id]; if (!a) return;
       layers = [a.base, a.top].map(function (s) {
@@ -1535,7 +2080,8 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       title = a.t; notes = a.how;
       extra = '<div class="badges" style="margin:-8px 0 16px"><span class="badge">' + a.cone + '</span>' + (a.run ? '<span class="badge run">Can run</span>' : '') + (a.stable ? '<span class="badge ok">Stable, good first try</span>' : '') + '</div>';
     }
-    var h = '<button class="back" id="cdBack">&lsaquo; Combos</button>' +
+    cdRef = ref;
+    var h = '<button class="back" id="cdBack">&lsaquo; Combos</button>' + photoStrip(ref) +
       '<div class="cd-top">' + layers.map(function (l) { return swatch(layerHex(l), l.name); }).join('') + '</div>' +
       '<h1 class="cd-title">' + esc(title) + '</h1>' + extra +
       '<div class="card"><h2>Application order</h2>' + layers.map(function (l, i) {
@@ -1545,15 +2091,16 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
           '<span class="amt">' + (l.method === 'none' ? '' : layerAmount(l)) + '</span></div>';
       }).join('') + '</div>';
     if (notes) h += '<div class="card"><h2>' + (kind === 'm' ? 'Notes' : 'How to apply') + '</h2><p style="margin:0;white-space:pre-wrap">' + esc(notes) + '</p></div>';
-    h += '<div class="card"><h2>Photo examples</h2><p class="hint" style="margin:-2px 0 12px">See how other potters\u2019 pieces turned out with this combination.</p>' + exampleLinks(layers) +
-      (kind === 'a' ? '<p style="margin:12px 0 0"><a class="link" href="' + SRC[COMBOS[+id].src] + '" target="_blank" rel="noopener">See AMACO\u2019s photo</a></p>' : '') + '</div>';
+    h += '<div class="card"><h2>See it fired</h2><p class="hint" style="margin:-2px 0 12px">Real photos of this exact combination, from AMACO and other potters.</p>' + referenceLinks(kind, id, layers) + '</div>';
     var used = usedIn(layers);
     h += '<div class="section-head"><h2>Used in your projects</h2></div>' +
       (used.length ? '<div class="pgrid">' + used.map(projCard).join('') + '</div>'
         : '<div class="card"><p class="used-empty">When you record this combination on a project, it\u2019ll show up here.</p></div>');
     if (kind === 'm') h += '<div class="actions"><button class="btn-ghost wide" data-cedit="' + esc(c.id) + '">Edit combination</button></div>';
+    if (kind === 'r') h += '<div class="actions"><button class="btn wide" data-recsave="' + esc(id) + '">Save to my combinations</button></div>';
     $('comboDetailView').innerHTML = h;
-    showComboView('detail');
+    if (keepScroll) { $('comboListView').hidden = true; $('comboEditView').hidden = true; $('comboDetailView').hidden = false; }
+    else showComboView('detail');
   }
   function openComboEditor(c) {
     comboEditing = c ? { id: c.id, isNew: false, data: JSON.parse(JSON.stringify(c)) }
@@ -1604,7 +2151,8 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   var skipComboReset = false;
   document.addEventListener('click', function (e) {
     if (e.target.closest('#comboNew2')) { openComboEditor(null); return; }
-    var c = e.target.closest('[data-combo]'); if (c) { openComboDetail(c.getAttribute('data-combo')); return; }
+    var c = e.target.closest('[data-combo]');
+    if (c) { e.preventDefault(); if (location.hash !== '#combos') { skipComboReset = true; location.hash = '#combos'; } openComboDetail(c.getAttribute('data-combo')); return; }
     if (e.target.closest('#cdBack')) { showComboView('list'); return; }
     var ed = e.target.closest('[data-cedit]');
     if (ed) { var id = ed.getAttribute('data-cedit'); myCombos.forEach(function (x) { if (x.id === id) openComboEditor(x); }); }
@@ -1708,7 +2256,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       r.readAsDataURL(f);
     });
   }
-  function prepPhoto(file) {
+  function prepPhoto(file, maxSize) {
     return fileToDataUrl(file).then(function (src) {
       return new Promise(function (res, rej) {
         var im = new Image();
@@ -1717,7 +2265,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
         im.src = src;
       });
     }).then(function (img) {
-      var max = 1600, w = img.naturalWidth, h = img.naturalHeight, s = Math.min(1, max / Math.max(w, h));
+      var max = maxSize || 1600, w = img.naturalWidth, h = img.naturalHeight, s = Math.min(1, max / Math.max(w, h));
       var c = document.createElement('canvas');
       c.width = Math.max(1, Math.round(w * s)); c.height = Math.max(1, Math.round(h * s));
       c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
@@ -1745,9 +2293,9 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     }).join('') + (gl.length > 2 ? '<span class="gchip more">+' + (gl.length - 2) + ' more</span>' : '');
     return '<button class="pcard" data-open="' + esc(p.id) + '"><div class="cover">' + cover +
       (photos.length > 1 ? '<span class="pcount">' + photos.length + ' photos</span>' : '') +
-      (stageInfo(p.stage) ? '<span class="stage-badge"><span class="dot" style="--sc:' + stageInfo(p.stage)[2] + '"></span>' + stageInfo(p.stage)[1] + '</span>' : '') + '</div>' +
+      (isTile(p) ? '<span class="stage-badge"><span class="dot" style="--sc:#8b5cf6"></span>Test tile</span>' : stageInfo(p.stage) ? '<span class="stage-badge"><span class="dot" style="--sc:' + stageInfo(p.stage)[2] + '"></span>' + stageInfo(p.stage)[1] + '</span>' : '') + '</div>' +
       '<div class="pbody"><div class="nm">' + esc(p.name || 'Untitled piece') + '</div>' +
-      '<div class="sub2">' + fmtDate(p.date) + (p.cone ? ' &middot; Cone ' + esc(p.cone) : '') + '</div>' +
+      '<div class="sub2">' + fmtDate(p.date) + (p.cone ? ' &middot; Cone ' + esc(p.cone) : '') + (priceCalc(p.price) ? ' &middot; ' + money(priceCalc(p.price).retail) : '') + '</div>' +
       (chips ? '<div class="gchips">' + chips + '</div>' : '') + '</div></button>';
   }
   function emptyProjects(small) {
@@ -1764,7 +2312,9 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     $('storeNote').textContent = Store.note;
     var out = $('projList');
     if (!Store.loaded) { out.innerHTML = '<p class="empty">Loading your projects\u2026</p>'; return; }
-    out.innerHTML = Store.items.length ? '<div class="pgrid">' + Store.items.map(projCard).join('') + '</div>' : emptyProjects(false);
+    renderKindSeg();
+    var shown = Store.items.filter(function (p) { return projKind === 'tile' ? isTile(p) : !isTile(p); });
+    out.innerHTML = shown.length ? '<div class="pgrid">' + shown.map(projCard).join('') + '</div>' : (projKind === 'tile' ? '<div class="card empty-card">' + VASE + '<p>No test tiles yet. Record a tile with its photo, glazes, clay and cone so you can find it later.</p><button class="btn" data-newproj>Add a test tile</button></div>' : emptyProjects(false));
   }
 
   function renderLists() {
@@ -1782,12 +2332,11 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       editing = { id: proj.id, isNew: false, data: d, orig: d.photos.slice(), added: [] };
     } else {
       editing = { id: 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7), isNew: true,
-        data: { name: '', stage: 'planned', date: todayISO(), clay: '', cone: '', notes: '', photos: [], glazes: [] }, orig: [], added: [] };
+        data: { name: '', kind: projKind, stage: projKind === 'tile' ? '' : 'planned', date: todayISO(), clay: '', cone: '', notes: '', photos: [], glazes: [] }, orig: [], added: [] };
     }
     delArmed = false;
     var d2 = editing.data;
-    $('editTitle').textContent = editing.isNew ? 'New project' : 'Edit project';
-    $('pName').value = d2.name || ''; $('pDate').value = d2.date || ''; $('pClay').value = d2.clay || ''; $('pNotes').value = d2.notes || ''; renderStages();
+    $('pName').value = d2.name || ''; $('pDate').value = d2.date || ''; $('pClay').value = d2.clay || ''; $('pNotes').value = d2.notes || ''; renderStages(); prepKindUI(); fillPrice();
     $('pCone').innerHTML = '<option value="">Not set</option>' + CONES.map(function (c) { return '<option value="' + c[0] + '">Cone ' + c[0] + '</option>'; }).join('');
     $('pCone').value = d2.cone || '';
     $('projDel').hidden = editing.isNew; $('projDel').textContent = 'Delete project';
@@ -1921,7 +2470,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     var c = COMBOS[day % COMBOS.length];
     $('homeCombo').innerHTML = '<div class="today">' + comboSvg(c, 'home') + '<div><div class="k">' + c.cone + '</div><h3>' + c.t + '</h3>' +
       '<p><b>' + c.top + '</b> ' + (c.rel || 'over') + ' <b>' + c.base + '</b></p>' +
-      '<a class="link" href="' + SRC[c.src] + '" target="_blank" rel="noopener">See AMACO\u2019s photo</a></div></div>';
+      '<a class="link" href="#combos" data-combo="a:' + (day % COMBOS.length) + '">See photos and details</a></div></div>';
   }
 
   /* ---- project stages ---- */
@@ -1951,6 +2500,18 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     renderStages();
   });
 
+  /* ---- Mud School ---- */
+  function lrnSearchUrl() { var q = $('lrnQ').value.trim(); return 'https://www.youtube.com/results?search_query=' + encodeURIComponent('pottery ' + (q || 'for beginners')); }
+  $('lrnQ').addEventListener('input', function () { $('lrnGo').href = lrnSearchUrl(); });
+  $('lrnQ').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); window.open(lrnSearchUrl(), '_blank', 'noopener'); } });
+  $('lrnLv').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-lv]'); if (!b) return;
+    var lv = b.getAttribute('data-lv');
+    $('lrnLv').querySelectorAll('.chip').forEach(function (c) { c.setAttribute('aria-pressed', c === b ? 'true' : 'false'); });
+    document.querySelectorAll('#page-learn a.lrn').forEach(function (a) { var l = a.getAttribute('data-lv'); a.hidden = !(lv === 'all' || l === lv || l === 'all'); });
+    document.querySelectorAll('#page-learn .lrn-sec').forEach(function (s) { s.hidden = !s.querySelector('a.lrn:not([hidden])'); });
+  });
+
   /* ---- more menu ---- */
   function setMore(open) {
     $('moreMenu').hidden = !open; $('moreBackdrop').hidden = !open;
@@ -1961,10 +2522,245 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   $('moreBackdrop').addEventListener('click', function () { setMore(false); });
   $('moreMenu').addEventListener('click', function (e) { if (e.target.closest('a')) setMore(false); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('moreMenu').hidden) { setMore(false); $('nav-more').focus(); } });
-  var MORE_PAGES = ['cones'];
+  var MORE_PAGES = ['cones', 'learn'];
+
+  /* ================= STUDIO EXTRAS ================= */
+  // ---- troubleshooting search ----
+  $('tbQ').addEventListener('input', function () {
+    var q = this.value.trim().toLowerCase(), any = false;
+    document.querySelectorAll('#tbList .tb').forEach(function (d) {
+      var ok = !q || q.split(/\s+/).every(function (w) { return d.getAttribute('data-q').indexOf(w) > -1; });
+      d.hidden = !ok; if (ok) any = true;
+    });
+    $('tbNone').hidden = any;
+  });
+
+  // ---- size to clay ----
+  var szShape = 'cyl';
+  function renderSize() {
+    var out = $('sizeOut'), u = $('szU').value, f = u === 'in' ? 2.54 : 1;
+    var Hn = num('szH'), Dn = num('szD');
+    $('szHf').querySelector('label').textContent = szShape === 'plate' ? 'Rim height' : 'Height';
+    $('szHandleL').hidden = szShape !== 'cyl';
+    if (Dn === null || Dn <= 0 || (szShape !== 'plate' && (Hn === null || Hn <= 0))) {
+      out.innerHTML = '<div class="lab" style="margin:0">Enter the finished ' + (szShape === 'plate' ? 'width' : 'height and width') + ' to see how much clay to use.</div>'; return;
+    }
+    var s = shrink(), pctS = s ? s.total : 12, k = 1 / (1 - pctS / 100);
+    var D = Dn * f * k, Hc = (Hn && Hn > 0 ? Hn : (szShape === 'plate' ? 0.6 / 2.54 * (u === 'in' ? 1 : 2.54) : 0)) * f * k;
+    var t = +$('szW').value, tb = t * 1.6, V;
+    if (szShape === 'cyl') V = Math.PI * D * Hc * t + Math.PI * Math.pow(D / 2, 2) * tb;
+    else if (szShape === 'bowl') { var a = D / 2; V = Math.PI * (a * a + Hc * Hc) * t + Math.PI * Math.pow(a * 0.6, 2) * tb * 2; }
+    else { var r = D / 2; V = Math.PI * r * r * tb + Math.PI * D * Math.max(Hc, 1.5) * t; }
+    var g = V * 1.8;
+    if ($('szTrim').checked || szShape === 'plate') g *= 1.2;
+    if (szShape === 'cyl' && $('szHandle').checked) g *= 1.1;
+    g = Math.round(g / 10) * 10;
+    var cat = szShape === 'cyl' ? ['Drinkware', 'Home & garden'] : szShape === 'bowl' ? ['Bowls'] : ['Plates'], best = null;
+    ITEMS.forEach(function (it) { if (cat.indexOf(it.c) > -1 && (!best || Math.abs(it.g - g) < Math.abs(best.g - g))) best = it; });
+    var wu = u === 'in' ? 'in' : 'cm', wf = u === 'in' ? 1 / 2.54 : 1;
+    out.innerHTML = '<div class="lab">Weigh out about</div><div class="v" style="font-size:28px">' + lbOz(g) + ' <small>' + g + ' g</small></div>' +
+      '<div class="lab" style="margin:8px 0 0">Throw it at about ' + (szShape !== 'plate' ? trimZ((Hc * wf).toFixed(1)) + ' ' + wu + ' tall and ' : '') + trimZ((D * wf).toFixed(1)) + ' ' + wu + ' wide, using ' + pct(pctS) + '% shrinkage.' +
+      (best ? ' Similar to the ' + best.n.toLowerCase() + ' in the list (' + lbOz(best.g) + ').' : '') + '</div>' +
+      '<div class="lab" style="margin:6px 0 0">This is a rough estimate. Weigh what works for you and adjust.</div>';
+  }
+  $('sizeCard').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-shape]'); if (!b) return;
+    szShape = b.getAttribute('data-shape');
+    $('sizeCard').querySelectorAll('[data-shape]').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    renderSize();
+  });
+  ['szH', 'szD', 'szU', 'szW', 'szTrim', 'szHandle'].forEach(function (id) { $(id).addEventListener('input', renderSize); $(id).addEventListener('change', renderSize); });
+
+  // ---- clay shelf (Ideas) ----
+  var clayShelf = sget('clayday:clayshelf', []);
+  function saveClayShelf() { sset('clayday:clayshelf', clayShelf); }
+  function fillClayList() {
+    $('clayList').innerHTML = clays.map(function (c) { return c.name; }).concat(allPresetNames()).map(function (n) { return '<option value="' + esc(n) + '"></option>'; }).join('');
+  }
+  function shelfTotalLb() { return clayShelf.reduce(function (s, c) { var v = parseFloat(c.lb); return s + (isFinite(v) && v > 0 ? v : 0); }, 0); }
+  function renderClayShelf() {
+    fillClayList();
+    var tot = shelfTotalLb();
+    $('clayShelf').innerHTML = '<h3 style="margin:14px 0 2px">My clay shelf</h3><p class="hint" style="margin:0 0 4px">Keep track of the clay you have and mark what\u2019s running low.</p>' +
+      clayShelf.map(function (c, i) {
+        return '<div class="cshelf-row"><input type="text" list="clayList" data-cs="n" data-i="' + i + '" value="' + esc(c.n || '') + '" placeholder="Clay name" aria-label="Clay name">' +
+          '<input type="number" inputmode="decimal" step="any" min="0" data-cs="lb" data-i="' + i + '" value="' + esc(c.lb || '') + '" placeholder="lb" aria-label="Pounds on hand">' +
+          '<button class="low-btn" data-cslow="' + i + '" aria-pressed="' + !!c.low + '">Low</button>' +
+          '<button class="icon-btn" data-csdel="' + i + '" aria-label="Remove clay">&times;</button></div>';
+      }).join('') +
+      '<div class="btn-row" style="margin-top:10px"><button class="btn-ghost" id="csAdd">Add clay</button>' +
+      '<button class="btn-ghost" id="csUse"' + (tot > 0 ? '' : ' disabled') + '>Use shelf total' + (tot > 0 ? ' (' + trimZ(tot.toFixed(1)) + ' lb)' : '') + '</button></div>';
+  }
+  $('clayShelf').addEventListener('input', function (e) {
+    var t = e.target; if (!t.hasAttribute('data-cs')) return;
+    clayShelf[+t.getAttribute('data-i')][t.getAttribute('data-cs')] = t.value; saveClayShelf();
+    var tot = shelfTotalLb(), b = $('csUse'); b.disabled = !(tot > 0); b.textContent = 'Use shelf total' + (tot > 0 ? ' (' + trimZ(tot.toFixed(1)) + ' lb)' : '');
+  });
+  $('clayShelf').addEventListener('change', function () { renderShelf(); });
+  $('clayShelf').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    if (b.id === 'csAdd') { clayShelf.push({ n: '', lb: '', low: false }); saveClayShelf(); renderClayShelf(); var ins = $('clayShelf').querySelectorAll('input[data-cs="n"]'); ins[ins.length - 1].focus(); return; }
+    if (b.id === 'csUse') { $('ideaAmt').value = trimZ(shelfTotalLb().toFixed(2)); $('ideaUnit').value = 'lb'; renderIdeas(); saveIdeaSet(); return; }
+    if (b.hasAttribute('data-cslow')) { var c = clayShelf[+b.getAttribute('data-cslow')]; c.low = !c.low; saveClayShelf(); renderClayShelf(); renderShelf(); return; }
+    if (b.hasAttribute('data-csdel')) { clayShelf.splice(+b.getAttribute('data-csdel'), 1); saveClayShelf(); renderClayShelf(); renderShelf(); }
+  });
+
+  // ---- glaze shelf (Combos) ----
+  var shelf = sget('clayday:shelf', []), recOnly = !!sget('clayday:reconly', false);
+  function saveShelf() { sset('clayday:shelf', shelf); }
+  function onShelf(code) { code = String(code).toLowerCase(); return shelf.some(function (s) { return String(s.code || '').toLowerCase() === code; }); }
+  function shelfCombos() {
+    return Object.keys(REC).filter(function (k) { return onShelf(REC[k].base) && onShelf(REC[k].top); })
+      .sort(function (a, b) { return (REC[b].conf ? 1 : 0) - (REC[a].conf ? 1 : 0) || gName(REC[a].top).localeCompare(gName(REC[b].top)); });
+  }
+  function shoppingItems() {
+    return shelf.filter(function (s) { return s.low; }).map(function (s) { return [s.brand, s.code, s.name].filter(Boolean).join(' '); })
+      .concat(clayShelf.filter(function (c) { return c.low && (c.n || '').trim(); }).map(function (c) { return c.n.trim() + ' (clay)'; }));
+  }
+  var shelfShowAll = false;
+  function renderShelf() {
+    var el = $('shelfCard'), h = '';
+    if (!shelf.length) h += '<p class="hint" style="margin:0 0 12px">Add the glazes you own. Clay Day will show which AMACO combinations you can make right now, and keep a shopping list of anything running low.</p>';
+    h += shelf.map(function (s, i) {
+      return '<div class="shelf-row">' + swatch(s.hex || hashColor(s.name)) + '<span><b>' + esc(s.name) + '</b><span class="sub2">' + esc([s.brand, s.code].filter(Boolean).join(' \u00b7 ')) + '</span></span>' +
+        '<button class="low-btn" data-slow="' + i + '" aria-pressed="' + !!s.low + '">' + (s.low ? 'Running low' : 'Low?') + '</button>' +
+        '<button class="icon-btn" data-sdel="' + i + '" aria-label="Remove ' + esc(s.name) + '">&times;</button></div>';
+    }).join('');
+    h += '<button class="btn-ghost wide" id="shelfAdd" style="margin-top:12px">Add a glaze I own</button>';
+    if (shelf.length > 1) {
+      var can = shelfCombos(), shown = shelfShowAll ? can : can.slice(0, 6);
+      h += '<h3 style="margin:18px 0 4px">You can make ' + can.length + (can.length === 1 ? ' combination' : ' combinations') + '</h3>' +
+        (can.length ? shown.map(function (k) { return recRow(REC[k], k); }).join('') + (can.length > 6 ? '<button class="btn-ghost wide" id="shelfMore" style="margin-top:8px">' + (shelfShowAll ? 'Show fewer' : 'Show all ' + can.length) + '</button>' : '')
+          : '<p class="empty" style="margin:0">None of AMACO\u2019s published combinations use two glazes from your shelf yet.</p>');
+    }
+    var shop = shoppingItems();
+    if (shop.length) {
+      h += '<div class="shop"><h3>Shopping list</h3><ul>' + shop.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
+        '<button class="btn-ghost" id="shopCopy">Copy list</button><p class="msg" id="shopMsg" hidden></p></div>';
+    }
+    el.innerHTML = h;
+  }
+  $('shelfCard').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    if (b.id === 'shelfAdd') {
+      openPicker(function (g) { if (!onShelf(g.code || g.name)) { shelf.push({ gid: g.id, code: g.code || '', name: g.name, brand: g.brand, hex: g.hex, low: false }); saveShelf(); } renderShelf(); renderRecs(); });
+      return;
+    }
+    if (b.id === 'shelfMore') { shelfShowAll = !shelfShowAll; renderShelf(); return; }
+    if (b.id === 'shopCopy') {
+      var txt = 'Pottery shopping list\n' + shoppingItems().map(function (x) { return '- ' + x; }).join('\n'), m = $('shopMsg');
+      var done = function (ok) { m.textContent = ok ? 'Copied. Paste it into Notes or a message.' : txt; m.className = 'msg ' + (ok ? 'ok' : ''); m.style.whiteSpace = 'pre-wrap'; m.hidden = false; };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(function () { done(true); }, function () { done(false); }); else done(false);
+      return;
+    }
+    if (b.hasAttribute('data-slow')) { var s = shelf[+b.getAttribute('data-slow')]; s.low = !s.low; saveShelf(); renderShelf(); return; }
+    if (b.hasAttribute('data-sdel')) { shelf.splice(+b.getAttribute('data-sdel'), 1); saveShelf(); renderShelf(); renderRecs(); }
+  });
+  $('recCard').addEventListener('change', function (e) {
+    if (e.target.id !== 'recOnly') return;
+    recOnly = e.target.checked; sset('clayday:reconly', recOnly); renderRecs();
+  });
+
+  // ---- test tiles vs pieces (Projects) ----
+  var projKind = 'piece';
+  function isTile(p) { return p && p.kind === 'tile'; }
+  function renderKindSeg() {
+    var nT = Store.items.filter(isTile).length, nP = Store.items.length - nT;
+    $('kindSeg').innerHTML = '<button data-kind="piece" aria-pressed="' + (projKind === 'piece') + '">Pieces (' + nP + ')</button><button data-kind="tile" aria-pressed="' + (projKind === 'tile') + '">Test tiles (' + nT + ')</button>';
+  }
+  $('kindSeg').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-kind]'); if (!b) return;
+    projKind = b.getAttribute('data-kind'); renderProjects();
+  });
+  function prepKindUI() {
+    var tile = editing && editing.data.kind === 'tile';
+    $('stageField').hidden = tile; $('priceCard').hidden = tile;
+    $('editTitle').textContent = editing.isNew ? (tile ? 'New test tile' : 'New project') : (tile ? 'Edit test tile' : 'Edit project');
+    $('pName').placeholder = tile ? 'PC-33 over PC-31, 2 coats each' : 'e.g. Speckled mug set';
+  }
+
+  // ---- pricing (Projects) ----
+  var PRICE_KEYS = ['clay', 'cpl', 'mat', 'fire', 'hrs', 'rate', 'oh'];
+  var priceDefaults = sget('clayday:pricing', { cpl: '', rate: '', oh: '10', fire: '' });
+  function money(n) { return '$' + n.toFixed(2); }
+  function priceCalc(p) {
+    if (!p) return null;
+    var v = function (k) { var n = parseFloat(p[k]); return isFinite(n) && n > 0 ? n : 0; };
+    var mat = v('clay') * v('cpl') + v('mat') + v('fire'), lab = v('hrs') * v('rate'), oh = (mat + lab) * v('oh') / 100;
+    var whole = mat + lab + oh;
+    return whole > 0 ? { mat: mat, lab: lab, oh: oh, whole: whole, retail: whole * 2 } : null;
+  }
+  function fillPrice() {
+    if (!editing) return;
+    if (!editing.data.price) {
+      editing.data.price = { clay: '', cpl: priceDefaults.cpl || '', mat: '', fire: priceDefaults.fire || '', hrs: '', rate: priceDefaults.rate || '', oh: priceDefaults.oh || '10' };
+      var gl = editing.data.glazes || [];
+    }
+    var map = { clay: 'prClay', cpl: 'prCpl', mat: 'prMat', fire: 'prFire', hrs: 'prHrs', rate: 'prRate', oh: 'prOh' };
+    PRICE_KEYS.forEach(function (k) { $(map[k]).value = editing.data.price[k] || ''; });
+    renderPrice();
+  }
+  function renderPrice() {
+    var c = priceCalc(editing && editing.data.price), out = $('priceOut');
+    if (!c) { out.innerHTML = '<div class="lab" style="margin:0">Enter your costs and time to see a suggested price.</div>'; return; }
+    out.innerHTML = '<div class="price-grid"><span>Materials and firing</span><span>' + money(c.mat) + '</span><span>Your time</span><span>' + money(c.lab) + '</span>' +
+      '<span>Overhead</span><span>' + money(c.oh) + '</span><span><b>Wholesale price</b></span><span><b>' + money(c.whole) + '</b></span>' +
+      '<span class="tot">Suggested retail</span><span class="tot">' + money(c.retail) + '</span></div>' +
+      '<div class="lab" style="margin:8px 0 0">Retail is shown at twice wholesale, a common rule of thumb. Adjust for your market.</div>';
+  }
+  $('priceCard').addEventListener('input', function (e) {
+    var t = e.target; if (!editing || !t.hasAttribute('data-pf')) return;
+    var k = t.getAttribute('data-pf'); editing.data.price[k] = t.value;
+    if (['cpl', 'rate', 'oh', 'fire'].indexOf(k) > -1) { priceDefaults[k] = t.value; sset('clayday:pricing', priceDefaults); }
+    renderPrice();
+  });
+
+  // ---- backup and restore (Home) ----
+  function backupData() {
+    var local = {};
+    try { for (var i = 0; i < localStorage.length; i++) { var key = localStorage.key(i); if (key && key.indexOf('clayday') === 0) local[key] = localStorage.getItem(key); } } catch (e) {}
+    return JSON.stringify({ app: 'Clay Day', version: 1, saved: new Date().toISOString(), projects: Store.items, local: local });
+  }
+  function bkMsg(t, ok) { var m = $('bkMsg'); m.textContent = t; m.className = 'msg ' + (ok ? 'ok' : 'err'); m.hidden = false; }
+  $('bkSave').addEventListener('click', function () {
+    var data = backupData(), name = 'clay-day-backup-' + todayISO() + '.json';
+    $('bkText').hidden = true;
+    function showText() { var t = $('bkText'); t.value = data; t.hidden = false; t.focus(); t.select(); bkMsg('Saving files isn\u2019t available here. Copy the text above and keep it in Notes or email it to yourself.', false); }
+    function blobSave() {
+      try {
+        var url = URL.createObjectURL(new Blob([data], { type: 'application/json' })), a = document.createElement('a');
+        a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+        bkMsg('Backup saved as ' + name + '.', true);
+      } catch (e) { showText(); }
+    }
+    if (window.claude && typeof window.claude.use === 'function') {
+      window.claude.use('downloads').then(function (d) {
+        if (!d) { showText(); return; }
+        d.save({ filename: name, data: data }).then(function () { bkMsg('Backup saved as ' + name + '.', true); }, function (err) {
+          if (err && err.code === 'declined') bkMsg('Backup not saved.', false); else showText();
+        });
+      }, showText);
+    } else blobSave();
+  });
+  $('bkFile').addEventListener('change', function () {
+    var f = this.files && this.files[0]; this.value = ''; if (!f) return;
+    var r = new FileReader();
+    r.onload = function () {
+      var b; try { b = JSON.parse(r.result); } catch (e) { bkMsg('That file isn\u2019t a Clay Day backup.', false); return; }
+      if (!b || b.app !== 'Clay Day') { bkMsg('That file isn\u2019t a Clay Day backup.', false); return; }
+      try { Object.keys(b.local || {}).forEach(function (k) { if (k.indexOf('clayday') === 0) localStorage.setItem(k, b.local[k]); }); }
+      catch (e) { bkMsg('Not enough space on this device to restore everything.', false); return; }
+      var ps = Array.isArray(b.projects) ? b.projects : [];
+      ps.reduce(function (ch, p) { return ch.then(function () { if (p && p.id) { var d = JSON.parse(JSON.stringify(p)); delete d.id; return storeSave(p.id, d).catch(function () {}); } }); }, Promise.resolve())
+        .then(function () { bkMsg('Restored ' + ps.length + (ps.length === 1 ? ' project' : ' projects') + ' and your settings. Reloading\u2026', true); setTimeout(function () { location.reload(); }, 1200); });
+    };
+    r.onerror = function () { bkMsg('That file couldn\u2019t be read.', false); };
+    r.readAsText(f);
+  });
 
   /* ================= ROUTING ================= */
-  var PAGES = ['home', 'calculator', 'ideas', 'projects', 'combos', 'cones'];
+  var PAGES = ['home', 'calculator', 'ideas', 'projects', 'combos', 'cones', 'learn'];
   function route() {
     var h = location.hash.replace('#', '');
     var page = PAGES.indexOf(h) > -1 ? h : 'home';
@@ -1987,9 +2783,9 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   renderClaySel(s ? validClaySel(s.clay) : '');
   setMode(state.mode); setDir(state.dir);
   renderCalc();
-  renderIdeas();
+  renderIdeas(); renderWiz(); renderSize(); renderClayShelf(); renderShelf();
   renderConeTable(); renderConv();
-  renderCombos(); renderMyCombos();
+  renderCombos(); renderMyCombos(); renderRecs();
   renderProjects();
   route();
   initStore();
