@@ -407,8 +407,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 .calc-note { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; margin: 0 0 14px; font-size: 14px; color: var(--muted); }
 .calc-note b { color: var(--ink); }
 .listtext { margin-top: 12px; font-size: 14px; min-height: 120px; font-variant-numeric: tabular-nums; }
-.tabs { grid-template-columns: repeat(4, 1fr) !important; }
-.tabs .tab { font-size: 14px; padding-left: 2px; padding-right: 2px; }
+.ctabs .tab { font-size: 14px; line-height: 1.2; min-height: 54px; padding: 8px 4px; }
 .combo-links { display: flex; flex-wrap: wrap; gap: 6px 16px; }
 .combo-ph { width: 76px; height: 92px; object-fit: cover; border-radius: 14px; display: block; }
 .mc-ph { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; display: block; }
@@ -482,6 +481,21 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 .combo-t { min-height: 44px; display: inline-flex; align-items: center; }
 .low-btn { min-height: 40px; }
 .link, .link-btn { display: inline-flex; align-items: center; min-height: 44px; }
+.filter-label { font-size: 13px; font-weight: 650; color: var(--muted); margin: 10px 0 2px; }
+.badge.brand { background: var(--field); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
+.sh-item { padding: 14px 0; border-top: 1px solid var(--line); }
+.sh-item:first-child { border-top: 0; padding-top: 0; }
+.sh-top { display: grid; grid-template-columns: auto 1fr 40px; gap: 12px; align-items: center; }
+.sh-top .gsw { width: 52px; height: 52px; border-radius: 14px; }
+.sh-name b { display: block; font-size: 17px; line-height: 1.2; }
+.sh-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0 10px; }
+.sh-meta div { background: var(--field); border-radius: 12px; padding: 8px 10px; }
+.sh-meta dt { font-size: 12px; color: var(--muted); margin: 0; }
+.sh-meta dd { margin: 2px 0 0; font-weight: 700; font-variant-numeric: tabular-nums; }
+.sh-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.sh-actions .low-btn, .sh-actions .btn-ghost { min-height: 44px; font-size: 14px; }
+.shop-list { margin: 0 0 12px; padding-left: 20px; }
+.shop-list li { margin-bottom: 4px; }
 [hidden] { display: none !important; }
 @media (prefers-reduced-motion: reduce) { .bar { transition: none; } }
 </style>
@@ -522,7 +536,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     <div class="tiles">
       <a class="tile" href="#calculator"><div class="ic indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><rect x="8" y="6" width="8" height="3.5" rx="1"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01"/></svg></div><b>Shrinkage</b><span>Size pieces for firing</span></a>
       <a class="tile" href="#ideas"><div class="ic mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v3C6 8 5 12 7 16c1 2.5 1.5 4 1.5 5h7c0-1 .5-2.5 1.5-5 2-4 1-8-3-10V3"/></svg></div><b>Ideas</b><span>What your clay can make</span></a>
-      <a class="tile" href="#combos"><div class="ic violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg></div><b>Glaze combos</b><span>AMACO layers to try</span></a>
+      <a class="tile" href="#combos"><div class="ic violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg></div><b>Glaze combos</b><span>Layering ideas to try</span></a>
       <a class="tile" href="#learn"><div class="ic coral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg></div><b>Mud School</b><span>Videos and how-tos</span></a>
     </div>
 
@@ -765,28 +779,34 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   <div id="page-combos" hidden>
     <div id="comboListView">
       <h1 class="page-title">Glaze combos</h1>
-      <p class="sub">Save your own layering recipes and try AMACO&rsquo;s favorites.</p>
+      <p class="sub">Save your own layering recipes and try favorites from AMACO, Mayco and Coyote.</p>
       <div class="card wiz"><button class="btn wide" id="comboNew">New</button></div>
 
-      <div class="section-head"><h2>Find combos for a glaze</h2></div>
-      <div class="card" id="recCard"></div>
-
-      <div class="section-head"><h2>My glaze shelf</h2></div>
-      <div class="card" id="shelfCard"></div>
-
-      <div class="section-head"><h2>Your combinations</h2></div>
-      <div class="card" id="myCombos"></div>
-
-      <div class="section-head" style="margin-top:8px"><h2>AMACO combos to try</h2></div>
-      <div class="card">
-        <div class="field">
-          <label for="comboQ">Find combos with a glaze you own</label>
-          <input type="text" id="comboQ" placeholder="Seaweed or PC-59">
-        </div>
-        <div class="chips" id="comboChips" role="group" aria-label="Filter combos"></div>
-        <label class="check"><input type="checkbox" id="comboStable"> Hide combos that can run</label>
+      <div class="tabs ctabs" id="comboTabs" role="tablist" aria-label="Combo views">
+        <button class="tab" role="tab" id="ct-glaze" aria-selected="true" aria-controls="cp-glaze" data-ctab="glaze">Combos for a glaze</button>
+        <button class="tab" role="tab" id="ct-mine" aria-selected="false" aria-controls="cp-mine" data-ctab="mine">Your combinations</button>
+        <button class="tab" role="tab" id="ct-try" aria-selected="false" aria-controls="cp-try" data-ctab="try">Combos to try</button>
       </div>
-      <div class="card" id="comboList"></div>
+
+      <div id="cp-glaze" role="tabpanel" aria-labelledby="ct-glaze">
+        <div class="card" id="recCard"></div>
+      </div>
+
+      <div id="cp-mine" role="tabpanel" aria-labelledby="ct-mine" hidden>
+        <div class="card" id="myCombos"></div>
+      </div>
+
+      <div id="cp-try" role="tabpanel" aria-labelledby="ct-try" hidden>
+        <div class="card">
+          <div class="field">
+            <label for="comboQ">Find combos with a glaze you own</label>
+            <input type="text" id="comboQ" placeholder="Seaweed or PC-59">
+          </div>
+          <div id="comboChips"></div>
+          <label class="check"><input type="checkbox" id="comboStable"> Hide combos that can run</label>
+        </div>
+        <div class="card" id="comboList"></div>
+      </div>
 
       <div class="card">
         <h2>Layering tips</h2>
@@ -799,7 +819,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
           <li>Cooling matters. Some glazes, like Ancient Copper, change color with a slow cool.</li>
         </ul>
       </div>
-      <p class="hint">Swatches show approximate glaze colors. Open a combo to see AMACO&rsquo;s fired example and potters&rsquo; photos, or add your own photo. AMACO fires its examples on white stoneware, so results on your clay will differ. Browse many more in <a href="https://amaco.com/resources/layering" target="_blank" rel="noopener">AMACO&rsquo;s layering database</a>.</p>
+      <p class="hint">Swatches show approximate glaze colors. Open a combo to see the maker&rsquo;s fired example and potters&rsquo; photos, or add your own photo. Makers fire their examples on white stoneware, so results on your clay will differ. Browse many more in <a href="https://amaco.com/resources/layering" target="_blank" rel="noopener">AMACO&rsquo;s layering database</a>.</p>
     </div>
 
     <div id="comboDetailView" class="cd" hidden></div>
@@ -829,6 +849,23 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
         <button class="btn-ghost danger wide" id="cDel" hidden>Delete combination</button>
       </div>
       <p class="msg err" id="cMsg" hidden></p>
+    </div>
+  </div>
+
+  <!-- ===== GLAZE SHELF ===== -->
+  <div id="page-shelf" hidden>
+    <h1 class="page-title">My glaze shelf</h1>
+    <p class="sub">The glazes you own, what they pair with, and what to restock.</p>
+    <div class="card wiz"><div class="btn-row"><button class="btn" id="shelfScan">Scan a label</button><button class="btn-ghost" id="shelfAdd">Add by name</button></div></div>
+    <div class="section-head"><h2>Glazes I own</h2><span class="sub2" id="shelfCount"></span></div>
+    <div class="card" id="shelfList"></div>
+    <div id="shelfCanWrap" hidden>
+      <div class="section-head"><h2 id="shelfCanTitle">Combinations you can make</h2></div>
+      <div class="card" id="shelfCan"></div>
+    </div>
+    <div id="shelfShopWrap" hidden>
+      <div class="section-head"><h2>Shopping list</h2></div>
+      <div class="card" id="shelfShop"></div>
     </div>
   </div>
 
@@ -936,13 +973,14 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 <div class="more-backdrop" id="moreBackdrop" hidden></div>
 <div class="more-menu" id="moreMenu" hidden role="menu" aria-label="More pages">
   <h2>More</h2>
+  <a href="#calculator" id="more-calculator" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5"/><rect x="8" y="6" width="8" height="3.5" rx="1"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01"/></svg><span>Shrinkage calculator<small>Size pieces for firing</small></span></a>
   <a href="#cones" id="more-cones" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l5 16H7z"/><path d="M5 21h14"/></svg><span>Cone chart<small>Firing temperatures and converter</small></span></a>
   <a href="#learn" id="more-learn" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg><span>Mud School<small>Pottery videos and how-to guides</small></span></a>
 </div>
 
 <nav class="bottom" aria-label="Pages">
   <a href="#home" id="nav-home"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></svg></span>Home</a>
-  <a href="#calculator" id="nav-calculator"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5"/><rect x="8" y="6" width="8" height="3.5" rx="1"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01"/></svg></span>Shrinkage</a>
+  <a href="#shelf" id="nav-shelf"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18M5 20V9h4v11M10 20V5h4v15M15 20v-8h4v8"/></svg></span>Glazes</a>
   <a href="#ideas" id="nav-ideas"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v3C6 8 5 12 7 16c1 2.5 1.5 4 1.5 5h7c0-1 .5-2.5 1.5-5 2-4 1-8-3-10V3"/></svg></span>Ideas</a>
   <a href="#projects" id="nav-projects"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6.5" width="18" height="13.5" rx="3"/><circle cx="12" cy="13.2" r="3.5"/><path d="M8.5 6.5 10 4h4l1.5 2.5"/></svg></span>Projects</a>
   <a href="#combos" id="nav-combos"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg></span>Combos</a>
@@ -1591,6 +1629,77 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     { t: 'Stormy Oil Spot', top: 'DL-12 Enamel White', base: 'DL-27 Storm Cloud', how: 'Dipping & Layering glazes, quick to apply for production work.', cone: 'Cone 6, no hold', tags: ['neutral', 'dark'], bc: '#5b646e', tc: '#efeee8', fx: 'spots', src: 'dl' },
     { t: 'Snowy oil spot', top: 'C-10 Snow', base: 'C-27 Storm', how: 'Snow breaks into an oil-spot effect over Storm. It does the same over Rainforest, Ancient Copper and Deep Firebrick.', cone: 'Cone 5', tags: ['neutral'], bc: '#56626b', tc: '#eef1f2', fx: 'spots', src: 'winter' }
   ];
+  // ---- more combinations from Mayco and Coyote ----
+  SRC.mayco_tea = 'https://cdn.shopify.com/s/files/1/1015/2867/files/2020-1_Combo_SW108_Green_Tea.pdf';
+  SRC.mayco_moth = 'https://cdn.shopify.com/s/files/1/1015/2867/files/2020-05_Combo_SW181_NightMoth.pdf';
+  SRC.mayco_aster = 'https://maycocolors.com/?p=8165';
+  SRC.mayco_moon = 'https://maycocolors.com/glaze-combinations';
+  SRC.mayco_sets = 'https://www.creative-crafts.com/mayco-colors/mayco-mid-range-cone-5-6-glazes/Mayco-Stoneware-Glaze-Combinations?page=2';
+  SRC.mayco_bowls = 'https://archive.maycocolors.com/index.php/mud-room/3251-glaze-combinations-for-creatives';
+  SRC.coyote_tts = 'https://www.soundingstone.com/pages/coyote-texas-two-step-overlap-examples';
+  SRC.coyote_shino = 'https://bigceramicstore.com/pages/info-ceramics-tips-tip94_layering_glazes';
+  var MAYCO_HOW = 'Mayco\u2019s combo sheets brush on 2 coats of the base glaze, then 2 coats of the top glaze, letting each coat dry. Fired to cone 6 on white stoneware.';
+  var MAYCO_SET = 'A Mayco stoneware pairing fired to cone 6. Mayco\u2019s usual method is 2 coats of each glaze, letting each coat dry.';
+  var MAYCO_BOWL = '3 coats of the base glaze, then the top glaze. Mayco fired it upright to cone 6 on white stoneware, so flat surfaces may move less.';
+  var COYOTE_TTS = 'Texas Two-Step oil spot: 2 coats of the undercoat, then 3 coats of the overcoat. Fire to cone 5\u20136. More overcoat makes bigger spots.';
+  var COYOTE_SHINO = 'Coyote recommends brushing 3 coats of its glazes, changing stroke direction each coat. Fire to cone 5\u20136.';
+  [
+    ['Green Tea over Lava Rock', 'SW-108 Green Tea', 'SW-144 Lava Rock', ['green', 'dark'], '#3a3532', '#8a9a5b', 'mayco_tea'],
+    ['Green Tea over Black Walnut', 'SW-108 Green Tea', 'SW-104 Black Walnut', ['green', 'dark'], '#3b2a22', '#8a9a5b', 'mayco_tea'],
+    ['Green Tea over Sea Salt', 'SW-108 Green Tea', 'SW-118 Sea Salt', ['green', 'neutral'], '#e6e2d6', '#8a9a5b', 'mayco_tea'],
+    ['Green Tea over Dunes', 'SW-108 Green Tea', 'SW-107 Dunes', ['green', 'warm'], '#c9b38f', '#8a9a5b', 'mayco_tea'],
+    ['Night Moth over Blue Hydrangea', 'SW-181 Night Moth', 'SW-170 Blue Hydrangea', ['blue', 'purple', 'dark'], '#6f8fc8', '#3a3440', 'mayco_moth'],
+    ['Night Moth over Dunes', 'SW-181 Night Moth', 'SW-107 Dunes', ['dark', 'warm'], '#c9b38f', '#3a3440', 'mayco_moth'],
+    ['Night Moth over Winter Wood', 'SW-181 Night Moth', 'SW-155 Winter Wood', ['dark', 'neutral'], '#8a7a6a', '#3a3440', 'mayco_moth'],
+    ['Night Moth over Tea Dust', 'SW-181 Night Moth', 'SW-145 Tea Dust', ['dark', 'green'], '#4d4a2c', '#3a3440', 'mayco_moth'],
+    ['Night Moth over Speckled Plum', 'SW-181 Night Moth', 'SW-113 Speckled Plum', ['purple', 'dark'], '#6a4a5c', '#3a3440', 'mayco_moth'],
+    ['Dark Flux over Purple Aster', 'SW-402 Dark Flux', 'SW-199 Purple Aster', ['purple', 'dark'], '#7a5aa0', '#5a4636', 'mayco_aster', 1],
+    ['Light Flux over Purple Aster', 'SW-401 Light Flux', 'SW-199 Purple Aster', ['purple', 'neutral'], '#7a5aa0', '#cfc6b0', 'mayco_aster', 1],
+    ['Green Opal over Purple Aster', 'SW-253 Green Opal', 'SW-199 Purple Aster', ['purple', 'green'], '#7a5aa0', '#6fa58a', 'mayco_aster'],
+    ['Micro Jade over Purple Aster', 'SW-216 Micro Jade', 'SW-199 Purple Aster', ['purple', 'green'], '#7a5aa0', '#5f9a7a', 'mayco_aster'],
+    ['Micro Champagne over Purple Aster', 'SW-215 Micro Champagne', 'SW-199 Purple Aster', ['purple', 'neutral'], '#7a5aa0', '#d8c7a6', 'mayco_aster'],
+    ['Micro Pearl over Purple Aster', 'SW-214 Micro Pearl', 'SW-199 Purple Aster', ['purple', 'neutral'], '#7a5aa0', '#e8e6e0', 'mayco_aster'],
+    ['Purple Aster over Dark Flux', 'SW-199 Purple Aster', 'SW-402 Dark Flux', ['purple', 'dark'], '#5a4636', '#7a5aa0', 'mayco_aster', 1],
+    ['Purple Aster over Light Flux', 'SW-199 Purple Aster', 'SW-401 Light Flux', ['purple', 'neutral'], '#cfc6b0', '#7a5aa0', 'mayco_aster', 1],
+    ['Passion Flower over Purple Aster', 'SW-190 Passion Flower', 'SW-199 Purple Aster', ['purple', 'warm'], '#7a5aa0', '#b04a6a', 'mayco_aster'],
+    ['Raspberry Mist over Purple Aster', 'SW-177 Raspberry Mist', 'SW-199 Purple Aster', ['purple', 'warm'], '#7a5aa0', '#c06a8a', 'mayco_aster'],
+    ['Macadamia over Purple Aster', 'SW-172 Macadamia', 'SW-199 Purple Aster', ['purple', 'neutral'], '#7a5aa0', '#d9c4a0', 'mayco_aster'],
+    ['Sand & Sea over Purple Aster', 'SW-167 Sand & Sea', 'SW-199 Purple Aster', ['purple', 'neutral'], '#7a5aa0', '#c8b08a', 'mayco_aster'],
+    ['Olive Float over Purple Aster', 'SW-151 Olive Float', 'SW-199 Purple Aster', ['purple', 'green'], '#7a5aa0', '#6f7a3a', 'mayco_aster'],
+    ['Mirror Black over Purple Aster', 'SW-132 Mirror Black', 'SW-199 Purple Aster', ['purple', 'dark'], '#7a5aa0', '#141416', 'mayco_aster'],
+    ['Birch over Purple Aster', 'SW-131 Birch', 'SW-199 Purple Aster', ['purple', 'neutral'], '#7a5aa0', '#e3dccb', 'mayco_aster'],
+    ['Green Opal over Moonscape', 'SW-253 Green Opal', 'SW-147 Moonscape', ['green', 'neutral'], '#8a8f94', '#6fa58a', 'mayco_moon'],
+    ['Opal Lustre over Moonscape', 'SW-219 Opal Lustre', 'SW-147 Moonscape', ['neutral', 'blue'], '#8a8f94', '#c8d0d6', 'mayco_moon'],
+    ['Micro Pearl over Moonscape', 'SW-214 Micro Pearl', 'SW-147 Moonscape', ['neutral'], '#8a8f94', '#e8e6e0', 'mayco_moon'],
+    ['Rose Quartz over Moonscape', 'SW-198 Rose Quartz', 'SW-147 Moonscape', ['warm', 'neutral'], '#8a8f94', '#e0b0b0', 'mayco_moon'],
+    ['Sand Dollar over Moonscape', 'SW-196 Sand Dollar', 'SW-147 Moonscape', ['neutral'], '#8a8f94', '#e6dcc8', 'mayco_moon'],
+    ['Oxblood over Moonscape', 'SW-183 Oxblood', 'SW-147 Moonscape', ['warm', 'dark'], '#8a8f94', '#7a1f22', 'mayco_moon'],
+    ['Sandstone over Moonscape', 'SW-176 Sandstone', 'SW-147 Moonscape', ['warm', 'neutral'], '#8a8f94', '#c9b08a', 'mayco_moon'],
+    ['Oyster over Moonscape', 'SW-110 Oyster', 'SW-147 Moonscape', ['neutral'], '#8a8f94', '#d6d0c4', 'mayco_moon'],
+    ['Speckled Plum over Himalayan Salt', 'SW-113 Speckled Plum', 'SW-187 Himalayan Salt', ['purple', 'warm'], '#e0b8a8', '#6a4a5c', 'mayco_sets', 0, MAYCO_SET],
+    ['Honeycomb over Copper Jade', 'SW-117 Honeycomb', 'SW-130 Copper Jade', ['warm', 'green'], '#4f8f7a', '#c8902a', 'mayco_sets', 0, MAYCO_SET],
+    ['Honeycomb over Celadon Bloom', 'SW-117 Honeycomb', 'SW-150 Celadon Bloom', ['warm', 'green'], '#a7c7b0', '#c8902a', 'mayco_sets', 0, MAYCO_SET],
+    ['Root Beer over Celadon Bloom', 'SW-203 Root Beer', 'SW-150 Celadon Bloom', ['dark', 'green'], '#a7c7b0', '#5a2e1c', 'mayco_sets', 0, MAYCO_SET],
+    ['Alabaster over Birch', 'SW-106 Alabaster', 'SW-131 Birch', ['neutral'], '#e3dccb', '#ece7dc', 'mayco_bowls', 0, MAYCO_BOWL],
+    ['Maycoshino over Cinnabar', 'SW-122 Maycoshino', 'SW-119 Cinnabar', ['warm'], '#8a2e1e', '#d89a6a', 'mayco_bowls', 0, MAYCO_BOWL],
+    ['Frost Blue over Tiger\u2019s Eye', 'SW-105 Frost Blue', 'SW-112 Tiger\u2019s Eye', ['blue', 'warm'], '#7a4a1a', '#a9c4d6', 'mayco_bowls', 0, MAYCO_BOWL],
+    ['Green Tea over Smoke', 'SW-108 Green Tea', 'SW-121 Smoke', ['green', 'neutral'], '#5a5c60', '#8a9a5b', 'mayco_bowls', 0, MAYCO_BOWL],
+    ['Melon over Oyster', 'SW-206 Melon', 'SW-110 Oyster', ['warm'], '#d6d0c4', '#e8a070', 'mayco_bowls', 0, MAYCO_BOWL],
+    ['Wintergreen over Mirror Black', 'SW-135 Wintergreen', 'SW-132 Mirror Black', ['green', 'dark'], '#141416', '#2f7a5a', 'mayco_bowls', 0, MAYCO_BOWL]
+  ].forEach(function (r) {
+    var how = r[8] || MAYCO_HOW;
+    COMBOS.push({ t: r[0], top: r[1], base: r[2], tags: r[3], bc: r[4], tc: r[5], src: r[6], run: !!r[7], how: how, cone: 'Cone 6', brand: 'Mayco',
+      cb: how === MAYCO_BOWL ? 3 : 2, ct: how === MAYCO_BOWL ? null : 2, cconf: how === MAYCO_HOW || how === MAYCO_BOWL });
+  });
+  [['Birch', '151', '#e8e0cc', ['neutral']], ['Texas Rose', '152', '#c86a6a', ['warm']], ['Marshmallow', '153', '#f2eee6', ['neutral']]].forEach(function (o) {
+    [['Licorice', '140', '#141414', 'dark'], ['Coffee Bean', '141', '#3a2418', 'dark'], ['Brick Red', '142', '#7a2e1e', 'warm']].forEach(function (u) {
+      var tags = o[3].concat(u[3] === o[3][0] ? [] : [u[3]]);
+      COMBOS.push({ t: o[0] + ' over ' + u[0], top: 'MBG' + o[1] + ' ' + o[0], base: 'MBG' + u[1] + ' ' + u[0], tags: tags, bc: u[2], tc: o[2], fx: 'spots',
+        src: 'coyote_tts', how: COYOTE_TTS, cone: 'Cone 5\u20136', brand: 'Coyote', stable: true, cb: 2, ct: 3 });
+    });
+  });
+  COMBOS.push({ t: 'Shino over Black', top: 'MBG042 Shino', base: 'MBG002 Black', tags: ['warm', 'dark'], bc: '#141414', tc: '#8a5a3a', src: 'coyote_shino', how: COYOTE_SHINO, cone: 'Cone 5\u20136', brand: 'Coyote', cb: 3, ct: 3 });
+
   var CHIPS = [['all', 'All', ''], ['fav', '\u2605 Saved', ''], ['blue', 'Blue', '#3f7fd6'], ['green', 'Green', '#2f9a62'], ['purple', 'Purple', '#7b4fa0'], ['warm', 'Warm', '#d9822b'], ['dark', 'Dark', '#2b2f36'], ['neutral', 'Neutral', '#c9c4b8']];
   var cFilter = 'all';
   var favs = sget('clayday:combofavs', []);
@@ -1605,35 +1714,54 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       '<g clip-path="url(#cc' + i + ')"><rect width="80" height="96" fill="' + c.bc + '"/><path d="' + drip + '" fill="' + c.tc + '"/>' + fx + '</g>' +
       '<path d="' + cup + '" fill="none" stroke="rgba(0,0,0,.2)"/><rect x="8" y="6" width="64" height="3" rx="1.5" fill="rgba(255,255,255,.4)"/></svg>';
   }
+  var cBrand = 'all', cColor = 'all', cShow = 'all';
+  function comboBrand(c) { return c.brand || 'AMACO'; }
+  var COLORS_C = [['all', 'Any color', ''], ['blue', 'Blue', '#3f7fd6'], ['green', 'Green', '#2f9a62'], ['purple', 'Purple', '#7b4fa0'], ['warm', 'Warm', '#d9822b'], ['dark', 'Dark', '#2b2f36'], ['neutral', 'Neutral', '#c9c4b8']];
+  var SHOW_C = [['all', 'All', ''], ['fav', '\u2605 Saved', ''], ['stable', 'Stable only', '']];
+  function chipRow(label, list, cur, attr) {
+    return '<div class="filter-label">' + label + '</div><div class="chips" role="group" aria-label="' + label + '">' + list.map(function (ch) {
+      return '<button class="chip" ' + attr + '="' + esc(ch[0]) + '" aria-pressed="' + (cur === ch[0]) + '">' + (ch[2] ? '<span class="dot" style="background:' + ch[2] + '"></span>' : '') + ch[1] + '</button>';
+    }).join('') + '</div>';
+  }
   function renderCombos() {
-    $('comboChips').innerHTML = CHIPS.map(function (ch) {
-      return '<button class="chip" data-chip="' + ch[0] + '" aria-pressed="' + (cFilter === ch[0]) + '">' + (ch[2] ? '<span class="dot" style="background:' + ch[2] + '"></span>' : '') + ch[1] + '</button>';
-    }).join('');
-    var q = $('comboQ').value.trim().toLowerCase(), noRun = $('comboStable').checked;
-    var h = '';
+    var counts = { all: COMBOS.length };
+    COMBOS.forEach(function (c) { var b = comboBrand(c); counts[b] = (counts[b] || 0) + 1; });
+    var brands = [['all', 'All brands (' + counts.all + ')', '']].concat(['AMACO', 'Mayco', 'Coyote'].map(function (b) { return [b, b + ' (' + (counts[b] || 0) + ')', '']; }));
+    $('comboChips').innerHTML = chipRow('Brand', brands, cBrand, 'data-cbr') + chipRow('Color', COLORS_C, cColor, 'data-ccl') + chipRow('Show', SHOW_C, cShow, 'data-csh');
+    var q = $('comboQ').value.trim().toLowerCase(), noRun = $('comboStable').checked, h = '', n = 0;
     COMBOS.forEach(function (c, i) {
-      var isFav = favs.indexOf(c.t) > -1;
-      if (cFilter === 'fav' && !isFav) return;
-      if (cFilter !== 'all' && cFilter !== 'fav' && c.tags.indexOf(cFilter) < 0) return;
+      var isFav = favs.indexOf(c.t) > -1, br = comboBrand(c);
+      if (cBrand !== 'all' && br !== cBrand) return;
+      if (cColor !== 'all' && c.tags.indexOf(cColor) < 0) return;
+      if (cShow === 'fav' && !isFav) return;
+      if (cShow === 'stable' && !c.stable) return;
       if (noRun && c.run) return;
-      if (q && (c.t + ' ' + c.top + ' ' + c.base).toLowerCase().indexOf(q) < 0) return;
-      h += '<div class="combo"><button class="combo-sw" data-combo="a:' + i + '" aria-label="Open ' + c.t + '">' + (comboPhotoList('a:' + i).length ? '<img class="combo-ph" src="' + esc(photoSrc(comboPhotoList('a:' + i)[0])) + '" alt="">' : comboSvg(c, i)) + '</button><div><div class="combo-top"><h3><button class="combo-t" data-combo="a:' + i + '">' + c.t + '</button></h3>' +
-        '<button class="star" data-fav="' + i + '" aria-pressed="' + isFav + '" aria-label="Save ' + c.t + '">' + (isFav ? '\u2605' : '\u2606') + '</button></div>' +
-        '<p class="pair"><b>' + c.top + '</b> ' + (c.rel || 'over') + ' <b>' + c.base + '</b></p>' +
-        '<div class="badges"><span class="badge">' + c.cone + '</span>' +
+      if (q && (c.t + ' ' + c.top + ' ' + c.base + ' ' + br).toLowerCase().indexOf(q) < 0) return;
+      n++;
+      var ph = comboPhotoList('a:' + i), isAm = br === 'AMACO';
+      var photoQ = c.top.replace(/^\S+\s/, '') + ' over ' + c.base.replace(/^\S+\s/, '') + ' ' + br + ' glaze';
+      h += '<div class="combo"><button class="combo-sw" data-combo="a:' + i + '" aria-label="Open ' + esc(c.t) + '">' + (ph.length ? '<img class="combo-ph" src="' + esc(photoSrc(ph[0])) + '" alt="">' : comboSvg(c, i)) + '</button>' +
+        '<div><div class="combo-top"><h3><button class="combo-t" data-combo="a:' + i + '">' + esc(c.t) + '</button></h3>' +
+        '<button class="star" data-fav="' + i + '" aria-pressed="' + isFav + '" aria-label="Save ' + esc(c.t) + '">' + (isFav ? '\u2605' : '\u2606') + '</button></div>' +
+        '<p class="pair"><b>' + esc(c.top) + '</b> ' + (c.rel || 'over') + ' <b>' + esc(c.base) + '</b></p>' +
+        '<div class="badges"><span class="badge brand">' + br + '</span><span class="badge">' + c.cone + '</span>' +
         (c.run ? '<span class="badge run">Can run</span>' : '') +
         (c.stable ? '<span class="badge ok">Stable, good first try</span>' : '') +
         (c.light ? '<span class="badge">Best on light clay</span>' : '') + '</div>' +
-        '<p class="how">' + c.how + '</p>' +
-        '<div class="combo-links"><a href="' + amacoFind(c.top, c.base) + '" target="_blank" rel="noopener">AMACO\u2019s fired example</a>' +
-        '<a href="' + gImages(c.top.replace(/^\S+\s/, '') + ' over ' + c.base.replace(/^\S+\s/, '') + ' AMACO glaze') + '" target="_blank" rel="noopener">Potters\u2019 photos</a></div></div></div>';
+        '<p class="how">' + esc(c.how) + '</p>' +
+        '<div class="combo-links"><a href="' + (isAm ? amacoFind(c.top, c.base) : SRC[c.src]) + '" target="_blank" rel="noopener">' + (isAm ? 'AMACO\u2019s fired example' : 'Fired example') + '</a>' +
+        '<a href="' + gImages(photoQ) + '" target="_blank" rel="noopener">Potters\u2019 photos</a></div></div></div>';
     });
-    if (!h) h = '<p class="empty">' + (cFilter === 'fav' && !favs.length ? 'Tap the star on any combo to save it here.' : 'No combos match. Try another glaze name or color.') + '</p>';
+    h = (n ? '<p class="rec-count" style="margin:0 0 6px">' + n + (n === 1 ? ' combination' : ' combinations') + '</p>' : '') + h;
+    if (!n) h = '<p class="empty">' + (cShow === 'fav' && !favs.length ? 'Tap the star on any combo to save it here.' : 'No combos match. Try another brand, color or glaze name.') + '</p>';
     $('comboList').innerHTML = h;
   }
   $('comboChips').addEventListener('click', function (e) {
-    var b = e.target.closest('[data-chip]'); if (!b) return;
-    cFilter = b.getAttribute('data-chip'); renderCombos();
+    var b = e.target.closest('.chip'); if (!b) return;
+    if (b.hasAttribute('data-cbr')) cBrand = b.getAttribute('data-cbr');
+    else if (b.hasAttribute('data-ccl')) cColor = b.getAttribute('data-ccl');
+    else if (b.hasAttribute('data-csh')) cShow = b.getAttribute('data-csh');
+    renderCombos();
   });
   $('comboList').addEventListener('click', function (e) {
     var b = e.target.closest('[data-fav]'); if (!b) return;
@@ -1660,6 +1788,8 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     'AMACO|Velvet Underglaze|05|V-314 Chocolate Brown #4a3226;V-343 Chartreuse #c6d24a',
     'Mayco|Stoneware|6|SW-001 Stoneware Clear #f2f2ee;SW-003 Stoneware Crackle #ecebe4;SW-004 Stoneware Zinc-Free Clear #f2f2ee;SW-101 Stoned Denim #5a7398;SW-105 Frost Blue #a9c4d6;SW-106 Alabaster #ece7dc;SW-108 Green Tea #8a9a5b;SW-113 Speckled Plum #6a4a5c;SW-116 Robin\u2019s Egg #9fd0cf;SW-118 Sea Salt #e6e2d6;SW-123 Sapphire #2c4f8a;SW-127 Olivine #6f7a3a;SW-130 Copper Jade #4f8f7a;SW-131 Birch #e3dccb;SW-137 Storm Gray #6c7278;SW-138 Lemon Meringue #ecdc8a;SW-143 Abalone #8fa3a8;SW-145 Tea Dust #4d4a2c;SW-150 Celadon Bloom #a7c7b0;SW-154 Shipwreck #4c5f63;SW-155 Winter Wood #8a7a6a;SW-156 Galaxy #2a2a4a;SW-162 Pink Matte #e3b3b0;SW-166 Norse Blue #2f4c7a;SW-168 Coral Sands #d99a7e;SW-176 Sandstone #c9b08a;SW-178 Fool\u2019s Gold #5a3f24;SW-180 Desert Dusk #b07a5e;SW-181 Night Moth #3a3440;SW-185 Rainforest #2f6b4a;SW-186 Azurite #1f3f7a;SW-187 Himalayan Salt #e0b8a8;SW-188 Landslide #5a3a26;SW-189 Cenote #8cc4dc;SW-203 Root Beer #5a2e1c;SW-211 Glacier Blue #9cc6dc;SW-212 Peacock #2f7a86;SW-251 Pink Opal #e8c4cc;SW-255 Gray Opal #b5b9bd;SW-501 White Gloss #f5f5f2;SW-505 Purple Gloss #5a3a8a;SW-506 Bright Blue Gloss #2a5fc8;SW-508 Black Gloss #141416;SW-512 Coral Gloss #e87a6a;SW-513 Brown Gloss #5a3a26',
     'Mayco|Stoneware Wash|06\u201310|SW-302 Rutile Wash #a8773e',
+    'Mayco|Stoneware|6|SW-104 Black Walnut #3b2a22;SW-107 Dunes #c9b38f;SW-110 Oyster #d6d0c4;SW-112 Tiger\u2019s Eye #7a4a1a;SW-117 Honeycomb #c8902a;SW-119 Cinnabar #8a2e1e;SW-121 Smoke #5a5c60;SW-122 Maycoshino #d89a6a;SW-132 Mirror Black #141416;SW-135 Wintergreen #2f7a5a;SW-144 Lava Rock #3a3532;SW-147 Moonscape #8a8f94;SW-151 Olive Float #6f7a3a;SW-167 Sand & Sea #c8b08a;SW-170 Blue Hydrangea #6f8fc8;SW-172 Macadamia #d9c4a0;SW-177 Raspberry Mist #c06a8a;SW-183 Oxblood #7a1f22;SW-190 Passion Flower #b04a6a;SW-196 Sand Dollar #e6dcc8;SW-198 Rose Quartz #e0b0b0;SW-199 Purple Aster #7a5aa0;SW-206 Melon #e8a070;SW-214 Micro Pearl #e8e6e0;SW-215 Micro Champagne #d8c7a6;SW-216 Micro Jade #5f9a7a;SW-219 Opal Lustre #c8d0d6;SW-253 Green Opal #6fa58a;SW-401 Light Flux #cfc6b0;SW-402 Dark Flux #5a4636',
+    'Coyote|Texas Two-Step|6|140 Licorice #141414;141 Coffee Bean #3a2418;142 Brick Red #7a2e1e;143 Fern #4a6a3a;150 Blue Moon #6f8fb8;151 Birch #e8e0cc;153 Marshmallow #f2eee6;154 Sea Mist #a8c8c0;155 Clementine #e07a2a',
     'Mayco|Stroke & Coat|06|SC-1 Pink-A-Boo #f2a3c0;SC-27 Sour Apple #8fcf3a',
     'Mayco|Foundations|06|FN-304 Black Velvet #1a1a1a',
     'Coyote|Gloss|6|001 Almost Teal #1f5e6e;002 Black #141414;007 Clear #f0f0ec;023 White #f4f4f0',
@@ -1835,8 +1965,21 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   var myCombos = sget('clayday:mycombos', []);
   var comboEditing = null, cDelArmed = false;
   function saveMyCombos() { sset('clayday:mycombos', myCombos); }
+  var cTab = sget('clayday:combotab', 'glaze');
+  if (['glaze', 'mine', 'try'].indexOf(cTab) < 0) cTab = 'glaze';
+  function setCTab(t) {
+    cTab = t; sset('clayday:combotab', t);
+    ['glaze', 'mine', 'try'].forEach(function (k) {
+      $('cp-' + k).hidden = (k !== t);
+      $('ct-' + k).setAttribute('aria-selected', k === t ? 'true' : 'false');
+    });
+  }
+  $('comboTabs').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-ctab]'); if (!b) return;
+    setCTab(b.getAttribute('data-ctab'));
+  });
   function showComboView(v) {
-    if (v === 'list') { renderCombos(); renderMyCombos(); renderRecs(); renderShelf(); }
+    if (v === 'list') { setCTab(cTab); renderCombos(); renderMyCombos(); renderRecs(); renderShelf(); }
     $('comboListView').hidden = v !== 'list';
     $('comboDetailView').hidden = v !== 'detail';
     $('comboEditView').hidden = v !== 'edit';
@@ -1928,7 +2071,8 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     COMBOS.forEach(function (a, i) {
       var top = a.top.split(' ')[0], base = a.base.split(' ')[0], k = base + '|' + top;
       var r = REC[k] || { base: base, top: top, b: null, t: null, src: 'blog' };
-      r.blog = i; REC[k] = r;
+      r.blog = i; if (a.cb && r.b == null) { r.b = a.cb; r.t = a.ct; r.conf = !!a.cconf; }
+      REC[k] = r;
     });
     Object.keys(REC).forEach(function (k) {
       var r = REC[k], tn = glazeByCode(r.top), bn = glazeByCode(r.base);
@@ -1941,7 +2085,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   function coatsText(n) { return n + (n > 1 ? ' coats' : ' coat'); }
   function recSteps(r) {
     if (r.b == null && r.t == null) return '1. ' + esc(gName(r.base)) + ' first, then 2. ' + esc(gName(r.top)) + ' on top';
-    return '1. ' + esc(gName(r.base)) + ' \u00b7 ' + coatsText(r.b || 2) + ' \u2192 2. ' + esc(gName(r.top)) + ' \u00b7 ' + coatsText(r.t || 2);
+    return '1. ' + esc(gName(r.base)) + ' \u00b7 ' + coatsText(r.b || 2) + ' \u2192 2. ' + esc(gName(r.top)) + (r.t != null ? ' \u00b7 ' + coatsText(r.t) : ' on top');
   }
   function recBuild(id) {
     var r = REC[id]; if (!r) return null;
@@ -1968,12 +2112,12 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     var vis = ph.length ? '<img class="rec-ph" src="' + esc(photoSrc(ph[0])) + '" alt="">' : '<span class="mini-sw">' + swatch(gHex(r.base)) + swatch(gHex(r.top)) + '</span>';
     return '<button class="rec-row" data-combo="r:' + esc(k) + '">' + vis +
       '<span><b>' + esc(gName(r.top)) + ' over ' + esc(gName(r.base)) + '</b><span class="rec-steps">' + recSteps(r) + '</span>' +
-      (r.conf ? '<span class="rec-src">Coats from AMACO</span>' : '') + '</span><span class="chev" aria-hidden="true">&rsaquo;</span></button>';
+      (r.conf ? '<span class="rec-src">Coats from the maker</span>' : '') + '</span><span class="chev" aria-hidden="true">&rsaquo;</span></button>';
   }
   function renderRecs() {
     var el = $('recCard'), g = recCode ? glazeByCode(recCode) : null;
     if (!g) {
-      el.innerHTML = '<p class="hint" style="margin:0 0 12px">Pick a glaze to see what AMACO has layered with it: which goes first, how many coats, and photos of the fired result. ' + REC_COUNT + ' combinations from AMACO\u2019s published layering sheets.</p>' +
+      el.innerHTML = '<p class="hint" style="margin:0 0 12px">Pick a glaze to see what has been layered with it: which goes first, how many coats, and photos of the fired result. ' + REC_COUNT + ' combinations from AMACO, Mayco and Coyote\u2019s published layering sheets.</p>' +
         '<button class="btn wide" id="recPick">Choose a glaze</button>';
       return;
     }
@@ -1982,8 +2126,8 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     function byName(list, side) { return list.sort(function (a, b) { return gName(REC[a][side]).localeCompare(gName(REC[b][side])); }); }
     byName(over, 'top'); byName(under, 'base');
     var h = '<div class="rec-sel">' + swatch(g.hex) + '<span><b>' + esc(g.name) + '</b><span class="sub2">' + esc([g.brand, g.code].join(' \u00b7 ')) + '</span></span><button class="btn-ghost" id="recPick">Change</button><button class="round-btn" id="recClear" aria-label="Clear glaze" title="Clear">&times;</button></div>';
-    if (g.brand !== 'AMACO') {
-      h += '<p class="hint" style="margin:0 0 12px">Clay Day\u2019s layering data comes from AMACO, so there are no saved recommendations for ' + esc(g.brand) + ' glazes yet. These searches show what other potters have tried:</p>';
+    if (g.brand !== 'AMACO' && !over.length && !under.length) {
+      h += '<p class="hint" style="margin:0 0 12px">Clay Day doesn\u2019t have published layering results for ' + esc(g.name) + ' yet. These searches show what other potters have tried:</p>';
     } else {
       if (recSide === 'over' && !over.length && under.length) recSide = 'under';
       if (recSide === 'under' && !under.length && over.length) recSide = 'over';
@@ -2019,7 +2163,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     var rr = recBuild(b.getAttribute('data-recsave')); if (!rr) return;
     var layers = rr.layers.map(function (l) { var o = JSON.parse(JSON.stringify(l)); if (o.method === 'none') o.method = 'paint'; return o; });
     var rec = { id: 'c' + Date.now().toString(36), name: rr.title, notes: rr.notes, layers: cleanLayers(layers), updated: Date.now() };
-    myCombos.push(rec); saveMyCombos(); renderMyCombos();
+    myCombos.push(rec); saveMyCombos(); renderMyCombos(); setCTab('mine');
     var key = 'r:' + b.getAttribute('data-recsave');
     if (comboPhotos[key]) { comboPhotos['m:' + rec.id] = comboPhotos[key].slice(); saveComboPhotos(); }
     openComboDetail('m:' + rec.id);
@@ -2053,7 +2197,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     }
     h += refLink(gImages(names.join(' over ') + ' glaze'), 'Photos from potters', 'Image search for this exact combination');
     if (top && isAmacoLayer(top)) h += refLink(glazeshare(layerFull(top)), 'GlazeShare', 'Community photos of combinations with ' + esc(layerFull(top)));
-    if (kind === 'a' && COMBOS[+id]) h += refLink(SRC[COMBOS[+id].src], 'AMACO\u2019s application notes', 'The AMACO article this combo comes from');
+    if (kind === 'a' && COMBOS[+id]) h += (COMBOS[+id].brand && COMBOS[+id].brand !== 'AMACO') ? refLink(SRC[COMBOS[+id].src], 'Fired example and notes', 'Where this ' + COMBOS[+id].brand + ' combination was published') : refLink(SRC[COMBOS[+id].src], 'AMACO\u2019s application notes', 'The AMACO article this combo comes from');
     if (kind === 'r' && REC[id]) {
       var rr2 = REC[id];
       if (rr2.sheet) h = refLink(rr2.sheet, 'AMACO\u2019s test tile photos', 'AMACO\u2019s sheet of glazes fired over ' + esc(gName(rr2.base)) + ', including this one') + h;
@@ -2113,7 +2257,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       var a = COMBOS[+id]; if (!a) return;
       layers = [a.base, a.top].map(function (s) {
         var code = s.split(' ')[0], g = glazeByCode(code);
-        return g ? makeLayer(g) : { name: s.replace(/^\S+\s/, ''), code: code, brand: 'AMACO' };
+        return g ? makeLayer(g) : { name: s.replace(/^\S+\s/, ''), code: code, brand: a.brand || 'AMACO' };
       });
       layers.forEach(function (l) { l.method = 'none'; });
       title = a.t; notes = a.how;
@@ -2167,7 +2311,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     var rec = { id: comboEditing.id, name: (d.name || '').trim() || layers.map(function (l) { return l.name; }).reverse().join(' over '), notes: d.notes || '', layers: layers, updated: Date.now() };
     var k = -1; myCombos.forEach(function (x, i) { if (x.id === rec.id) k = i; });
     if (k > -1) myCombos[k] = rec; else myCombos.push(rec);
-    saveMyCombos(); comboEditing = null; renderMyCombos();
+    saveMyCombos(); comboEditing = null; renderMyCombos(); setCTab('mine');
     openComboDetail('m:' + rec.id);
   });
   $('cCancel').addEventListener('click', function () {
@@ -2184,7 +2328,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     }
     var id = comboEditing.id;
     myCombos = myCombos.filter(function (x) { return x.id !== id; });
-    saveMyCombos(); comboEditing = null; renderMyCombos(); showComboView('list');
+    saveMyCombos(); comboEditing = null; renderMyCombos(); setCTab('mine'); showComboView('list');
   });
   $('comboNew').addEventListener('click', function () { openComboEditor(null); });
   var skipComboReset = false;
@@ -2561,7 +2705,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   $('moreBackdrop').addEventListener('click', function () { setMore(false); });
   $('moreMenu').addEventListener('click', function (e) { if (e.target.closest('a')) setMore(false); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('moreMenu').hidden) { setMore(false); $('nav-more').focus(); } });
-  var MORE_PAGES = ['cones', 'learn'];
+  var MORE_PAGES = ['calculator', 'cones', 'learn'];
 
   /* ================= STUDIO EXTRAS ================= */
   // ---- troubleshooting search ----
@@ -2657,35 +2801,45 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       .concat(clayShelf.filter(function (c) { return c.low && (c.n || '').trim(); }).map(function (c) { return c.n.trim() + ' (clay)'; }));
   }
   var shelfShowAll = false;
-  function renderShelf() {
-    var el = $('shelfCard'), h = '';
-    if (!shelf.length) h += '<p class="hint" style="margin:0 0 12px">Scan a glaze label or add glazes by name. Clay Day will show which AMACO combinations you can make right now, and keep a shopping list of anything running low.</p>';
-    h += shelf.map(function (s, i) {
-      return '<div class="shelf-row">' + swatch(s.hex || hashColor(s.name)) + '<span><b>' + esc(s.name) + '</b><span class="sub2">' + esc([s.brand, s.code].filter(Boolean).join(' \u00b7 ')) + '</span></span>' +
-        '<button class="low-btn" data-slow="' + i + '" aria-pressed="' + !!s.low + '">' + (s.low ? 'Running low' : 'Low?') + '</button>' +
-        '<button class="icon-btn" data-sdel="' + i + '" aria-label="Remove ' + esc(s.name) + '">&times;</button></div>';
-    }).join('');
-    h += '<div class="btn-row" style="margin-top:12px"><button class="btn" id="shelfScan">Scan a label</button><button class="btn-ghost" id="shelfAdd">Add by name</button></div>';
-    if (shelf.length > 1) {
-      var can = shelfCombos(), shown = shelfShowAll ? can : can.slice(0, 6);
-      h += '<h3 style="margin:18px 0 4px">You can make ' + can.length + (can.length === 1 ? ' combination' : ' combinations') + '</h3>' +
-        (can.length ? shown.map(function (k) { return recRow(REC[k], k); }).join('') + (can.length > 6 ? '<button class="btn-ghost wide" id="shelfMore" style="margin-top:8px">' + (shelfShowAll ? 'Show fewer' : 'Show all ' + can.length) + '</button>' : '')
-          : '<p class="empty" style="margin:0">None of AMACO\u2019s published combinations use two glazes from your shelf yet.</p>');
-    }
-    var shop = shoppingItems();
-    if (shop.length) {
-      h += '<div class="shop"><h3>Shopping list</h3><ul>' + shop.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
-        '<button class="btn-ghost" id="shopCopy">Copy list</button><p class="msg" id="shopMsg" hidden></p></div>';
-    }
-    el.innerHTML = h;
+  function shelfInfo(s) { return (s.gid && glazeById(s.gid)) || (s.code && glazeByCode(s.code)) || null; }
+  function shelfPairs(code) {
+    var set = {};
+    Object.keys(REC).forEach(function (k) { var r = REC[k]; if (r.base === code && onShelf(r.top)) set[r.top] = 1; if (r.top === code && onShelf(r.base)) set[r.base] = 1; });
+    return Object.keys(set).length;
   }
-  $('shelfCard').addEventListener('click', function (e) {
+  function shelfProjects(s) {
+    var key = String(s.code || s.name).toLowerCase();
+    return Store.items.filter(function (p) { return (p.glazes || []).some(function (l) { return layerKey(l) === key; }); }).length;
+  }
+  function renderShelf() {
+    var open = $('shelfOpen'); if (open) open.textContent = shelf.length ? 'Open my glaze shelf (' + shelf.length + ')' : 'Open my glaze shelf';
+    $('shelfCount').textContent = shelf.length ? shelf.length + (shelf.length === 1 ? ' glaze' : ' glazes') : '';
+    var rows = shelf.map(function (s, i) { return { s: s, i: i }; }).sort(function (a, b) { return (a.s.brand || '').localeCompare(b.s.brand || '') || a.s.name.localeCompare(b.s.name); });
+    $('shelfList').innerHTML = rows.length ? rows.map(function (o) {
+      var s = o.s, i = o.i, g = shelfInfo(s), line = g && g.line && g.line !== g.brand ? g.line : '', cone = (g && g.cone) || '';
+      var pairs = s.code ? shelfPairs(s.code) : 0, projs = shelfProjects(s);
+      return '<div class="sh-item"><div class="sh-top">' + swatch((g && g.hex) || s.hex || hashColor(s.name)) +
+        '<div class="sh-name"><b>' + esc(s.name) + '</b><span class="sub2">' + esc([s.brand, line, s.code].filter(Boolean).join(' \u00b7 ')) + '</span></div>' +
+        '<button class="icon-btn" data-sdel="' + i + '" aria-label="Remove ' + esc(s.name) + ' from your shelf">&times;</button></div>' +
+        '<dl class="sh-meta"><div><dt>Cone</dt><dd>' + (cone ? esc(cone) : '\u2013') + '</dd></div><div><dt>In projects</dt><dd>' + projs + '</dd></div><div><dt>Pairs on shelf</dt><dd>' + pairs + '</dd></div></dl>' +
+        '<div class="sh-actions"><button class="low-btn" data-slow="' + i + '" aria-pressed="' + !!s.low + '">' + (s.low ? 'Running low' : 'Mark as low') + '</button>' +
+        (s.code ? '<button class="btn-ghost" data-sfind="' + esc(s.code) + '">See combos</button>' : '') + '</div></div>';
+    }).join('') : '<p class="hint" style="margin:0">No glazes yet. Scan a label or add glazes by name, and Clay Day will show what you can make and what to restock.</p>';
+    var can = shelf.length > 1 ? shelfCombos() : [], shown = shelfShowAll ? can : can.slice(0, 6);
+    $('shelfCanWrap').hidden = shelf.length < 2;
+    $('shelfCanTitle').textContent = 'You can make ' + can.length + (can.length === 1 ? ' combination' : ' combinations');
+    $('shelfCan').innerHTML = can.length ? shown.map(function (k) { return recRow(REC[k], k); }).join('') +
+      (can.length > 6 ? '<button class="btn-ghost wide" id="shelfMore" style="margin-top:8px">' + (shelfShowAll ? 'Show fewer' : 'Show all ' + can.length) + '</button>' : '')
+      : '<p class="empty" style="margin:0">None of the published combinations in Clay Day use two glazes from your shelf yet.</p>';
+    var shop = shoppingItems();
+    $('shelfShopWrap').hidden = !shop.length;
+    $('shelfShop').innerHTML = '<ul class="shop-list">' + shop.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
+      '<button class="btn-ghost" id="shopCopy">Copy list</button><p class="msg" id="shopMsg" hidden></p>';
+  }
+  $('page-shelf').addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
     if (b.id === 'shelfScan') { openScan(); return; }
-    if (b.id === 'shelfAdd') {
-      openPicker(function (g) { if (!onShelf(g.code || g.name)) { shelf.push({ gid: g.id, code: g.code || '', name: g.name, brand: g.brand, hex: g.hex, low: false }); saveShelf(); } renderShelf(); renderRecs(); });
-      return;
-    }
+    if (b.id === 'shelfAdd') { openPicker(function (g) { addToShelf(g); renderShelf(); renderRecs(); }); return; }
     if (b.id === 'shelfMore') { shelfShowAll = !shelfShowAll; renderShelf(); return; }
     if (b.id === 'shopCopy') {
       var txt = 'Pottery shopping list\n' + shoppingItems().map(function (x) { return '- ' + x; }).join('\n'), m = $('shopMsg');
@@ -2693,6 +2847,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(function () { done(true); }, function () { done(false); }); else done(false);
       return;
     }
+    if (b.hasAttribute('data-sfind')) { recCode = b.getAttribute('data-sfind'); recSide = 'over'; sset('clayday:recglaze', recCode); setCTab('glaze'); location.hash = '#combos'; return; }
     if (b.hasAttribute('data-slow')) { var s = shelf[+b.getAttribute('data-slow')]; s.low = !s.low; saveShelf(); renderShelf(); return; }
     if (b.hasAttribute('data-sdel')) { shelf.splice(+b.getAttribute('data-sdel'), 1); saveShelf(); renderShelf(); renderRecs(); }
   });
@@ -2946,7 +3101,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   });
 
   /* ================= ROUTING ================= */
-  var PAGES = ['home', 'calculator', 'ideas', 'projects', 'combos', 'cones', 'learn'];
+  var PAGES = ['home', 'calculator', 'ideas', 'projects', 'combos', 'shelf', 'cones', 'learn'];
   function route() {
     var h = location.hash.replace('#', '');
     var page = PAGES.indexOf(h) > -1 ? h : 'home';
@@ -2963,6 +3118,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     if (!$('lightbox').hidden) { $('lightbox').hidden = true; $('lightImg').removeAttribute('src'); }
     $('topBrand').hidden = page === 'home';
     if (page === 'home') renderHome();
+    if (page === 'shelf') renderShelf();
     if (page === 'combos') { if (skipComboReset) skipComboReset = false; else showComboView('list'); renderMyCombos(); }
     window.scrollTo(0, 0);
   }
