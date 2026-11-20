@@ -547,18 +547,6 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 
     <div class="section-head" style="margin-top:4px"><h2>Combo to try today</h2><a class="link" href="#combos">All combos</a></div>
     <div class="card" id="homeCombo"></div>
-
-    <div class="section-head" style="margin-top:4px"><h2>Back up your studio</h2></div>
-    <div class="card">
-      <p class="hint" style="margin:0 0 12px">Save a backup file of your projects, combinations, clays, shelf and settings, or restore one on a new phone.</p>
-      <div class="btn-row">
-        <button class="btn" id="bkSave">Save backup</button>
-        <label class="btn-ghost" for="bkFile" style="margin:0;cursor:pointer">Restore</label>
-      </div>
-      <input type="file" id="bkFile" class="vh" accept=".json,application/json">
-      <p class="msg" id="bkMsg" hidden></p>
-      <textarea id="bkText" class="listtext" readonly hidden aria-label="Backup text"></textarea>
-    </div>
   </div>
 
   <!-- ===== CALCULATOR ===== -->
@@ -756,11 +744,11 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
         <p class="hint" style="margin:-6px 0 12px">Add up what this piece cost to make and get a suggested price. Your rates are remembered for next time.</p>
         <div class="row">
           <div class="field"><label for="prClay">Clay used (lb)</label><input id="prClay" data-pf="clay" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
-          <div class="field"><label for="prCpl">Clay cost per lb ($)</label><input id="prCpl" data-pf="cpl" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
-          <div class="field"><label for="prMat">Glaze and materials ($)</label><input id="prMat" data-pf="mat" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
-          <div class="field"><label for="prFire">Firing cost ($)</label><input id="prFire" data-pf="fire" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
+          <div class="field"><label for="prCpl">Clay cost per lb (<span class="cur">$</span>)</label><input id="prCpl" data-pf="cpl" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
+          <div class="field"><label for="prMat">Glaze and materials (<span class="cur">$</span>)</label><input id="prMat" data-pf="mat" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
+          <div class="field"><label for="prFire">Firing cost (<span class="cur">$</span>)</label><input id="prFire" data-pf="fire" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
           <div class="field"><label for="prHrs">Hours of work</label><input id="prHrs" data-pf="hrs" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
-          <div class="field"><label for="prRate">Hourly rate ($)</label><input id="prRate" data-pf="rate" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
+          <div class="field"><label for="prRate">Hourly rate (<span class="cur">$</span>)</label><input id="prRate" data-pf="rate" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
           <div class="field"><label for="prOh">Overhead (%)</label><input id="prOh" data-pf="oh" type="number" inputmode="decimal" step="any" min="0" style="padding-right:10px"></div>
         </div>
         <div class="lres" id="priceOut" aria-live="polite" style="margin-top:12px"></div>
@@ -768,6 +756,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 
       <div class="actions">
         <button class="btn wide" id="projSave">Save project</button>
+        <button class="btn-ghost wide" id="projShare" hidden>Share this project</button>
         <button class="btn-ghost wide" id="projCancel">Cancel</button>
         <button class="btn-ghost danger wide" id="projDel" hidden>Delete project</button>
       </div>
@@ -854,6 +843,87 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     </div>
   </div>
 
+  <!-- ===== SETTINGS ===== -->
+  <div id="page-settings" hidden>
+    <h1 class="page-title">Settings</h1>
+    <p class="sub">Clay Day has no account or sign in, so everything here is saved on this device.</p>
+
+    <div class="card">
+      <h2>Appearance</h2>
+      <div class="seg" role="group" aria-label="Theme" style="margin-bottom:0">
+        <button data-theme-set="auto" aria-pressed="true">Match my phone</button>
+        <button data-theme-set="light" aria-pressed="false">Light</button>
+        <button data-theme-set="dark" aria-pressed="false">Dark</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Defaults</h2>
+      <div class="row">
+        <div class="field"><label for="setUnit">Measurements</label><select id="setUnit"><option value="in">Inches</option><option value="cm">Centimetres</option><option value="mm">Millimetres</option></select></div>
+        <div class="field"><label for="setWeight">Clay weight</label><select id="setWeight"><option value="lb">Pounds</option><option value="oz">Ounces</option><option value="g">Grams</option><option value="kg">Kilograms</option></select></div>
+        <div class="field"><label for="setTemp">Temperature</label><select id="setTemp"><option value="F">Fahrenheit</option><option value="C">Celsius</option></select></div>
+        <div class="field"><label for="setCur">Currency</label><select id="setCur"><option value="$">$ Dollar</option><option value="&euro;">&euro; Euro</option><option value="&pound;">&pound; Pound</option><option value="&yen;">&yen; Yen</option><option value="CA$">CA$ Canadian</option><option value="A$">A$ Australian</option></select></div>
+      </div>
+      <p class="hint" style="margin:10px 0 0">Measurements apply to new pieces on the Shrinkage page. Currency is used for pricing.</p>
+    </div>
+
+    <div class="card">
+      <h2>Share Clay Day with friends</h2>
+      <p class="hint" style="margin:-6px 0 12px">Send a friend a link to the app by text, email or any app on your phone.</p>
+      <div class="field">
+        <label for="appLink">Link to share</label>
+        <input type="text" id="appLink" inputmode="url" autocapitalize="off" autocomplete="off" spellcheck="false" placeholder="https://">
+      </div>
+      <button class="btn wide" id="shareApp">Share with friends</button>
+      <p class="msg err" id="shareAppMsg" hidden>Paste the link to your Clay Day app above, then try again.</p>
+    </div>
+
+    <div class="card">
+      <h2>Add something a friend sent</h2>
+      <p class="hint" style="margin:-6px 0 12px">When a friend shares a project or glaze combination, their message ends with an import code. Paste the whole message here to add it to your studio.</p>
+      <textarea id="impText" class="listtext" style="margin:0 0 12px" aria-label="Message from a friend" placeholder="Paste the message here"></textarea>
+      <button class="btn wide" id="impGo">Add it to my studio</button>
+      <p class="msg" id="impMsg" hidden></p>
+    </div>
+
+    <div class="card">
+      <h2>Your data</h2>
+      <p class="hint" style="margin:-6px 0 12px">Save a backup file of your projects, combinations, clays, shelves and settings, or restore one on a new phone.</p>
+      <div class="btn-row">
+        <button class="btn" id="bkSave">Save backup</button>
+        <label class="btn-ghost" for="bkFile" style="margin:0;cursor:pointer">Restore</label>
+      </div>
+      <input type="file" id="bkFile" class="vh" accept=".json,application/json">
+      <p class="sub2" id="bkLast" style="margin:10px 0 0"></p>
+      <p class="msg" id="bkMsg" hidden></p>
+      <textarea id="bkText" class="listtext" readonly hidden aria-label="Backup text"></textarea>
+      <h3 style="margin-top:18px">Storage</h3>
+      <p class="hint" id="storeStatus" style="margin:0 0 10px"></p>
+      <button class="btn-ghost" id="persistBtn" hidden>Protect my data</button>
+      <p class="msg" id="persistMsg" hidden></p>
+      <h3 style="margin-top:18px">Erase everything</h3>
+      <p class="hint" style="margin:0 0 10px">Deletes every project, photo, combination, shelf item and setting from this device. This can&rsquo;t be undone, so save a backup first.</p>
+      <button class="btn-ghost danger wide" id="eraseBtn">Erase all my data</button>
+      <p class="msg" id="eraseMsg" hidden></p>
+    </div>
+
+    <div class="card">
+      <h2>Add Clay Day to your phone</h2>
+      <ol class="tips">
+        <li><b>iPhone:</b> open Clay Day&rsquo;s web address in Safari, tap Share, then Add to Home Screen.</li>
+        <li><b>Android:</b> open it in Chrome, tap the three-dot menu, then Install app.</li>
+      </ol>
+      <p class="hint" style="margin:10px 0 0">Once it&rsquo;s on your home screen it opens full screen, and your phone is less likely to clear your saved data.</p>
+    </div>
+
+    <div class="card">
+      <h2>Privacy</h2>
+      <p class="hint" id="privText" style="margin:0"></p>
+    </div>
+    <p class="hint" id="aboutText"></p>
+  </div>
+
   <!-- ===== GLAZE SHELF ===== -->
   <div id="page-shelf" hidden>
     <h1 class="page-title">My glaze shelf</h1>
@@ -935,6 +1005,26 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     <input type="file" id="scanPick" class="vh" accept="image/*">
   </div>
 </div>
+<div class="picker" id="shareModal" hidden role="dialog" aria-modal="true" aria-labelledby="shareTitle">
+  <div class="picker-in">
+    <div class="picker-head">
+      <button class="round-btn" id="shareClose" aria-label="Close">&times;</button>
+      <h2 id="shareTitle">Share</h2>
+      <span></span>
+    </div>
+    <div class="card wiz">
+      <label for="shareText">Message</label>
+      <textarea id="shareText" class="listtext" style="min-height:220px;margin:0 0 12px"></textarea>
+      <p class="hint" id="shareFiles" style="margin:-4px 0 12px" hidden></p>
+      <div class="actions" style="margin:0">
+        <button class="btn wide" id="shareNative" hidden>Share with a contact or app</button>
+        <div class="btn-row"><a class="btn-ghost" id="shareSms" href="#">Text message</a><a class="btn-ghost" id="shareMail" href="#">Email</a></div>
+        <button class="btn-ghost wide" id="shareCopy">Copy message</button>
+      </div>
+      <p class="msg" id="shareMsg" hidden></p>
+    </div>
+  </div>
+</div>
 <div class="picker" id="wizModal" hidden role="dialog" aria-modal="true" aria-labelledby="wizTitle">
   <div class="picker-in">
     <div class="picker-head">
@@ -978,6 +1068,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   <a href="#calculator" id="more-calculator" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5"/><rect x="8" y="6" width="8" height="3.5" rx="1"/><path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01"/></svg><span>Shrinkage calculator<small>Size pieces for firing</small></span></a>
   <a href="#cones" id="more-cones" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l5 16H7z"/><path d="M5 21h14"/></svg><span>Cone chart<small>Firing temperatures and converter</small></span></a>
   <a href="#learn" id="more-learn" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg><span>Mud School<small>Pottery videos and how-to guides</small></span></a>
+  <a href="#settings" id="more-settings" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2.8v2.4M12 18.8v2.4M4.6 7.4l2 1.2M17.4 15.4l2 1.2M4.6 16.6l2-1.2M17.4 8.6l2-1.2"/></svg><span>Settings<small>Appearance, backup, sharing and data</small></span></a>
 </div>
 
 <nav class="bottom" aria-label="Pages">
@@ -1598,8 +1689,8 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     out.innerHTML = h;
     hit = best; $('cone-' + best).classList.add('hit');
   }
-  function setTUnit(u) {
-    tUnit = u;
+  function setTUnit(u, skipSave) {
+    tUnit = u; if (!skipSave) sset('clayday:tunit', u);
     $('tF').setAttribute('aria-pressed', u === 'F' ? 'true' : 'false');
     $('tC').setAttribute('aria-pressed', u === 'C' ? 'true' : 'false');
     renderConv();
@@ -1844,7 +1935,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   /* ---- glaze picker ---- */
   var pickCb = null, pickBrand = 'all';
   var pickReturn = null, scanReturn = null;
-  function anyDialogOpen() { return !$('picker').hidden || !$('scanModal').hidden || !$('wizModal').hidden; }
+  function anyDialogOpen() { return !$('picker').hidden || !$('scanModal').hidden || !$('wizModal').hidden || !$('shareModal').hidden; }
   function openPicker(cb) {
     pickReturn = document.activeElement; pickCb = cb; $('pickQ').value = ''; pickBrand = 'all';
     $('ngName').value = ''; $('ngBrand').value = ''; $('ngCode').value = ''; $('ngCone').value = ''; $('ngErr').hidden = true;
@@ -2283,6 +2374,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
         : '<div class="card"><p class="used-empty">When you record this combination on a project, it\u2019ll show up here.</p></div>');
     if (kind === 'm') h += '<div class="actions"><button class="btn-ghost wide" data-cedit="' + esc(c.id) + '">Edit combination</button></div>';
     if (kind === 'r') h += '<div class="actions"><button class="btn wide" data-recsave="' + esc(id) + '">Save to my combinations</button></div>';
+    h += '<div class="actions"><button class="btn-ghost wide" data-sharecombo="' + esc(ref) + '">Share this combination</button></div>';
     $('comboDetailView').innerHTML = h;
     if (keepScroll) { $('comboListView').hidden = true; $('comboEditView').hidden = true; $('comboDetailView').hidden = false; }
     else showComboView('detail');
@@ -2377,6 +2469,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     }).then(function (rows) {
       Store.items = rows || [];
       Store.note = 'Projects are saved on this device.';
+      try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function () {}); } catch (e) {}
     }).catch(function () {
       idb = null; Store.items = [];
       Store.note = 'This browser can\u2019t save projects, so they\u2019ll be lost when you close Clay Day.';
@@ -2524,7 +2617,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     $('pName').value = d2.name || ''; $('pDate').value = d2.date || ''; $('pClay').value = d2.clay || ''; $('pNotes').value = d2.notes || ''; renderStages(); prepKindUI(); fillPrice();
     $('pCone').innerHTML = '<option value="">Not set</option>' + CONES.map(function (c) { return '<option value="' + c[0] + '">Cone ' + c[0] + '</option>'; }).join('');
     $('pCone').value = d2.cone || '';
-    $('projDel').hidden = editing.isNew; $('projDel').textContent = 'Delete project';
+    $('projDel').hidden = editing.isNew; $('projDel').textContent = 'Delete project'; $('projShare').hidden = editing.isNew;
     $('editMsg').hidden = true; $('photoErr').hidden = true; $('photoStatus').textContent = '';
     $('projSave').disabled = false; $('projSave').textContent = 'Save project';
     renderLists(); renderThumbs(); renderLayers();
@@ -2707,7 +2800,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   $('moreBackdrop').addEventListener('click', function () { setMore(false); });
   $('moreMenu').addEventListener('click', function (e) { if (e.target.closest('a')) setMore(false); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('moreMenu').hidden) { setMore(false); $('nav-more').focus(); } });
-  var MORE_PAGES = ['calculator', 'cones', 'learn'];
+  var MORE_PAGES = ['calculator', 'cones', 'learn', 'settings'];
 
   /* ================= STUDIO EXTRAS ================= */
   // ---- troubleshooting search ----
@@ -3025,7 +3118,8 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   // ---- pricing (Projects) ----
   var PRICE_KEYS = ['clay', 'cpl', 'mat', 'fire', 'hrs', 'rate', 'oh'];
   var priceDefaults = sget('clayday:pricing', { cpl: '', rate: '', oh: '10', fire: '' });
-  function money(n) { return '$' + n.toFixed(2); }
+  var currency = sget('clayday:currency', '$');
+  function money(n) { return currency + n.toFixed(2); }
   function priceCalc(p) {
     if (!p) return null;
     var v = function (k) { var n = parseFloat(p[k]); return isFinite(n) && n > 0 ? n : 0; };
@@ -3074,13 +3168,13 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
         var url = URL.createObjectURL(new Blob([data], { type: 'application/json' })), a = document.createElement('a');
         a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
         setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
-        bkMsg('Backup saved as ' + name + '.', true);
+        noteBackup(); bkMsg('Backup saved as ' + name + '.', true);
       } catch (e) { showText(); }
     }
     if (window.claude && typeof window.claude.use === 'function') {
       window.claude.use('downloads').then(function (d) {
         if (!d) { showText(); return; }
-        d.save({ filename: name, data: data }).then(function () { bkMsg('Backup saved as ' + name + '.', true); }, function (err) {
+        d.save({ filename: name, data: data }).then(function () { noteBackup(); bkMsg('Backup saved as ' + name + '.', true); }, function (err) {
           if (err && err.code === 'declined') bkMsg('Backup not saved.', false); else showText();
         });
       }, showText);
@@ -3102,8 +3196,216 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     r.readAsText(f);
   });
 
+  /* ================= SETTINGS, SHARING AND IMPORT ================= */
+  var APP_BUILD = '2026-11-20';
+  var themePref = sget('clayday:theme', 'auto');
+  function applyTheme(t) {
+    var r = document.documentElement;
+    if (t === 'light' || t === 'dark') r.setAttribute('data-theme', t); else r.removeAttribute('data-theme');
+  }
+  applyTheme(themePref);
+  function applyCurrency() { document.querySelectorAll('.cur').forEach(function (e) { e.textContent = currency; }); }
+  function noteBackup() { sset('clayday:lastbackup', Date.now()); renderSettings(); }
+  function appLink() {
+    var s = sget('clayday:applink', '');
+    if (s) return s;
+    try { if (/^https?:/.test(location.href)) return location.href.split('#')[0]; } catch (e) {}
+    return '';
+  }
+  function renderStorage() {
+    var el = $('storeStatus'), btn = $('persistBtn'); btn.hidden = true;
+    if (Store.mode === 'cloud') { el.textContent = 'Your projects and photos are saved to your Claude account. Combinations, shelves and settings stay on this device, so a backup is still a good idea.'; return; }
+    if (!(navigator.storage && navigator.storage.persisted)) { el.textContent = 'Your projects are saved in this browser. Add Clay Day to your home screen and keep a recent backup, because browsers can clear saved data you haven\u2019t used in a while.'; return; }
+    navigator.storage.persisted().then(function (v) {
+      el.textContent = v ? 'Storage protection is on, so your browser won\u2019t clear Clay Day\u2019s saved data when space is low.' : 'Storage protection is off, so your browser may clear saved data you haven\u2019t used in a while. Keep a recent backup.';
+      btn.hidden = v || !navigator.storage.persist;
+    }, function () {});
+  }
+  function renderSettings() {
+    document.querySelectorAll('[data-theme-set]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-theme-set') === themePref ? 'true' : 'false'); });
+    $('setUnit').value = state.unit; $('setWeight').value = $('ideaUnit').value; $('setTemp').value = tUnit; $('setCur').value = currency;
+    $('appLink').value = appLink();
+    var lb = sget('clayday:lastbackup', 0);
+    $('bkLast').textContent = lb ? 'Last backup: ' + new Date(lb).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) + (Date.now() - lb > 30 * 864e5 ? '. It may be time for a new one.' : '.') : 'You haven\u2019t saved a backup yet.';
+    renderStorage();
+    $('privText').textContent = 'Clay Day has no account and no ads. ' + (Store.mode === 'cloud'
+      ? 'In the Claude version, projects and photos are saved to your Claude account. If you scan a glaze label, the photo is sent to Claude to read it, and only after you give permission. '
+      : 'Your projects, photos, combinations and settings stay on this device. ') + 'Links to videos and photo searches open other websites, which have their own privacy rules.';
+    $('aboutText').textContent = 'Clay Day \u00b7 build ' + APP_BUILD + ' \u00b7 shrinkage, glaze combos, projects and studio tools for potters.';
+  }
+  document.querySelectorAll('[data-theme-set]').forEach(function (b) {
+    b.addEventListener('click', function () { themePref = b.getAttribute('data-theme-set'); sset('clayday:theme', themePref); applyTheme(themePref); renderSettings(); });
+  });
+  $('setUnit').addEventListener('change', function () { state.unit = this.value; saveSettings(); });
+  $('setWeight').addEventListener('change', function () { $('ideaUnit').value = this.value; renderIdeas(); saveIdeaSet(); });
+  $('setTemp').addEventListener('change', function () { setTUnit(this.value); });
+  $('setCur').addEventListener('change', function () { currency = this.value; sset('clayday:currency', currency); applyCurrency(); if (editing) renderPrice(); renderProjects(); });
+  $('persistBtn').addEventListener('click', function () {
+    var m = $('persistMsg');
+    navigator.storage.persist().then(function (ok) {
+      renderStorage(); m.className = 'msg ' + (ok ? 'ok' : ''); m.textContent = ok ? 'Storage protection is now on.' : 'Your browser didn\u2019t allow it. Adding Clay Day to your home screen usually helps.'; m.hidden = false;
+    }, function () {});
+  });
+  var eraseArmed = false, eraseTimer = null;
+  $('eraseBtn').addEventListener('click', function () {
+    var b = this, m = $('eraseMsg');
+    if (!eraseArmed) {
+      eraseArmed = true; b.textContent = 'Tap again to erase everything';
+      clearTimeout(eraseTimer); eraseTimer = setTimeout(function () { eraseArmed = false; b.textContent = 'Erase all my data'; }, 5000);
+      return;
+    }
+    eraseArmed = false; b.disabled = true; b.textContent = 'Erasing\u2026';
+    Promise.all(Store.items.slice().map(function (p) { (p.photos || []).forEach(storeDropPhoto); return storeRemove(p.id).catch(function () {}); })).then(function () {
+      try {
+        var keys = [];
+        for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (k && (k.indexOf('clayday') === 0 || k === 'clayShrinkV1')) keys.push(k); }
+        keys.forEach(function (k) { localStorage.removeItem(k); });
+      } catch (e) {}
+      m.textContent = 'Everything has been erased. Reloading\u2026'; m.className = 'msg ok'; m.hidden = false;
+      setTimeout(function () { location.reload(); }, 900);
+    });
+  });
+
+  // ---- sharing ----
+  var shareCtx = null, shareReturn = null;
+  function shareFooter() { var l = appLink(); return '\n\nMade with Clay Day' + (l ? ': ' + l : ''); }
+  function updateShareLinks() {
+    var t = $('shareText').value;
+    $('shareSms').href = 'sms:?&body=' + encodeURIComponent(t);
+    $('shareMail').href = 'mailto:?subject=' + encodeURIComponent((shareCtx && shareCtx.subject) || 'Clay Day') + '&body=' + encodeURIComponent(t);
+  }
+  function openShare(o) {
+    shareCtx = o; shareReturn = document.activeElement;
+    var files = o.files || [];
+    $('shareTitle').textContent = o.heading || 'Share';
+    $('shareText').value = o.text;
+    $('shareMsg').hidden = true;
+    $('shareFiles').hidden = !files.length;
+    $('shareFiles').textContent = files.length ? files.length + (files.length === 1 ? ' photo' : ' photos') + ' will be attached when you tap the first button.' : '';
+    $('shareNative').hidden = !navigator.share;
+    updateShareLinks();
+    $('shareModal').hidden = false; document.body.style.overflow = 'hidden'; $('shareClose').focus();
+  }
+  function closeShare() {
+    $('shareModal').hidden = true; shareCtx = null;
+    if (!anyDialogOpen()) document.body.style.overflow = '';
+    if (shareReturn && shareReturn.isConnected) { try { shareReturn.focus(); } catch (e) {} }
+  }
+  function shareMsg(t, ok) { var m = $('shareMsg'); m.textContent = t; m.className = 'msg ' + (ok ? 'ok' : 'err'); m.hidden = false; }
+  $('shareClose').addEventListener('click', closeShare);
+  $('shareText').addEventListener('input', updateShareLinks);
+  $('shareNative').addEventListener('click', function () {
+    if (!shareCtx || !navigator.share) return;
+    var files = shareCtx.files || [], data = { title: shareCtx.subject || 'Clay Day', text: $('shareText').value };
+    try { if (files.length && navigator.canShare && navigator.canShare({ files: files })) data.files = files; } catch (e) {}
+    navigator.share(data).then(function () { shareMsg('Shared.', true); }, function (err) {
+      if (err && err.name === 'AbortError') return;
+      shareMsg('Sharing isn\u2019t available here. Use Text message, Email or Copy instead.', false);
+    });
+  });
+  $('shareCopy').addEventListener('click', function () {
+    var t = $('shareText').value;
+    function fallback() { var a = $('shareText'); a.focus(); a.select(); shareMsg('Select the message above and copy it.', false); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(function () { shareMsg('Copied. Paste it into a message to a friend.', true); }, fallback); else fallback();
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('shareModal').hidden) closeShare(); });
+
+  function b64e(o) { return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
+  function b64d(s) { s = s.replace(/-/g, '+').replace(/_/g, '/'); while (s.length % 4) s += '='; return JSON.parse(decodeURIComponent(escape(atob(s)))); }
+  function layerForCode(l) {
+    var g = layerGlaze(l);
+    return { n: l.name, b: (g && g.brand) || l.brand || '', c: (g && g.code) || l.code || '', m: l.method === 'dip' ? 'dip' : 'paint', k: +l.coats || 2, s: +l.secs || 3 };
+  }
+  var CODE_NOTE = '\n\nImport code (paste this whole message into Clay Day > More > Settings): ';
+  function comboForShare(ref) {
+    var kind = ref.slice(0, 1), id = ref.slice(2), layers, title, notes;
+    if (kind === 'm') {
+      var c = null; myCombos.forEach(function (x) { if (x.id === id) c = x; });
+      if (!c) return null; layers = c.layers; title = c.name || 'Untitled combination'; notes = c.notes || '';
+    } else if (kind === 'r') {
+      var rb = recBuild(id); if (!rb) return null; layers = rb.layers; title = rb.title; notes = rb.notes;
+    } else {
+      var a = COMBOS[+id]; if (!a) return null;
+      layers = [a.base, a.top].map(function (s) { var code = s.split(' ')[0], g = glazeByCode(code); return g ? makeLayer(g) : { name: s.replace(/^\S+\s/, ''), code: code, brand: a.brand || 'AMACO' }; });
+      layers.forEach(function (l) { l.method = 'none'; });
+      title = a.t; notes = a.how;
+    }
+    return { title: title, layers: layers, notes: notes };
+  }
+  function shareCombo(ref) {
+    var c = comboForShare(ref); if (!c) return;
+    var lines = ['Glaze combination: ' + c.title, ''];
+    c.layers.forEach(function (l, i) { var meta = layerMeta(l); lines.push((i + 1) + '. ' + l.name + (meta ? ' (' + meta + ')' : '') + (l.method === 'none' ? '' : ' \u00b7 ' + layerAmount(l))); });
+    lines.push('Layer 1 goes on first.');
+    if (c.notes) lines.push('', c.notes);
+    var code = 'CD1:' + b64e({ t: 'combo', n: c.title, o: c.notes || '', l: c.layers.map(layerForCode) });
+    openShare({ heading: 'Share this combination', subject: 'Glaze combo: ' + c.title, text: lines.join('\n') + shareFooter() + CODE_NOTE + code });
+  }
+  function projectFiles(p) {
+    return Promise.all((p.photos || []).slice(0, 4).map(function (r, i) {
+      return fetch(photoSrc(r)).then(function (x) { return x.blob(); }).then(function (b) { return new File([b], 'clay-day-' + (i + 1) + '.jpg', { type: b.type || 'image/jpeg' }); }).catch(function () { return null; });
+    })).then(function (a) { return a.filter(Boolean); });
+  }
+  function shareProject(p) {
+    var tile = p.kind === 'tile', st = stageInfo(p.stage), lines = [(tile ? 'Test tile: ' : 'Project: ') + (p.name || 'Untitled piece')], meta = [];
+    if (!tile && st) meta.push(st[1]); if (p.cone) meta.push('Cone ' + p.cone); if (p.clay) meta.push(p.clay); if (p.date) meta.push(fmtDate(p.date));
+    if (meta.length) lines.push(meta.join(' \u00b7 '));
+    var gl = (p.glazes || []).filter(function (g) { return g.name; });
+    if (gl.length) { lines.push('', 'Glazes (layer 1 goes on first):'); gl.forEach(function (l, i) { var m = layerMeta(l); lines.push((i + 1) + '. ' + l.name + (m ? ' (' + m + ')' : '') + ' \u00b7 ' + layerAmount(l)); }); }
+    if (p.notes) lines.push('', p.notes);
+    var code = 'CD1:' + b64e({ t: 'project', n: p.name || '', k: tile ? 'tile' : 'piece', s: p.stage || '', d: p.date || '', c: p.cone || '', y: p.clay || '', o: p.notes || '', l: gl.map(layerForCode) });
+    projectFiles(p).then(function (files) {
+      openShare({ heading: tile ? 'Share this test tile' : 'Share this project', subject: (tile ? 'Test tile: ' : 'Project: ') + (p.name || 'Untitled piece'), text: lines.join('\n') + shareFooter() + CODE_NOTE + code, files: files });
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-sharecombo]'); if (b) shareCombo(b.getAttribute('data-sharecombo'));
+  });
+  $('projShare').addEventListener('click', function () { if (editing) shareProject(editing.data); });
+  $('appLink').addEventListener('input', function () { sset('clayday:applink', this.value.trim()); $('shareAppMsg').hidden = true; });
+  $('shareApp').addEventListener('click', function () {
+    var l = appLink();
+    if (!l) { $('shareAppMsg').hidden = false; $('appLink').focus(); return; }
+    openShare({ heading: 'Share Clay Day', subject: 'Try Clay Day', text: 'I\u2019ve been using Clay Day, a free pottery app with a shrinkage calculator, glaze combinations, project photos and more. Try it: ' + l });
+  });
+
+  // ---- importing something a friend shared ----
+  function importFromText(txt) {
+    var m = String(txt).match(/CD1:([A-Za-z0-9_-]+)/);
+    if (!m) return Promise.reject(new Error('nocode'));
+    var d; try { d = b64d(m[1]); } catch (e) { return Promise.reject(new Error('badcode')); }
+    if (!d || (d.t !== 'combo' && d.t !== 'project') || !Array.isArray(d.l)) return Promise.reject(new Error('badcode'));
+    var layers = d.l.slice(0, 20).map(function (x) {
+      var g = x.c ? glazeByCode(x.c) : null;
+      var l = g ? makeLayer(g) : { name: String(x.n || 'Glaze').slice(0, 80), brand: String(x.b || '').slice(0, 40), code: String(x.c || '').slice(0, 20), hex: hashColor(x.n), method: 'paint', coats: 2, secs: 3 };
+      l.method = x.m === 'dip' ? 'dip' : 'paint'; l.coats = Math.min(5, Math.max(1, +x.k || 2)); l.secs = Math.min(60, Math.max(1, +x.s || 3));
+      return l;
+    });
+    var clean = cleanLayers(layers);
+    if (d.t === 'combo') {
+      var rec = { id: 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), name: String(d.n || 'Imported combination').slice(0, 120), notes: String(d.o || '').slice(0, 1000), layers: clean, updated: Date.now() };
+      myCombos.push(rec); saveMyCombos(); renderMyCombos();
+      return Promise.resolve({ kind: 'combo', name: rec.name });
+    }
+    var now = Date.now(), tile = d.k === 'tile';
+    var proj = { name: String(d.n || 'Imported project').slice(0, 120), kind: tile ? 'tile' : 'piece', stage: tile ? '' : (stageInfo(d.s) ? d.s : 'planned'),
+      date: /^\d{4}-\d{2}-\d{2}$/.test(d.d || '') ? d.d : todayISO(), cone: String(d.c || '').slice(0, 6), clay: String(d.y || '').slice(0, 80), notes: String(d.o || '').slice(0, 1000),
+      photos: [], glazes: clean, created: now, updated: now };
+    return storeSave('p' + now.toString(36) + Math.random().toString(36).slice(2, 7), proj).then(function () { return { kind: tile ? 'tile' : 'project', name: proj.name }; });
+  }
+  $('impGo').addEventListener('click', function () {
+    var m = $('impMsg');
+    function say(t, ok) { m.textContent = t; m.className = 'msg ' + (ok ? 'ok' : 'err'); m.hidden = false; }
+    importFromText($('impText').value).then(function (r) {
+      $('impText').value = '';
+      say('Added \u201c' + r.name + '\u201d to ' + (r.kind === 'combo' ? 'My Combos' : r.kind === 'tile' ? 'Test tiles in Projects' : 'Projects') + '.', true);
+    }, function (err) {
+      say(err && err.message === 'nocode' ? 'I couldn\u2019t find an import code in that message. Paste the whole message, including the last line.' : 'That import code looks damaged. Ask your friend to send it again.', false);
+    });
+  });
+
   /* ================= ROUTING ================= */
-  var PAGES = ['home', 'calculator', 'ideas', 'projects', 'combos', 'shelf', 'cones', 'learn'];
+  var PAGES = ['home', 'calculator', 'ideas', 'projects', 'combos', 'shelf', 'cones', 'learn', 'settings'];
   function route() {
     var h = location.hash.replace('#', '');
     var page = PAGES.indexOf(h) > -1 ? h : 'home';
@@ -3116,11 +3418,13 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     setMore(false);
     if (!$('picker').hidden) closePicker();
     if (!$('scanModal').hidden) closeScan();
+    if (!$('shareModal').hidden) closeShare();
     if (wiz.on) { wiz.on = false; renderWiz(); }
     if (!$('lightbox').hidden) { $('lightbox').hidden = true; $('lightImg').removeAttribute('src'); }
     $('topBrand').hidden = page === 'home';
     if (page === 'home') renderHome();
     if (page === 'shelf') renderShelf();
+    if (page === 'settings') renderSettings();
     if (page === 'combos') { cTab = cTabNext || 'try'; cTabNext = null; if (skipComboReset) skipComboReset = false; else showComboView('list'); renderMyCombos(); }
     window.scrollTo(0, 0);
   }
@@ -3134,7 +3438,8 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   setMode(state.mode); setDir(state.dir);
   renderCalc();
   renderIdeas(); renderWiz(); renderSize(); renderClayShelf(); renderShelf();
-  renderConeTable(); renderConv();
+  renderConeTable(); setTUnit(sget('clayday:tunit', 'F'), true);
+  applyCurrency();
   renderCombos(); renderMyCombos(); renderRecs();
   renderProjects();
   route();
