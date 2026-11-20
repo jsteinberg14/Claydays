@@ -24,22 +24,22 @@
   --ink: #1a1f36;
   --muted: #636b86;
   --line: #e7e9f5;
-  --accent: #5560f0;
+  --accent: #4a54e6;
   --accent-ink: #ffffff;
   --accent-soft: #eef0ff;
-  --grad: linear-gradient(135deg, #5b6cff 0%, #8b5cf6 100%);
+  --grad: linear-gradient(135deg, #4a58f0 0%, #7a4ee6 100%);
   --grad-warm: linear-gradient(135deg, #ffd166 0%, #ff8a66 100%);
   --coral: #f2644f;
   --mint: #12a983;
   --violet: #8b5cf6;
-  --ok: #0f9f6e;
+  --ok: #0a7d55;
   --ok-soft: #e3f7ef;
-  --warn: #cf5f0d;
+  --warn: #a84b08;
   --warn-soft: #fff1e3;
   --sun: #ffb547;
   --wet: #8a5a3c;
   --dry: #e0c9a6;
-  --fired: #5560f0;
+  --fired: #4a54e6;
   --nav: rgba(255, 255, 255, .86);
   --shadow: 0 1px 2px rgba(26, 31, 54, .04), 0 10px 28px rgba(60, 72, 160, .07);
   --btn-shadow: 0 6px 18px rgba(91, 108, 255, .28);
@@ -55,7 +55,7 @@
                radial-gradient(800px 500px at 50% 110%, rgba(52, 211, 166, .07), transparent 60%);
     --surface: #161b2f; --field: #10152a; --ink: #eceefb; --muted: #a2a9c6; --line: #272d47;
     --accent: #8f98ff; --accent-ink: #0d1020; --accent-soft: #232a4d;
-    --grad: linear-gradient(135deg, #6f7cff 0%, #a07bff 100%);
+    --grad: linear-gradient(135deg, #4a58f0 0%, #7a4ee6 100%);
     --coral: #ff8c78; --mint: #4fd1a1; --violet: #b48cff;
     --ok: #4fd1a1; --ok-soft: #12302a; --warn: #f5a524; --warn-soft: #33260f;
     --sun: #ffc56b; --wet: #b07a57; --dry: #9c8466; --fired: #8f98ff;
@@ -69,7 +69,7 @@
              radial-gradient(800px 500px at 50% 110%, rgba(52, 211, 166, .07), transparent 60%);
   --surface: #161b2f; --field: #10152a; --ink: #eceefb; --muted: #a2a9c6; --line: #272d47;
   --accent: #8f98ff; --accent-ink: #0d1020; --accent-soft: #232a4d;
-  --grad: linear-gradient(135deg, #6f7cff 0%, #a07bff 100%);
+  --grad: linear-gradient(135deg, #4a58f0 0%, #7a4ee6 100%);
   --coral: #ff8c78; --mint: #4fd1a1; --violet: #b48cff;
   --ok: #4fd1a1; --ok-soft: #12302a; --warn: #f5a524; --warn-soft: #33260f;
   --sun: #ffc56b; --wet: #b07a57; --dry: #9c8466; --fired: #8f98ff;
@@ -241,18 +241,18 @@ select { font-size: 17px; padding: 11px 12px; appearance: auto; }
 .hero > * { position: relative; }
 .hero-logo { width: 64px; height: 64px; display: block; filter: drop-shadow(0 6px 14px rgba(20, 20, 80, .3)); }
 .hero h1 { font-size: 36px; line-height: 1.05; letter-spacing: -0.03em; margin: 14px 0 6px; font-weight: 780; }
-.hero p { margin: 0 0 16px; font-size: 16px; opacity: .92; max-width: 30ch; }
+.hero p { margin: 0 0 16px; font-size: 16px; max-width: 30ch; }
 .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
-.hero-stats div { background: rgba(255, 255, 255, .16); border-radius: 14px; padding: 10px 10px 8px; }
+.hero-stats div { background: rgba(16, 18, 70, .2); border-radius: 14px; padding: 10px 10px 8px; }
 .hero-stats b { display: block; font-size: 22px; line-height: 1.1; font-variant-numeric: tabular-nums; }
-.hero-stats span { font-size: 12px; opacity: .9; }
+.hero-stats span { font-size: 12px; }
 .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
 .tile { display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 14px; text-decoration: none; color: var(--ink); box-shadow: var(--shadow); }
 .tile .ic { width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; margin-bottom: 10px; }
 .tile .ic svg { width: 24px; height: 24px; }
 .tile b { display: block; font-size: 16px; margin-bottom: 2px; }
 .tile span { font-size: 13px; color: var(--muted); }
-.ic.indigo { background: rgba(91, 108, 255, .14); color: #5560f0; }
+.ic.indigo { background: rgba(91, 108, 255, .14); color: var(--accent); }
 .ic.mint { background: rgba(18, 169, 131, .14); color: var(--mint); }
 .ic.violet { background: rgba(139, 92, 246, .14); color: var(--violet); }
 .ic.coral { background: rgba(242, 100, 79, .14); color: var(--coral); }
@@ -475,6 +475,13 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 .price-grid { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-variant-numeric: tabular-nums; }
 .price-grid .tot { font-weight: 700; color: var(--accent); font-size: 18px; }
 .kind-seg { margin-bottom: 14px; }
+/* ---- accessibility: touch targets ---- */
+.chip, .btn-add, .seg button, .brand { min-height: 44px; }
+.lctl .seg button { min-height: 40px; }
+.stepper button { width: 44px; height: 44px; }
+.combo-t { min-height: 44px; display: inline-flex; align-items: center; }
+.low-btn { min-height: 40px; }
+.link, .link-btn { display: inline-flex; align-items: center; min-height: 44px; }
 [hidden] { display: none !important; }
 @media (prefers-reduced-motion: reduce) { .bar { transition: none; } }
 </style>
@@ -877,6 +884,18 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   </div>
 </main>
 
+<div class="picker" id="scanModal" hidden role="dialog" aria-modal="true" aria-labelledby="scanTitle">
+  <div class="picker-in">
+    <div class="picker-head">
+      <button class="round-btn" id="scanClose" aria-label="Close">&times;</button>
+      <h2 id="scanTitle">Scan a glaze</h2>
+      <span></span>
+    </div>
+    <div class="card wiz" id="scanBody" aria-live="polite"></div>
+    <input type="file" id="scanCam" class="vh" accept="image/*" capture="environment">
+    <input type="file" id="scanPick" class="vh" accept="image/*">
+  </div>
+</div>
 <div class="picker" id="wizModal" hidden role="dialog" aria-modal="true" aria-labelledby="wizTitle">
   <div class="picker-in">
     <div class="picker-head">
@@ -1402,8 +1421,10 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     $('wizCard').innerHTML = '<div class="wiz-intro"><div><h2 style="margin:0 0 4px">Not sure what to make?</h2><p class="hint" style="margin:0">Answer five quick questions and Clay Day will suggest pieces that fit your clay, skills and time.</p></div></div>' +
         '<button class="btn wide" id="wizStart" style="margin-top:12px">Help me decide</button>';
     if (!wiz.on) {
+      var wasOpen = !$('wizModal').hidden, inside = $('wizModal').contains(document.activeElement);
       $('wizModal').hidden = true;
-      if ($('picker').hidden) document.body.style.overflow = '';
+      if (!anyDialogOpen()) document.body.style.overflow = '';
+      if (wasOpen && inside) { try { $('wizStart').focus({ preventScroll: true }); } catch (e) {} }
       return;
     }
     var wasHidden = $('wizModal').hidden;
@@ -1690,15 +1711,21 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 
   /* ---- glaze picker ---- */
   var pickCb = null, pickBrand = 'all';
+  var pickReturn = null, scanReturn = null;
+  function anyDialogOpen() { return !$('picker').hidden || !$('scanModal').hidden || !$('wizModal').hidden; }
   function openPicker(cb) {
-    pickCb = cb; $('pickQ').value = ''; pickBrand = 'all';
+    pickReturn = document.activeElement; pickCb = cb; $('pickQ').value = ''; pickBrand = 'all';
     $('ngName').value = ''; $('ngBrand').value = ''; $('ngCode').value = ''; $('ngCone').value = ''; $('ngErr').hidden = true;
     renderPicker();
     $('picker').hidden = false; document.body.style.overflow = 'hidden';
     $('picker').scrollTop = 0;
     setTimeout(function () { $('pickQ').focus(); }, 50);
   }
-  function closePicker() { $('picker').hidden = true; document.body.style.overflow = ''; pickCb = null; }
+  function closePicker() {
+    $('picker').hidden = true; pickCb = null;
+    if (!anyDialogOpen()) document.body.style.overflow = '';
+    if (pickReturn && pickReturn.isConnected) { try { pickReturn.focus(); } catch (e) {} }
+  }
   function renderPicker() {
     var brands = ['AMACO', 'Mayco', 'Coyote'];
     var chips = [['all', 'All']].concat(brands.map(function (b) { return [b, b]; }));
@@ -2487,13 +2514,13 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 
   /* ---- project stages ---- */
   var STAGES = [
-    ['planned', 'Planned', '#8a93b0', 'An idea or sketch, not made yet'],
-    ['formed', 'Formed', '#8a5a3c', 'Thrown or built, still wet'],
-    ['leather', 'Leather hard', '#b0784f', 'Ready to trim and attach'],
-    ['bonedry', 'Bone dry', '#c9a76f', 'Fully dry, ready for bisque'],
-    ['bisqued', 'Bisqued', '#e0874f', 'Bisque fired, ready to glaze'],
-    ['glazed', 'Glazed', '#5560f0', 'Glazed, waiting for the glaze firing'],
-    ['finished', 'Finished', '#0f9f6e', 'Glaze fired and done']
+    ['planned', 'Planned', '#5f6784', 'An idea or sketch, not made yet'],
+    ['formed', 'Formed', '#7a4e33', 'Thrown or built, still wet'],
+    ['leather', 'Leather hard', '#8f5a33', 'Ready to trim and attach'],
+    ['bonedry', 'Bone dry', '#80622a', 'Fully dry, ready for bisque'],
+    ['bisqued', 'Bisqued', '#a84b1a', 'Bisque fired, ready to glaze'],
+    ['glazed', 'Glazed', '#4650e0', 'Glazed, waiting for the glaze firing'],
+    ['finished', 'Finished', '#0a7d55', 'Glaze fired and done']
   ];
   function stageInfo(id) { var s = null; STAGES.forEach(function (x) { if (x[0] === id) s = x; }); return s; }
   function renderStages() {
@@ -2632,13 +2659,13 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   var shelfShowAll = false;
   function renderShelf() {
     var el = $('shelfCard'), h = '';
-    if (!shelf.length) h += '<p class="hint" style="margin:0 0 12px">Add the glazes you own. Clay Day will show which AMACO combinations you can make right now, and keep a shopping list of anything running low.</p>';
+    if (!shelf.length) h += '<p class="hint" style="margin:0 0 12px">Scan a glaze label or add glazes by name. Clay Day will show which AMACO combinations you can make right now, and keep a shopping list of anything running low.</p>';
     h += shelf.map(function (s, i) {
       return '<div class="shelf-row">' + swatch(s.hex || hashColor(s.name)) + '<span><b>' + esc(s.name) + '</b><span class="sub2">' + esc([s.brand, s.code].filter(Boolean).join(' \u00b7 ')) + '</span></span>' +
         '<button class="low-btn" data-slow="' + i + '" aria-pressed="' + !!s.low + '">' + (s.low ? 'Running low' : 'Low?') + '</button>' +
         '<button class="icon-btn" data-sdel="' + i + '" aria-label="Remove ' + esc(s.name) + '">&times;</button></div>';
     }).join('');
-    h += '<button class="btn-ghost wide" id="shelfAdd" style="margin-top:12px">Add a glaze I own</button>';
+    h += '<div class="btn-row" style="margin-top:12px"><button class="btn" id="shelfScan">Scan a label</button><button class="btn-ghost" id="shelfAdd">Add by name</button></div>';
     if (shelf.length > 1) {
       var can = shelfCombos(), shown = shelfShowAll ? can : can.slice(0, 6);
       h += '<h3 style="margin:18px 0 4px">You can make ' + can.length + (can.length === 1 ? ' combination' : ' combinations') + '</h3>' +
@@ -2654,6 +2681,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   }
   $('shelfCard').addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
+    if (b.id === 'shelfScan') { openScan(); return; }
     if (b.id === 'shelfAdd') {
       openPicker(function (g) { if (!onShelf(g.code || g.name)) { shelf.push({ gid: g.id, code: g.code || '', name: g.name, brand: g.brand, hex: g.hex, low: false }); saveShelf(); } renderShelf(); renderRecs(); });
       return;
@@ -2672,6 +2700,152 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     if (e.target.id !== 'recOnly') return;
     recOnly = e.target.checked; sset('clayday:reconly', recOnly); renderRecs();
   });
+
+  // ---- scan a glaze label or barcode (Combos shelf) ----
+  var barcodeMap = sget('clayday:barcodes', {});
+  var scanState = { step: 'start' };
+  function addToShelf(g) {
+    if (onShelf(g.code || g.name)) return false;
+    shelf.push({ gid: g.id, code: g.code || '', name: g.name, brand: g.brand, hex: g.hex, low: false }); saveShelf(); return true;
+  }
+  function openScan() { scanReturn = document.activeElement; scanState = { step: 'start' }; renderScan(); $('scanModal').hidden = false; document.body.style.overflow = 'hidden'; $('scanClose').focus(); }
+  function closeScan() {
+    $('scanModal').hidden = true;
+    if (!anyDialogOpen()) document.body.style.overflow = '';
+    renderShelf(); renderRecs();
+    var sb = $('shelfScan'); if (sb) { try { sb.focus(); } catch (e) {} }
+  }
+  function scanGlazeRow(g) {
+    return '<div class="rec-sel" style="grid-template-columns:auto 1fr">' + swatch(g.hex || hashColor(g.name)) +
+      '<span><b>' + esc(g.name) + '</b><span class="sub2">' + esc([g.brand, g.line && g.line !== g.brand ? g.line : '', g.code, g.cone ? 'Cone ' + g.cone : ''].filter(Boolean).join(' \u00b7 ')) + '</span></span></div>';
+  }
+  function renderScan() {
+    var s = scanState, h;
+    if (s.step === 'start') {
+      h = '<p class="hint" style="margin:0 0 14px">Take a photo of the barcode or the front of the label. Hold it steady in good light.</p>' +
+        '<div class="actions" style="margin:0"><label class="btn wide" for="scanCam" style="margin:0;cursor:pointer">Open camera</label>' +
+        '<label class="btn-ghost wide" for="scanPick" style="margin:0;cursor:pointer">Choose a photo</label></div>';
+    } else if (s.step === 'busy') {
+      h = '<p class="empty" style="margin:0">' + esc(s.msg) + '</p>';
+    } else if (s.step === 'found') {
+      h = scanGlazeRow(s.g) + (s.via ? '<p class="hint" style="margin:0 0 12px">' + esc(s.via) + '</p>' : '') +
+        '<div class="banner ok" style="margin:0 0 12px">' + (s.already ? 'Already on your shelf.' : 'Added to your shelf.') + '</div>' +
+        '<div class="btn-row"><label class="btn" for="scanCam" style="margin:0;cursor:pointer">Scan another</label><button class="btn-ghost" id="scanDone">Done</button></div>';
+    } else if (s.step === 'new') {
+      h = scanGlazeRow(s.g) + '<p class="hint" style="margin:0 0 12px">This glaze isn\u2019t in Clay Day\u2019s catalog yet. Add it with the details read from the label?</p>' +
+        '<div class="btn-row"><button class="btn" id="scanAddNew">Add it</button><button class="btn-ghost" id="scanChoose">Pick a different glaze</button></div>';
+    } else if (s.step === 'pick') {
+      h = '<p style="margin:0 0 6px"><b>Found barcode ' + esc(s.code) + '</b></p><p class="hint" style="margin:0 0 12px">' + esc(s.msg) + '</p>' +
+        '<div class="btn-row"><button class="btn" id="scanChoose">Choose the glaze</button><label class="btn-ghost" for="scanCam" style="margin:0;cursor:pointer">Photo the label</label></div>';
+    } else {
+      h = '<p class="err" style="margin:0 0 8px">' + esc(s.msg || 'Couldn\u2019t read a barcode or label in that photo.') + '</p>' +
+        '<p class="hint" style="margin:0 0 12px">Try again with the barcode filling most of the photo, or add the glaze by name.</p>' +
+        '<div class="btn-row"><label class="btn" for="scanCam" style="margin:0;cursor:pointer">Try again</label><button class="btn-ghost" id="scanChoose">Add by name</button></div>';
+    }
+    $('scanBody').innerHTML = h;
+  }
+  var zxingP = null;
+  function loadZXing() {
+    if (window.ZXing) return Promise.resolve(window.ZXing);
+    if (!zxingP) zxingP = new Promise(function (res, rej) {
+      var sc = document.createElement('script');
+      sc.src = 'https://cdn.jsdelivr.net/npm/@zxing/library@0.20.0/umd/index.min.js';
+      sc.onload = function () { if (window.ZXing) res(window.ZXing); else rej(new Error('zxing')); };
+      sc.onerror = function () { zxingP = null; rej(new Error('zxing')); };
+      document.head.appendChild(sc);
+    });
+    return zxingP;
+  }
+  function loadImg(src) { return new Promise(function (res, rej) { var im = new Image(); im.onload = function () { res(im); }; im.onerror = rej; im.src = src; }); }
+  function readBarcode(dataUrl) {
+    return loadImg(dataUrl).then(function (img) {
+      var native = Promise.resolve(null);
+      try {
+        if ('BarcodeDetector' in window) {
+          native = new window.BarcodeDetector({ formats: ['upc_a', 'upc_e', 'ean_13', 'ean_8', 'code_128', 'code_39'] }).detect(img)
+            .then(function (r) { return r && r.length ? r[0].rawValue : null; }, function () { return null; });
+        }
+      } catch (e) { native = Promise.resolve(null); }
+      return native.then(function (v) {
+        if (v) return v;
+        return loadZXing().then(function (Z) {
+          var hints = new Map(); hints.set(Z.DecodeHintType.TRY_HARDER, true);
+          return new Z.BrowserMultiFormatReader(hints).decodeFromImageElement(img).then(function (r) { return r ? r.getText() : null; }, function () { return null; });
+        }).catch(function () { return null; });
+      });
+    }).catch(function () { return null; });
+  }
+  function readLabel(blob) {
+    if (!window.claude || typeof window.claude.use !== 'function') return Promise.resolve(null);
+    return window.claude.use('sample').then(function (sample) {
+      if (!sample) return null;
+      return sample.limits().then(function (lim) {
+        if (!lim || !lim.images) return null;
+        var prompt = 'The image is a photo of a ceramic glaze jar, bottle or bag label. Read the product details printed on it. ' +
+          'Reply with JSON only, no other text, in this shape: {"brand": string or null, "line": string or null, "code": string or null, "name": string or null, "cone": string or null}. ' +
+          'brand is the manufacturer, such as AMACO, Mayco, Coyote, Laguna, Spectrum or Duncan. line is the product line, such as Potter\u2019s Choice, Celadon or Stoneware. ' +
+          'code is the product number exactly as printed, such as PC-20, SW-101, C-40 or MBG042. name is the color name, such as Blue Rutile. cone is the firing cone or range, such as 5-6. ' +
+          'Use null for anything you cannot read clearly. If the image is not a glaze label, return all nulls.';
+        return sample.json(prompt, { images: [blob] });
+      });
+    }).catch(function () { return null; });
+  }
+  function alnum(s) { return String(s || '').toUpperCase().replace(/[^A-Z0-9]/g, ''); }
+  function matchGlaze(info) {
+    if (!info) return null;
+    var code = alnum(info.code), name = String(info.name || '').trim().toLowerCase(), brand = String(info.brand || '').toLowerCase(), best = null;
+    if (code) allGlazes().forEach(function (g) {
+      var gc = alnum(g.code);
+      if (!best && gc && (gc === code || gc === 'MBG' + code)) best = g;
+    });
+    if (!best && name) allGlazes().forEach(function (g) {
+      if (!best && g.name.toLowerCase() === name && (!brand || brand.indexOf(String(g.brand).toLowerCase()) > -1)) best = g;
+    });
+    return best;
+  }
+  function finishFound(g, via, code) {
+    if (code) { barcodeMap[code] = g.id; sset('clayday:barcodes', barcodeMap); }
+    var added = addToShelf(g);
+    scanState = { step: 'found', g: g, via: via, already: !added }; renderScan();
+  }
+  function handleScanFile(file) {
+    if (!file) return;
+    scanState = { step: 'busy', msg: 'Reading the photo\u2026' }; renderScan();
+    prepPhoto(file, 1600).then(function (prep) {
+      return readBarcode(prep.dataUrl).then(function (code) {
+        if (code && barcodeMap[code]) { var known = glazeById(barcodeMap[code]); if (known) { finishFound(known, 'Matched barcode ' + code + '.', code); return; } }
+        scanState = { step: 'busy', msg: code ? 'Found barcode ' + code + '. Reading the label\u2026' : 'Reading the label\u2026' }; renderScan();
+        return readLabel(prep.blob).then(function (info) {
+          var g = matchGlaze(info);
+          if (g) { finishFound(g, 'Read from the label' + (code ? ', and barcode ' + code + ' will be recognized next time' : '') + '.', code); return; }
+          if (info && info.name) {
+            scanState = { step: 'new', code: code, g: { id: 'custom-' + Date.now().toString(36), custom: true, brand: info.brand || 'My glazes', line: info.line || info.brand || 'My glazes',
+              cone: info.cone ? String(info.cone).replace(/^cone\s*/i, '') : '', code: info.code || '', name: info.name, hex: hashColor(info.name) } };
+            renderScan(); return;
+          }
+          if (code) { scanState = { step: 'pick', code: code, msg: 'Clay Day doesn\u2019t know this barcode yet. Choose the glaze once and it will be added automatically next time you scan it.' }; renderScan(); return; }
+          scanState = { step: 'fail' }; renderScan();
+        });
+      });
+    }).catch(function () { scanState = { step: 'fail', msg: 'That photo couldn\u2019t be read. Try a JPEG or PNG.' }; renderScan(); });
+  }
+  ['scanCam', 'scanPick'].forEach(function (id) {
+    $(id).addEventListener('change', function () { var f = this.files && this.files[0]; this.value = ''; handleScanFile(f); });
+  });
+  $('scanClose').addEventListener('click', closeScan);
+  $('scanBody').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    if (b.id === 'scanDone') { closeScan(); return; }
+    if (b.id === 'scanAddNew') {
+      var g = scanState.g; customGlazes.push(g); sset('clayday:customglazes', customGlazes);
+      finishFound(g, 'Added to your catalog from the label.', scanState.code); return;
+    }
+    if (b.id === 'scanChoose') {
+      var code = scanState.code;
+      openPicker(function (g) { finishFound(g, code ? 'Barcode ' + code + ' will be recognized next time.' : '', code); });
+    }
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('scanModal').hidden && $('picker').hidden) closeScan(); });
 
   // ---- test tiles vs pieces (Projects) ----
   var projKind = 'piece';
@@ -2783,6 +2957,10 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     });
     if (MORE_PAGES.indexOf(page) > -1) $('nav-more').setAttribute('aria-current', 'page'); else $('nav-more').removeAttribute('aria-current');
     setMore(false);
+    if (!$('picker').hidden) closePicker();
+    if (!$('scanModal').hidden) closeScan();
+    if (wiz.on) { wiz.on = false; renderWiz(); }
+    if (!$('lightbox').hidden) { $('lightbox').hidden = true; $('lightImg').removeAttribute('src'); }
     $('topBrand').hidden = page === 'home';
     if (page === 'home') renderHome();
     if (page === 'combos') { if (skipComboReset) skipComboReset = false; else showComboView('list'); renderMyCombos(); }
