@@ -672,13 +672,9 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   <!-- ===== PROJECTS ===== -->
   <div id="page-projects" hidden>
     <div id="projListView">
-      <div class="title-row">
-        <div>
-          <h1 class="page-title">Projects</h1>
-          <p class="sub">Photos of your finished pieces and the glazes you used.</p>
-        </div>
-        <button class="btn" id="projNew">New</button>
-      </div>
+      <h1 class="page-title">Projects</h1>
+      <p class="sub">Photos of your finished pieces and the glazes you used.</p>
+      <div class="card wiz"><button class="btn wide" id="projNew">New</button></div>
       <div class="seg kind-seg" id="kindSeg" role="group" aria-label="Show"></div>
       <p class="store-note" id="storeNote"></p>
       <div id="projList"></div>
@@ -761,13 +757,9 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   <!-- ===== COMBOS ===== -->
   <div id="page-combos" hidden>
     <div id="comboListView">
-      <div class="title-row">
-        <div>
-          <h1 class="page-title">Glaze combos</h1>
-          <p class="sub">Save your own layering recipes and try AMACO&rsquo;s favorites.</p>
-        </div>
-        <button class="btn" id="comboNew">New</button>
-      </div>
+      <h1 class="page-title">Glaze combos</h1>
+      <p class="sub">Save your own layering recipes and try AMACO&rsquo;s favorites.</p>
+      <div class="card wiz"><button class="btn wide" id="comboNew">New</button></div>
 
       <div class="section-head"><h2>Find combos for a glaze</h2></div>
       <div class="card" id="recCard"></div>
@@ -885,6 +877,16 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   </div>
 </main>
 
+<div class="picker" id="wizModal" hidden role="dialog" aria-modal="true" aria-labelledby="wizTitle">
+  <div class="picker-in">
+    <div class="picker-head">
+      <button class="round-btn" id="wizClose" aria-label="Close">&times;</button>
+      <h2 id="wizTitle">What should I make?</h2>
+      <span></span>
+    </div>
+    <div class="card wiz" id="wizBody"></div>
+  </div>
+</div>
 <div class="picker" id="picker" hidden role="dialog" aria-modal="true" aria-labelledby="pickTitle">
   <div class="picker-in">
     <div class="picker-head">
@@ -1364,7 +1366,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   var wiz = { on: false, step: 0, a: {} };
   function wizClayOpts() {
     var o = [], have = haveG();
-    if (have !== null) o.push(['have', 'What I entered above', lbOz(have)]);
+    if (have !== null) o.push(['have', 'The amount I entered', lbOz(have)]);
     o.push([453, 'About 1 lb', 'A small lump'], [1361, 'About 3 lb', 'A few pieces'], [4536, 'About 10 lb', 'A good session'], [11340, 'A 25 lb bag', 'Enough for a batch']);
     return o;
   }
@@ -1396,12 +1398,16 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     return why.join(' \u00b7 ');
   }
   function renderWiz() {
-    var el = $('wizCard');
-    if (!wiz.on) {
-      el.innerHTML = '<div class="wiz-intro"><div><h2 style="margin:0 0 4px">Not sure what to make?</h2><p class="hint" style="margin:0">Answer five quick questions and Clay Day will suggest pieces that fit your clay, skills and time.</p></div></div>' +
+    var el = $('wizBody');
+    $('wizCard').innerHTML = '<div class="wiz-intro"><div><h2 style="margin:0 0 4px">Not sure what to make?</h2><p class="hint" style="margin:0">Answer five quick questions and Clay Day will suggest pieces that fit your clay, skills and time.</p></div></div>' +
         '<button class="btn wide" id="wizStart" style="margin-top:12px">Help me decide</button>';
+    if (!wiz.on) {
+      $('wizModal').hidden = true;
+      if ($('picker').hidden) document.body.style.overflow = '';
       return;
     }
+    var wasHidden = $('wizModal').hidden;
+    $('wizModal').hidden = false; document.body.style.overflow = 'hidden';
     var h = '<div class="wiz-prog" aria-hidden="true">' + WIZ_STEPS.map(function (s, i) { return '<span class="' + (i <= wiz.step ? 'on' : '') + '"></span>'; }).join('') + '<span class="' + (wiz.step >= WIZ_STEPS.length ? 'on' : '') + '"></span></div>';
     if (wiz.step < WIZ_STEPS.length) {
       var s = WIZ_STEPS[wiz.step], opts = s.k === 'clay' ? wizClayOpts() : s.opts;
@@ -1429,11 +1435,13 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
           h += '<div class="banner ok" style="font-weight:500">Pair them: one ' + a.it.n + ' and one ' + b.it.n + ' use ' + lbOz(a.need + b.need) + '. <button class="link-btn" data-wadd="' + a.it.id + ':1,' + b.it.id + ':1">Add both to my plan</button></div>';
         }
       }
-      h += '<p class="msg ok" id="wizMsg" hidden></p><div class="btn-row" style="margin-top:12px"><button class="btn-ghost" id="wizBack">Change answers</button><button class="btn-ghost" id="wizRestart">Start over</button></div>';
+      h += '<p class="msg ok" id="wizMsg" hidden></p><div class="btn-row" style="margin-top:12px"><button class="btn-ghost" id="wizBack">Change answers</button><button class="btn-ghost" id="wizRestart">Start over</button></div><button class="btn wide" id="wizDone" style="margin-top:8px">See my batch plan</button>';
     }
     el.innerHTML = h;
+    if (wasHidden) { $('wizModal').scrollTop = 0; $('wizClose').focus(); }
   }
-  $('wizCard').addEventListener('click', function (e) {
+  function wizClick(e) {
+    if (e.target.closest('#wizDone')) { wiz.on = false; renderWiz(); $('planOut').scrollIntoView({ block: 'center', behavior: 'smooth' }); return; }
     if (e.target.closest('#wizStart')) { wiz = { on: true, step: 0, a: {} }; renderWiz(); return; }
     if (e.target.closest('#wizRestart')) { wiz = { on: true, step: 0, a: {} }; renderWiz(); return; }
     if (e.target.closest('#wizBack')) {
@@ -1441,7 +1449,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       renderWiz(); return;
     }
     var o = e.target.closest('[data-wv]');
-    if (o) { wiz.a[WIZ_STEPS[wiz.step].k] = o.getAttribute('data-wv'); wiz.step++; renderWiz(); $('wizCard').scrollIntoView({ block: 'start', behavior: 'smooth' }); return; }
+    if (o) { wiz.a[WIZ_STEPS[wiz.step].k] = o.getAttribute('data-wv'); wiz.step++; renderWiz(); $('wizModal').scrollTop = 0; return; }
     var ad = e.target.closest('[data-wadd]');
     if (ad) {
       ad.getAttribute('data-wadd').split(',').forEach(function (pair) {
@@ -1450,9 +1458,13 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
         if (!found) plan.push({ i: i, q: q });
       });
       savePlan(); renderIdeas();
-      var msg = $('wizMsg'); if (msg) { msg.textContent = 'Added to your batch plan below.'; msg.hidden = false; }
+      var msg = $('wizMsg'); if (msg) { msg.textContent = 'Added to your batch plan.'; msg.hidden = false; }
     }
-  });
+  }
+  $('wizCard').addEventListener('click', wizClick);
+  $('wizBody').addEventListener('click', wizClick);
+  $('wizClose').addEventListener('click', function () { wiz.on = false; renderWiz(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('wizModal').hidden && $('picker').hidden) { wiz.on = false; renderWiz(); } });
 
   $('ideaList').addEventListener('click', function (e) {
     var b = e.target.closest('[data-add]'); if (!b) return;
