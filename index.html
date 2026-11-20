@@ -80,21 +80,21 @@ html { scroll-padding-top: env(safe-area-inset-top, 0px); min-height: 100%; back
 html, body { margin: 0; }
 body {
   min-height: 100vh;
-  background-color: var(--bg);
-  background-image: var(--bg-grad);
-  background-repeat: no-repeat;
+  background: transparent;
   color: var(--ink);
   font-family: -apple-system, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.45;
   -webkit-text-size-adjust: 100%;
 }
+/* One fixed backdrop for every page and tab, so the glow never shifts with page length or scrolling */
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background-image: var(--bg-grad); background-repeat: no-repeat; }
 main { max-width: 560px; margin: 0 auto; padding: 16px 16px 120px; }
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
-.brand svg { width: 38px; height: 38px; flex: none; filter: drop-shadow(0 4px 10px rgba(60, 40, 20, .18)); }
-.brand .name { font-size: 21px; font-weight: 760; letter-spacing: -0.02em; }
+a.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+a.brand svg { width: 38px; height: 38px; flex: none; filter: drop-shadow(0 4px 10px rgba(60, 40, 20, .18)); }
+a.brand .name { font-size: 21px; font-weight: 760; letter-spacing: -0.02em; }
 .page-title { font-size: 30px; line-height: 1.12; margin: 18px 0 4px; letter-spacing: -0.025em; font-weight: 760; }
 .sub { color: var(--muted); margin: 0 0 18px; font-size: 15px; }
 .title-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
@@ -475,14 +475,16 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
 .price-grid .tot { font-weight: 700; color: var(--accent); font-size: 18px; }
 .kind-seg { margin-bottom: 14px; }
 /* ---- accessibility: touch targets ---- */
-.chip, .btn-add, .seg button, .brand { min-height: 44px; }
+.chip, .btn-add, .seg button, a.brand { min-height: 44px; }
+.badges { align-items: flex-start; }
+.badge { display: inline-flex; align-items: center; line-height: 1.35; min-height: 0; }
 .lctl .seg button { min-height: 40px; }
 .stepper button { width: 44px; height: 44px; }
 .combo-t { min-height: 44px; display: inline-flex; align-items: center; }
 .low-btn { min-height: 40px; }
 .link, .link-btn { display: inline-flex; align-items: center; min-height: 44px; }
 .filter-label { font-size: 13px; font-weight: 650; color: var(--muted); margin: 10px 0 2px; }
-.badge.brand { background: var(--field); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
+.badge.badge-brand { background: var(--field); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
 .sh-item { padding: 14px 0; border-top: 1px solid var(--line); }
 .sh-item:first-child { border-top: 0; padding-top: 0; }
 .sh-top { display: grid; grid-template-columns: auto 1fr 40px; gap: 12px; align-items: center; }
@@ -1744,7 +1746,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
         '<div><div class="combo-top"><h3><button class="combo-t" data-combo="a:' + i + '">' + esc(c.t) + '</button></h3>' +
         '<button class="star" data-fav="' + i + '" aria-pressed="' + isFav + '" aria-label="Save ' + esc(c.t) + '">' + (isFav ? '\u2605' : '\u2606') + '</button></div>' +
         '<p class="pair"><b>' + esc(c.top) + '</b> ' + (c.rel || 'over') + ' <b>' + esc(c.base) + '</b></p>' +
-        '<div class="badges"><span class="badge brand">' + br + '</span><span class="badge">' + c.cone + '</span>' +
+        '<div class="badges"><span class="badge badge-brand">' + br + '</span><span class="badge">' + c.cone + '</span>' +
         (c.run ? '<span class="badge run">Can run</span>' : '') +
         (c.stable ? '<span class="badge ok">Stable, good first try</span>' : '') +
         (c.light ? '<span class="badge">Best on light clay</span>' : '') + '</div>' +
@@ -1965,10 +1967,10 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
   var myCombos = sget('clayday:mycombos', []);
   var comboEditing = null, cDelArmed = false;
   function saveMyCombos() { sset('clayday:mycombos', myCombos); }
-  var cTab = sget('clayday:combotab', 'try');
-  if (['try', 'mine', 'glaze'].indexOf(cTab) < 0) cTab = 'try';
+  // The Combos page always opens on Explore. cTabNext lets another page ask for a different tab (for example the glaze shelf's See combos button).
+  var cTab = 'try', cTabNext = null;
   function setCTab(t) {
-    cTab = t; sset('clayday:combotab', t);
+    cTab = t;
     ['glaze', 'mine', 'try'].forEach(function (k) {
       $('cp-' + k).hidden = (k !== t);
       $('ct-' + k).setAttribute('aria-selected', k === t ? 'true' : 'false');
@@ -2847,7 +2849,7 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(function () { done(true); }, function () { done(false); }); else done(false);
       return;
     }
-    if (b.hasAttribute('data-sfind')) { recCode = b.getAttribute('data-sfind'); recSide = 'over'; sset('clayday:recglaze', recCode); setCTab('glaze'); location.hash = '#combos'; return; }
+    if (b.hasAttribute('data-sfind')) { recCode = b.getAttribute('data-sfind'); recSide = 'over'; sset('clayday:recglaze', recCode); cTabNext = 'glaze'; if (location.hash === '#combos') { showComboView('list'); } else { location.hash = '#combos'; } return; }
     if (b.hasAttribute('data-slow')) { var s = shelf[+b.getAttribute('data-slow')]; s.low = !s.low; saveShelf(); renderShelf(); return; }
     if (b.hasAttribute('data-sdel')) { shelf.splice(+b.getAttribute('data-sdel'), 1); saveShelf(); renderShelf(); renderRecs(); }
   });
@@ -3119,10 +3121,12 @@ input[type="date"]::-webkit-date-and-time-value { text-align: left; }
     $('topBrand').hidden = page === 'home';
     if (page === 'home') renderHome();
     if (page === 'shelf') renderShelf();
-    if (page === 'combos') { if (skipComboReset) skipComboReset = false; else showComboView('list'); renderMyCombos(); }
+    if (page === 'combos') { cTab = cTabNext || 'try'; cTabNext = null; if (skipComboReset) skipComboReset = false; else showComboView('list'); renderMyCombos(); }
     window.scrollTo(0, 0);
   }
   window.addEventListener('hashchange', route);
+  // Tapping Combos while already on it returns to the Explore tab
+  $('nav-combos').addEventListener('click', function () { if (location.hash === '#combos') { cTab = 'try'; showComboView('list'); } });
 
   /* ================= START ================= */
   var s = loadSettings();
